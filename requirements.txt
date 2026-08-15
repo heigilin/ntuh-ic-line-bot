@@ -1,0 +1,2 @@
+# The current app.py uses only Python standard library modules.
+# No package installation is required for the minimal local backend.

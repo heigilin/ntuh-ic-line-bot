@@ -1,0 +1,14 @@
+.env
+__pycache__/
+*.pyc
+.venv/
+venv/
+tmp/
+tools/
+output/monthly/
+output/pdf/
+output/policy/
+output/gas/
+*.zip
+*.log
+.DS_Store
