@@ -343,6 +343,22 @@ const cases = [
     quickNot: ['通報定義', '隔離醫囑', '病人安置', '採檢送驗'],
   },
   {
+    id: 'audit-influenza-specific-questions',
+    user: 'audit-influenza-questions',
+    sequence: ['評鑑查核', '流感評鑑委員可能提問'],
+    expect: ['流感評鑑委員可能提問與現場答案', '第四類法傳流感重症', 'ANN00039', '外科口罩', '如何證明流程確實完成'],
+    forbid: ['文件、佐證與現場作答', '第一線如何辨識、啟動流程、留下紀錄', '。；'],
+    quick: ['委員提問', 'KM佐證', '執行紀錄', '處置重點'],
+  },
+  {
+    id: 'audit-influenza-specific-evidence',
+    user: 'audit-influenza-evidence',
+    sequence: ['評鑑查核', '流感KM佐證'],
+    expect: ['流感評鑑查核 KM 佐證與勾稽紀錄', '流感感染管制措施', 'ANN00039', '鼻咽拭子', '檢驗結果', '清消紀錄', '委員勾稽方式'],
+    forbid: ['文件、佐證與現場作答', '依查核主題至 KM', '。；'],
+    quick: ['委員提問', 'KM佐證', '執行紀錄', '處置重點'],
+  },
+  {
     id: 'audit-cjd-summarizes-before-km-location',
     user: 'audit-cjd',
     sequence: ['評鑑查核', '庫賈氏病'],

@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-cjd-routing-3',
+  BOT_VERSION: '2026-08-26-audit-disease-detail-4',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -266,7 +266,7 @@ function answerQuestion_(question, event) {
     const subtopic = detectSubtopic_(question);
     const isCjdDetailQuery = disease.name === '庫賈氏病' && /勾稽|風險判定|鼻腔|器械|去活化|KM佐證/i.test(question);
     if (getUserMode_(event) === 'audit' && !subtopic && !isCjdDetailQuery) {
-      const auditReply = auditDiseaseTopicReply_(disease.name);
+      const auditReply = auditDiseaseTopicReply_(disease.name, question);
       if (auditReply) {
         return finalizeAnswer_({
           text: auditReply,
@@ -2179,10 +2179,15 @@ function safeDiseaseSubtopicFallback_(diseaseName, subtopic) {
   return replies[subtopic] || '';
 }
 
-function auditDiseaseTopicReply_(diseaseName) {
+function auditDiseaseTopicReply_(diseaseName, question) {
   const d = String(diseaseName || '').trim();
   if (!d) return '';
   const profile = diseaseInfectionControlProfile_(d);
+  const q = normalizeIntentText_(question || '');
+  const asksQuestions = /委員.*(?:問|提問)|可能提問/i.test(q);
+  const asksEvidence = /(?:km|佐證|紀錄|資料位置)/i.test(q);
+  if (asksQuestions) return auditDiseaseQuestionsReply_(d, profile);
+  if (asksEvidence) return auditDiseaseEvidenceReply_(d, profile);
   const lines = [d + '評鑑查核重點：'];
 
   if (d === '麻疹') {
@@ -2196,6 +2201,13 @@ function auditDiseaseTopicReply_(diseaseName) {
     lines.push('- 現場回答重點：先查院內 CJD 勾稽歷程及排程列管狀態；必要處置前通知手術室、供應室與感染管制中心，器械依感染力分流並按正式規範處理。');
     lines.push('- KM 可查閱佐證：核定之「庫賈氏病感染管制措施」及相關作業表單。');
     lines.push('- 現場／系統執行紀錄：CJD 勾稽紀錄、手術或檢查排程紀錄、跨單位通知紀錄、器械分流及去活化處理紀錄。');
+  } else if (profile) {
+    lines.push('- 對應查核面向：' + profile.category + '；隔離與安置、PPE、採檢送驗、環境清消及完成紀錄須能相互勾稽。');
+    lines.push('- 委員可能詢問：何時啟動通報與隔離？隔離醫囑如何開立及取消？採什麼檢體？照護人員如何防護？');
+    lines.push('- KM 可查閱佐證：核定之「' + d + '感染管制措施」、法定傳染病通報流程及相關表單。');
+    lines.push('- 現場／系統執行紀錄：檢驗結果、通報紀錄、隔離與取消隔離醫囑、床位安排、清消及必要的接觸者／暴露追蹤紀錄。');
+    lines.push('- 採檢送驗：' + profile.specimen);
+    lines.push('- 清消重點：' + profile.sanitization);
   } else {
     lines.push('- 對應查核面向：通報、隔離標示、PPE、病人安置、採檢送驗、環境清消及相關紀錄。');
     lines.push('- 委員可能詢問：第一線如何辨識、啟動流程、留下紀錄並確認措施已完成。');
@@ -2203,7 +2215,10 @@ function auditDiseaseTopicReply_(diseaseName) {
     lines.push('- 現場／系統執行紀錄：依該疾病實際流程產生的醫囑、通報、採檢、隔離、清消或追蹤紀錄。');
   }
 
-  if (profile && d !== '庫賈氏病') lines.push('- 現場回答重點：' + profile.placement + '；' + profile.ppe);
+  if (profile && d !== '庫賈氏病') {
+    const placement = String(profile.placement || '').replace(/[。；;]+$/, '');
+    lines.push('- 現場回答重點：' + placement + '；' + profile.ppe);
+  }
   if (d === '庫賈氏病') {
     lines.push('- KM 位置：登入院內 KM 系統，查詢文件編號 50300-3-000013「庫賈氏病感染管制措施」。');
   } else {
@@ -2212,9 +2227,44 @@ function auditDiseaseTopicReply_(diseaseName) {
   return lines.join('\n');
 }
 
+function auditDiseaseQuestionsReply_(diseaseName, profile) {
+  const d = String(diseaseName || '').trim();
+  if (!profile) {
+    return d + '評鑑委員可能提問：\n' +
+      '- 第一線如何辨識並啟動疾病別通報與感染管制流程？\n' +
+      '- 病人如何安置、使用哪些 PPE，採檢與清消如何完成？\n' +
+      '- 回答時應同時指出對應的核定規範及實際執行紀錄。';
+  }
+  return d + '評鑑委員可能提問與現場答案：\n' +
+    '- 問：什麼情況會啟動處置？\n  答：先依疾病定義與臨床／檢驗結果辨識；通報規定為「' + profile.category + '」。\n' +
+    '- 問：病人如何隔離及安置？\n  答：' + profile.placement + ' 隔離醫囑為「' + profile.order + '」\n' +
+    '- 問：照護人員使用哪些 PPE？\n  答：' + profile.ppe + '\n' +
+    '- 問：如何證明流程確實完成？\n  答：出示檢驗結果、通報紀錄、隔離與取消隔離醫囑、床位安排、清消及必要的接觸者／暴露追蹤紀錄。';
+}
+
+function auditDiseaseEvidenceReply_(diseaseName, profile) {
+  const d = String(diseaseName || '').trim();
+  const lines = [d + '評鑑查核 KM 佐證與勾稽紀錄：'];
+  lines.push('- 核定規範：登入院內 KM 系統，搜尋單位「50300 感染管制中心」，查詢「' + d + '感染管制措施」及相關通報流程。');
+  if (profile) {
+    const specimen = String(profile.specimen || '').replace(/[。；;]+$/, '');
+    lines.push('- 醫囑與安置：隔離醫囑及取消隔離醫囑紀錄、床位或集中照護安排；本疾病對應醫囑為「' + profile.order + '」');
+    lines.push('- 檢驗與通報：' + specimen + '；並備妥檢驗結果及適用的法定傳染病通報完成紀錄。');
+    lines.push('- 防護與清消：PPE 教育或技術查核、病室每日及終期清消紀錄；清消原則為「' + profile.sanitization + '」');
+  } else {
+    lines.push('- 執行紀錄：通報、採檢、隔離、病人安置、PPE、清消及追蹤紀錄，依實際個案流程相互勾稽。');
+  }
+  lines.push('- 委員勾稽方式：從一筆實際紀錄確認「辨識／檢驗 → 通報 → 隔離安置 → 防護清消 → 解除或追蹤」均有時間與完成紀錄。');
+  return lines.join('\n');
+}
+
 function auditGeneralTopicReply_(question, event) {
   if (getUserMode_(event) !== 'audit') return '';
   const q = normalizeIntentText_(question);
+  const detectedDisease = detectDisease_(q);
+  // Disease-specific audit buttons are answered later with the disease profile;
+  // do not let the generic "SOP / evidence" topic consume them first.
+  if (detectedDisease && /(?:評鑑委員可能提問|委員提問|km佐證|可出示執行紀錄|感染管制處置重點)/i.test(q)) return '';
   if (/^(傳染病通報|法定傳染病通報|通報機制|疾病通報)$/.test(q.replace(/\s+/g, ''))) {
     return officialAuditClauseReply_('查核條文 4.1 重點');
   }
@@ -2236,7 +2286,6 @@ function auditGeneralTopicReply_(question, event) {
       clauseTitle: '評鑑查核'
     };
   }
-  const detectedDisease = detectDisease_(q);
   const topics = auditClauseTopics_();
   for (let i = 0; i < topics.length; i++) {
     const topic = topics[i];
