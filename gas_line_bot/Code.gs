@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-needlestick-routing-2',
+  BOT_VERSION: '2026-08-26-cjd-routing-3',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -155,6 +155,17 @@ function answerQuestion_(question, event) {
 
   const meetingReply = isMeetingRecordQuestion_(question) ? meetingRecordReply_(question) : '';
   if (meetingReply) return finalizeAnswer_({ text: meetingReply, diseaseName: '會議檢索' }, event, originalQuestion, question);
+
+  // CJD operational questions must not depend on the external KB being refreshed.
+  const cjdOperationalReply = cjdOperationalPriorityReply_(question);
+  if (cjdOperationalReply) {
+    return finalizeAnswer_({
+      text: cjdOperationalReply,
+      diseaseName: '庫賈氏病',
+      subtopic: 'operational',
+      cjdAuditPrompt: true
+    }, event, originalQuestion, question);
+  }
 
   const operationalRule = externalIntentRule_(normalizeIntentText_(question), 'operational');
   if (operationalRule) {
@@ -355,6 +366,40 @@ function answerQuestion_(question, event) {
     diseaseName: disease ? disease.name : '熱門感控',
     cjdAuditPrompt: !!(disease && disease.name === '庫賈氏病' && getUserMode_(event) === 'audit')
   }, event, originalQuestion, question);
+}
+
+function cjdOperationalPriorityReply_(question) {
+  const q = normalizeIntentText_(question);
+  if (!/(cjd|庫賈氏病|庫賈氏症)/i.test(q)) return '';
+
+  if (/手動勾稽/.test(q)) {
+    return 'CJD 疾管署手動勾稽：\n' +
+      '- 適用情形：臨時排程、排程畫面沒有勾稽紀錄，或臨床已知有 CJD 風險疑慮。\n' +
+      '- 使用醫事人員卡及單卡讀卡機；雙卡型讀卡機不適用。\n' +
+      '- 院所代碼：0401180014。\n' +
+      '- 查得結果後務必執行「儲存」，將結果留存在本院資料庫，作為院內勾稽佐證。\n' +
+      '- 操作說明：KM「庫賈氏病單筆勾稽、批次查詢、查看 API 歷程操作方法」。';
+  }
+
+  if (/勾稽/.test(q) && /(院內|系統|紀錄|歷程|portal|怎麼查|怎麼看|如何查|如何看)/i.test(q)) {
+    return 'CJD 院內系統勾稽紀錄查詢：\n' +
+      '- 在 portal 的手術或檢查排程畫面查看最新程式勾稽歷程。\n' +
+      '- 顯示「列管中」：啟動相對應的感染管制措施。\n' +
+      '- 有勾稽紀錄且皆無列管：仍須依臨床病史、處置部位及醫療團隊評估風險。\n' +
+      '- 沒有勾稽紀錄：查看交班單或改做手動查詢；臨時排程或已知有風險時不可只等待批次勾稽。\n' +
+      '- 程式勾稽範圍：排程前 6 日至後 2 日。\n' +
+      '- KM「庫賈氏病單筆勾稽、批次查詢、查看 API 歷程操作方法」：https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=157420';
+  }
+
+  if (/鼻腔/.test(q) && /(手術|內視鏡|侵入性處置|處置)/.test(q)) {
+    return 'CJD 病人接受鼻腔手術或侵入性處置：\n' +
+      '- 先確認病人是否為 CJD／vCJD 確定、極可能、可能、診斷未定或風險個案，並查閱院內 CJD 勾稽歷程。\n' +
+      '- 評估處置是否涉及中或高感染力組織；若有替代檢查或治療，優先評估替代方案。\n' +
+      '- 必須手術時，事前通知手術室、供應室、感染管制中心及相關團隊，原則安排當天最後一台。\n' +
+      '- 接觸中、高感染力組織的器械須與低感染力器械分流；無法區分時，視為高感染力器械處理。\n' +
+      '- 器械送供應室過程保持濕潤；後續去活化方式依院內 CJD 正式規範及器械材質限制辦理。';
+  }
+  return '';
 }
 
 function followWelcomeReply_() {
