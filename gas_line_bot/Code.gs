@@ -156,6 +156,16 @@ function answerQuestion_(question, event) {
   const meetingReply = isMeetingRecordQuestion_(question) ? meetingRecordReply_(question) : '';
   if (meetingReply) return finalizeAnswer_({ text: meetingReply, diseaseName: '會議檢索' }, event, originalQuestion, question);
 
+  const operationalRule = externalIntentRule_(normalizeIntentText_(question), 'operational');
+  if (operationalRule) {
+    return finalizeAnswer_({
+      text: String(operationalRule.reply || ''),
+      diseaseName: String(operationalRule.disease_name || '院內作業'),
+      subtopic: 'operational',
+      cjdAuditPrompt: String(operationalRule.disease_name || '') === '庫賈氏病'
+    }, event, originalQuestion, question);
+  }
+
   question = expandDiseaseAliasForSearch_(question);
 
   const smallTalk = smallTalkReply_(question, event);
@@ -468,11 +478,9 @@ function finalizeAnswer_(answerObj, event, originalQuestion, effectiveQuestion, 
 function appendPolicySummaryReminder_(text, answerObj, question) {
   const body = String(text || '').trim();
   const obj = answerObj || {};
-  const q = String(question || '');
   const reminder = '一般流程摘要｜如與正式公告不一致，以正式公告為準。';
   if (!body || body.indexOf(reminder) >= 0) return body;
   if (obj.clarification || obj.diseaseName === '會議檢索' || obj.diseaseName === '閒聊' || obj.diseaseName === '語言切換') return body;
-  if (!/院內|通報|醫囑|採檢|送驗|檢體|隔離|解隔|清消|消毒|PPE|防護|病人安置|床位|造冊|暴露|查核|流程|系統操作/i.test(q)) return body;
   return body + '\n\n' + reminder;
 }
 
@@ -1096,6 +1104,11 @@ function smallTalkReply_(question, event) {
 }
 
 function externalIntentRuleReply_(normalizedQuestion) {
+  const rule = externalIntentRule_(normalizedQuestion);
+  return rule ? String(rule.reply || '').trim() : '';
+}
+
+function externalIntentRule_(normalizedQuestion, category) {
   let rules = [];
   try {
     const kb = loadKb_();
@@ -1106,14 +1119,15 @@ function externalIntentRuleReply_(normalizedQuestion) {
   for (let i = 0; i < rules.length; i++) {
     const rule = rules[i] || {};
     if (!rule.pattern || !rule.reply) continue;
+    if (category && String(rule.category || '') !== String(category)) continue;
     try {
       const re = new RegExp(String(rule.pattern), rule.flags || '');
-      if (re.test(normalizedQuestion)) return String(rule.reply || '').trim();
+      if (re.test(normalizedQuestion)) return rule;
     } catch (err2) {
       console.error('Bad intent rule ' + String(rule.id || i) + ': ' + err2.toString());
     }
   }
-  return '';
+  return null;
 }
 
 function normalizeIntentText_(text) {

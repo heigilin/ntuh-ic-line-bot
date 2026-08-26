@@ -361,6 +361,15 @@ const cases = [
     forbid: ['目前未檢索到', '通報定義', '隔壁床'],
   },
   {
+    id: 'clinical-cjd-reconciliation-method-direct',
+    user: 'clinical-cjd-method',
+    q: 'CJD 院內系統勾稽紀錄怎麼查',
+    expect: ['CJD 院內系統勾稽紀錄查詢', 'portal', '排程畫面', '列管中', 'API 歷程', 'documentId=157420', '一般流程摘要｜如與正式公告不一致，以正式公告為準。'],
+    forbid: ['目前未檢索到', '關鍵字檢索命中度較低', '感染管制小幫手'],
+    quick: ['手動勾稽', '風險判定', '器械處理', 'KM佐證'],
+    quickNot: ['通報定義', '隔離醫囑', '病人安置'],
+  },
+  {
     id: 'audit-cjd-manual-reconciliation',
     user: 'audit-cjd-manual',
     sequence: ['評鑑查核', 'CJD 疾管署手動勾稽怎麼查'],
