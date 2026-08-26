@@ -19,7 +19,6 @@ const props = {
   GEMINI_API_KEY: 'test-gemini-key',
   CJD_RECONCILIATION_IMAGE_URL: 'https://example.org/cjd-reconciliation.png',
   CJD_TISSUE_IMAGE_URL: 'https://example.org/cjd-tissue.jpg',
-  VRE_CDC_PRECAUTIONS_IMAGE_URL: 'https://example.org/vre-cdc-mdro.png',
   SUGGESTION_RECORDS: JSON.stringify([{ text: '這是不可由 LINE 讀取的測試意見內容' }]),
 };
 const cache = {};
@@ -1002,10 +1001,10 @@ outputs.push({
   preview: JSON.stringify({ cjdReconciliationImages, cjdTissueImages, unrelatedImages }).slice(0, 260),
 });
 
-const vreClearanceImages = ctx.vreImageMessages_({ diseaseName: 'VRE', effectiveQuestion: 'VRE 解隔標準' });
-const vreIsolationImages = ctx.vreImageMessages_({ diseaseName: 'VRE', effectiveQuestion: 'VRE 隔離醫囑' });
+const vreClearanceImages = ctx.clearanceImageMessages_({ diseaseName: 'VRE', effectiveQuestion: 'VRE 解隔標準' });
+const vreIsolationImages = ctx.clearanceImageMessages_({ diseaseName: 'VRE', effectiveQuestion: 'VRE 隔離醫囑' });
 const vreImageRoutingOk = vreClearanceImages.length === 1 &&
-  vreClearanceImages[0].originalContentUrl === props.VRE_CDC_PRECAUTIONS_IMAGE_URL &&
+  vreClearanceImages[0].originalContentUrl === JSON.parse(clearanceText).rules.VRE.image_url &&
   vreIsolationImages.length === 0;
 if (!vreImageRoutingOk) failures += 1;
 outputs.push({

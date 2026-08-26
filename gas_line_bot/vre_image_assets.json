@@ -4,7 +4,7 @@
   "page": 27,
   "images": [
     {
-      "script_property": "VRE_CDC_PRECAUTIONS_IMAGE_URL",
+      "configuration": "clearance_rules.json > rules > VRE > image_url",
       "public_url": "https://heigilin.github.io/ntuh_cdc/assets/line-bot/vre/tw-cdc-mdro-precautions.png",
       "usage": "VRE解除接觸隔離回答後的疾管署MDRO一般防護原則補充圖"
     }
