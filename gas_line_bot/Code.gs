@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-endoscope-records-9',
+  BOT_VERSION: '2026-08-26-stale-quick-guard-10',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -90,6 +90,16 @@ function answerQuestion_(question, event) {
 
   const modeReply = modeSwitchReply_(question, event);
   if (modeReply) return finalizeAnswer_(modeReply, event, originalQuestion, question, { skipCount: true });
+
+  const staleAuditQuickReply = staleAuditQuickPayloadReply_(question);
+  if (staleAuditQuickReply) {
+    return finalizeAnswer_({
+      text: staleAuditQuickReply,
+      diseaseName: '評鑑查核',
+      clarification: true,
+      staleAuditPrompt: true
+    }, event, originalQuestion, question, { skipCount: true });
+  }
 
   const feedbackReply = feedbackResponseReply_(question, event);
   if (feedbackReply) return finalizeAnswer_({
@@ -419,6 +429,12 @@ function cjdOperationalPriorityReply_(question) {
       '- 器械送供應室過程保持濕潤；後續去活化方式依院內 CJD 正式規範及器械材質限制辦理。';
   }
   return '';
+}
+
+function staleAuditQuickPayloadReply_(question) {
+  const q = normalizeIntentText_(question);
+  if (!/^熱門感控(?:可出示執行紀錄|KM佐證|評鑑委員可能提問|感染管制處置重點)$/i.test(q)) return '';
+  return '這是舊版快捷鈕，訊息中沒有帶入原查核主題，因此無法判定要查哪一項。\n請重新輸入主題，例如「內視鏡」、「導管照護」、「手部衛生」或疾病名稱，再點選相應面向。';
 }
 
 function followWelcomeReply_() {
@@ -3489,6 +3505,14 @@ function buildQuickReplyForDisease_(diseaseName, answerObj) {
 
 function contextualQuickReplyItems_(answerObj) {
   const q = String(answerObj && (answerObj.effectiveQuestion || answerObj.originalQuestion) || '');
+  if (answerObj && answerObj.staleAuditPrompt) {
+    return [
+      quickReplyMessage_('內視鏡', '內視鏡'),
+      quickReplyMessage_('導管照護', '導管照護'),
+      quickReplyMessage_('手部衛生', '手部衛生'),
+      quickReplyMessage_('傳染病通報', '傳染病通報')
+    ];
+  }
   if (answerObj && answerObj.cjdAuditPrompt) {
     const cjdItems = [
       { pattern: /院內.*勾稽|系統.*勾稽/i, item: quickReplyMessage_('院內勾稽紀錄', 'CJD 院內系統勾稽紀錄怎麼查') },
@@ -3552,7 +3576,7 @@ function contextualQuickReplyItems_(answerObj) {
     ];
     return endoscopeAuditItems.filter(function(row) { return !row.pattern.test(q); }).map(function(row) { return row.item; });
   }
-  if (answerObj && answerObj.mode === 'audit' && answerObj.diseaseName && answerObj.diseaseName !== '評鑑查核') {
+  if (answerObj && answerObj.mode === 'audit' && answerObj.diseaseName && !/^(評鑑查核|熱門感控|閒聊)$/.test(String(answerObj.diseaseName))) {
     const topic = String(answerObj.diseaseName);
     const subtopic = String(answerObj.subtopic || '');
     if (topic === '透析室') {
