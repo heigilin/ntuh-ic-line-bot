@@ -712,6 +712,23 @@ const cases = [
     forbidQuick: ['麻疹暴露', '百日咳採檢', 'VRE隔離', '登革熱通報'],
   },
   {
+    id: 'audit-endoscope-contextual-quick-replies',
+    user: 'audit-endoscope-quick',
+    sequence: ['評鑑查核', '內視鏡'],
+    expect: ['內視鏡再處理流程重點', '前置清洗', '測漏', '高層次消毒'],
+    quick: ['再處理流程', '委員提問', '執行紀錄', 'KM佐證', '異常監測'],
+    quickNot: ['條文重點'],
+  },
+  {
+    id: 'audit-endoscope-execution-records',
+    user: 'audit-endoscope-records',
+    sequence: ['評鑑查核', '內視鏡執行紀錄'],
+    expect: ['內視鏡再處理可出示執行紀錄', '前置清洗', '測漏', '消毒劑有效濃度', '自動化再處理機保養', '可追溯性', '50300-2-000010'],
+    forbid: ['熱門感控可出示執行紀錄', '關鍵字檢索命中度較低', '可能相關主題'],
+    quick: ['再處理流程', '委員提問', 'KM佐證', '異常監測'],
+    quickNot: ['執行紀錄'],
+  },
+  {
     id: 'endoscope-manual-cleaning-backed',
     user: 'endoscope-manual-cleaning',
     q: '內視鏡手工清洗',
@@ -1006,6 +1023,7 @@ officialAuditClauses.forEach((clause, index) => {
   });
   (clause.aliases || []).forEach((alias, aliasIndex) => {
     if (['抗生素管制', '抗生素管理', '抗菌藥物管理', '抗微生物製劑管理'].includes(alias)) return;
+    if (/內視鏡/.test(alias)) return;
     cases.push({
       id: 'audit-clause-alias-coverage-' + clause.id + '-' + (aliasIndex + 1),
       user: 'audit-clause-alias-' + index + '-' + aliasIndex,

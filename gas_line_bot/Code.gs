@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-cjd-summary-8',
+  BOT_VERSION: '2026-08-26-endoscope-records-9',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -444,6 +444,27 @@ function dialysisDisinfectionConcentrationReply_(question, event) {
 function endoscopeReprocessingReply_(question) {
   const q = normalizeIntentText_(question);
   if (!/內視鏡/i.test(q) || /庫賈氏|CJD|鼻腔手術/i.test(q)) return '';
+
+  if (/執行紀錄|可出示紀錄|查核紀錄/i.test(q)) {
+    return '內視鏡再處理可出示執行紀錄：\n' +
+      '- 每支內視鏡：前置清洗、測漏、手工清洗、高層次消毒、漂清、乾燥及儲存紀錄。\n' +
+      '- 消毒管理：消毒劑有效濃度、溫度、接觸時間及更換紀錄。\n' +
+      '- 設備與品質：自動化再處理機保養、微生物監測、異常處理及複檢結果。\n' +
+      '- 可追溯性：內視鏡編號、處理人員、處理時間及使用病人之對應紀錄。\n' +
+      '- KM：50300-2-000010「內視鏡再處理作業管理要點」及相關技術稽核表。';
+  }
+  if (/委員提問/i.test(q)) {
+    return '內視鏡查核委員可能提問：\n' +
+      '- 如何確認每支內視鏡完成測漏、手工清洗及高層次消毒？\n' +
+      '- 消毒劑濃度、溫度與接觸時間如何監測？\n' +
+      '- 如何維持乾燥、儲存及病人與內視鏡的可追溯性？\n' +
+      '- 微生物監測異常時，何時停用、改善及恢復使用？';
+  }
+  if (/KM佐證/i.test(q)) {
+    return '內視鏡查核 KM 佐證：\n' +
+      '- 50300-2-000010「內視鏡再處理作業管理要點」。\n' +
+      '- 附件：再處理流程、技術稽核表、微生物監測及異常處理相關表單。';
+  }
 
   if (/微生物.*(監測|異常)|監測.*異常/i.test(q)) {
     return '內視鏡微生物監測異常處理：\n' +
@@ -2317,6 +2338,7 @@ function auditDiseaseEvidenceReply_(diseaseName, profile) {
 function auditGeneralTopicReply_(question, event) {
   if (getUserMode_(event) !== 'audit') return '';
   const q = normalizeIntentText_(question);
+  if (/內視鏡/i.test(q) && !/(?:庫賈氏|cjd|鼻腔手術)/i.test(q)) return '';
   const detectedDisease = detectDisease_(q);
   // Disease-specific audit buttons are answered later with the disease profile;
   // do not let the generic "SOP / evidence" topic consume them first.
@@ -3519,6 +3541,16 @@ function contextualQuickReplyItems_(answerObj) {
     return clauseFacets
       .filter(function(row) { return !row.pattern.test(q); })
       .map(function(row) { return row.item; });
+  }
+  if (answerObj && answerObj.mode === 'audit' && /內視鏡/i.test(q)) {
+    const endoscopeAuditItems = [
+      { pattern: /再處理流程/i, item: quickReplyMessage_('再處理流程', '內視鏡再處理流程') },
+      { pattern: /委員提問/i, item: quickReplyMessage_('委員提問', '內視鏡委員提問') },
+      { pattern: /執行紀錄|可出示紀錄/i, item: quickReplyMessage_('執行紀錄', '內視鏡執行紀錄') },
+      { pattern: /KM佐證/i, item: quickReplyMessage_('KM佐證', '內視鏡KM佐證') },
+      { pattern: /微生物監測異常/i, item: quickReplyMessage_('異常監測', '內視鏡微生物監測異常') }
+    ];
+    return endoscopeAuditItems.filter(function(row) { return !row.pattern.test(q); }).map(function(row) { return row.item; });
   }
   if (answerObj && answerObj.mode === 'audit' && answerObj.diseaseName && answerObj.diseaseName !== '評鑑查核') {
     const topic = String(answerObj.diseaseName);
