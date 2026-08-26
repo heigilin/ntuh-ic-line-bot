@@ -337,10 +337,10 @@ const cases = [
     id: 'audit-mode-broad-disease-gives-evidence-location',
     user: 'audit-measles',
     sequence: ['評鑑查核', '麻疹'],
-    expect: ['麻疹評鑑查核重點', '對應查核面向', '委員可能詢問', 'KM 可查閱佐證', '現場／系統執行紀錄', '現場回答重點', 'KM 位置', '50300 感染管制中心'],
+    expect: ['麻疹對應查核面向', '通報、隔離標示、PPE、病人安置、採檢送驗、環境清消及相關紀錄', '請點選下方想查詢的面向'],
     forbid: ['可以查的範圍很多', '查核視角提醒', 'Y:\\IFC_V', '對應條文', '4.1 主條文'],
-    quick: ['委員提問', 'KM佐證', '執行紀錄', '處置重點'],
-    quickNot: ['通報定義', '隔離醫囑', '病人安置', '採檢送驗'],
+    quick: ['通報與時限', '隔離標示', 'PPE防護', '病人安置', '採檢送驗', '環境清消', '相關紀錄'],
+    quickNot: ['委員提問', 'KM佐證', '執行紀錄', '處置重點'],
   },
   {
     id: 'audit-influenza-specific-questions',
@@ -348,7 +348,7 @@ const cases = [
     sequence: ['評鑑查核', '流感評鑑委員可能提問'],
     expect: ['流感評鑑委員可能提問與現場答案', '第四類法傳流感重症', 'ANN00039', '外科口罩', '如何證明流程確實完成'],
     forbid: ['文件、佐證與現場作答', '第一線如何辨識、啟動流程、留下紀錄', '。；'],
-    quick: ['委員提問', 'KM佐證', '執行紀錄', '處置重點'],
+    quick: ['通報與時限', '隔離標示', 'PPE防護', '病人安置', '採檢送驗', '環境清消', '相關紀錄'],
   },
   {
     id: 'audit-influenza-specific-evidence',
@@ -356,7 +356,15 @@ const cases = [
     sequence: ['評鑑查核', '流感KM佐證'],
     expect: ['流感評鑑查核 KM 佐證與勾稽紀錄', '流感感染管制措施', 'ANN00039', '鼻咽拭子', '檢驗結果', '清消紀錄', '委員勾稽方式'],
     forbid: ['文件、佐證與現場作答', '依查核主題至 KM', '。；'],
-    quick: ['委員提問', 'KM佐證', '執行紀錄', '處置重點'],
+    quick: ['通報與時限', '隔離標示', 'PPE防護', '病人安置', '採檢送驗', '環境清消', '相關紀錄'],
+  },
+  {
+    id: 'audit-influenza-facet-selection',
+    user: 'audit-influenza-facet-selection',
+    sequence: ['評鑑查核', '流感病人安置查核'],
+    expect: ['流感病人安置查核', '飛沫隔離', '單人病室或同類集中照護', '床位安排'],
+    quick: ['通報與時限', '隔離標示', 'PPE防護', '採檢送驗', '環境清消', '相關紀錄'],
+    quickNot: ['病人安置'],
   },
   {
     id: 'audit-cjd-summarizes-before-km-location',
@@ -885,14 +893,18 @@ globalDiseaseMatrix.forEach((diseaseName, diseaseIndex) => {
     sequence: ['評鑑查核', diseaseName],
     expect: isMdroAuditClause
       ? ['查核條文 3.3', '抗藥性微生物', '委員可能的提問', 'KM 可出示佐證']
-      : [diseaseName, '評鑑查核重點', '委員可能詢問', 'KM'],
+      : diseaseName === '庫賈氏病'
+        ? [diseaseName, '評鑑查核重點', '委員可能詢問', 'KM']
+        : [diseaseName + '對應查核面向', '通報、隔離標示、PPE、病人安置、採檢送驗、環境清消及相關紀錄'],
     forbid: ['目前未檢索到完全相符的規範', '關鍵字檢索命中度較低', '隔壁床住了隔離病人', 'Y:\\'],
     quick: diseaseName === '庫賈氏病'
       ? ['院內勾稽紀錄', '手動勾稽']
       : isMdroAuditClause
         ? ['條文重點', '委員提問', 'KM佐證']
-        : ['委員提問', 'KM佐證', '執行紀錄', '處置重點'],
-    quickNot: ['通報定義', '隔離醫囑', '病人安置', '採檢送驗']
+        : ['通報與時限', '隔離標示', 'PPE防護', '病人安置', '採檢送驗', '環境清消', '相關紀錄'],
+    quickNot: diseaseName === '庫賈氏病' || isMdroAuditClause
+      ? ['通報定義', '隔離醫囑', '病人安置', '採檢送驗']
+      : ['委員提問', 'KM佐證', '執行紀錄', '處置重點']
   });
 });
 officialAuditClauses.forEach((clause, index) => {
@@ -1004,7 +1016,7 @@ for (const testCase of cases) {
   });
 }
 
-const genericClinicalAuditLabels = ['通報定義', '隔離醫囑', '病人安置', '採檢送驗', 'PPE防護', '清消', '解隔標準'];
+const genericClinicalAuditLabels = ['通報定義', '隔離醫囑', '清消', '解隔標準'];
 const auditQuickReplyViolations = outputs.filter((item) => {
   if (!String(item.question || '').startsWith('評鑑查核 ->')) return false;
   return (item.quickReplyLabels || []).some((label) => genericClinicalAuditLabels.includes(label));

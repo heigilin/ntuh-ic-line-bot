@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-audit-disease-detail-4',
+  BOT_VERSION: '2026-08-26-audit-facet-menu-5',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -265,6 +265,16 @@ function answerQuestion_(question, event) {
   if (disease) {
     const subtopic = detectSubtopic_(question);
     const isCjdDetailQuery = disease.name === '庫賈氏病' && /勾稽|風險判定|鼻腔|器械|去活化|KM佐證/i.test(question);
+    const auditFacetReply = getUserMode_(event) === 'audit'
+      ? auditDiseaseFacetReply_(disease.name, question)
+      : '';
+    if (auditFacetReply) {
+      return finalizeAnswer_({
+        text: auditFacetReply.text,
+        diseaseName: disease.name,
+        subtopic: auditFacetReply.facet
+      }, event, originalQuestion, question);
+    }
     if (getUserMode_(event) === 'audit' && !subtopic && !isCjdDetailQuery) {
       const auditReply = auditDiseaseTopicReply_(disease.name, question);
       if (auditReply) {
@@ -2188,6 +2198,9 @@ function auditDiseaseTopicReply_(diseaseName, question) {
   const asksEvidence = /(?:km|佐證|紀錄|資料位置)/i.test(q);
   if (asksQuestions) return auditDiseaseQuestionsReply_(d, profile);
   if (asksEvidence) return auditDiseaseEvidenceReply_(d, profile);
+  if (d !== '庫賈氏病') {
+    return d + '對應查核面向：通報、隔離標示、PPE、病人安置、採檢送驗、環境清消及相關紀錄。\n請點選下方想查詢的面向。';
+  }
   const lines = [d + '評鑑查核重點：'];
 
   if (d === '麻疹') {
@@ -2227,6 +2240,35 @@ function auditDiseaseTopicReply_(diseaseName, question) {
   return lines.join('\n');
 }
 
+function auditDiseaseFacetReply_(diseaseName, question) {
+  const d = String(diseaseName || '').trim();
+  const profile = diseaseInfectionControlProfile_(d);
+  if (!d || !profile) return null;
+  const q = normalizeIntentText_(question || '');
+  if (/通報與時限查核|通報時限查核/.test(q)) {
+    return { facet: 'audit-reporting', text: d + '通報與時限查核：\n- ' + profile.category + '\n- 可出示通報完成時間、退補件與追蹤完成紀錄；委員會勾稽辨識時間、通報時間及規定時限。' };
+  }
+  if (/隔離標示查核/.test(q)) {
+    return { facet: 'audit-isolation', text: d + '隔離標示查核：\n- ' + profile.order + '\n- 可出示隔離與取消隔離醫囑、病室或床旁標示及啟動時間，確認醫囑、標示與實際執行一致。' };
+  }
+  if (/ppe防護查核|防護裝備查核/i.test(q)) {
+    return { facet: 'audit-ppe', text: d + ' PPE防護查核：\n- ' + profile.ppe + '\n- 可出示 PPE 配置、效期巡查、教育訓練或穿脫技術查核紀錄。' };
+  }
+  if (/病人安置查核/.test(q)) {
+    return { facet: 'audit-placement', text: d + '病人安置查核：\n- ' + profile.placement + '\n- 可出示床位安排、同類集中照護或轉床紀錄，確認未與不適合的病人同室。' };
+  }
+  if (/採檢送驗查核/.test(q)) {
+    return { facet: 'audit-specimen', text: d + '採檢送驗查核：\n- ' + profile.specimen + '\n- 可出示醫令、採檢時間、檢體種類、檢驗結果及適用的防疫檢體送驗紀錄。' };
+  }
+  if (/環境清消查核/.test(q)) {
+    return { facet: 'audit-sanitization', text: d + '環境清消查核：\n- ' + profile.sanitization + '\n- 可出示每日與終期清消紀錄、消毒劑濃度／泡製日期標示及共用設備清消紀錄。' };
+  }
+  if (/相關紀錄查核/.test(q)) {
+    return { facet: 'audit-records', text: auditDiseaseEvidenceReply_(d, profile) };
+  }
+  return null;
+}
+
 function auditDiseaseQuestionsReply_(diseaseName, profile) {
   const d = String(diseaseName || '').trim();
   if (!profile) {
@@ -2264,7 +2306,7 @@ function auditGeneralTopicReply_(question, event) {
   const detectedDisease = detectDisease_(q);
   // Disease-specific audit buttons are answered later with the disease profile;
   // do not let the generic "SOP / evidence" topic consume them first.
-  if (detectedDisease && /(?:評鑑委員可能提問|委員提問|km佐證|可出示執行紀錄|感染管制處置重點)/i.test(q)) return '';
+  if (detectedDisease && /(?:評鑑委員可能提問|委員提問|km佐證|可出示執行紀錄|感染管制處置重點|通報與時限查核|通報時限查核|隔離標示查核|ppe防護查核|防護裝備查核|病人安置查核|採檢送驗查核|環境清消查核|相關紀錄查核)/i.test(q)) return '';
   if (/^(傳染病通報|法定傳染病通報|通報機制|疾病通報)$/.test(q.replace(/\s+/g, ''))) {
     return officialAuditClauseReply_('查核條文 4.1 重點');
   }
@@ -3455,12 +3497,26 @@ function contextualQuickReplyItems_(answerObj) {
         quickReplyMessage_('KM佐證', topic + '通報KM佐證')
       ];
     }
-    return [
-      quickReplyMessage_('委員提問', topic + '評鑑委員可能提問'),
-      quickReplyMessage_('KM佐證', topic + 'KM佐證'),
-      quickReplyMessage_('執行紀錄', topic + '可出示執行紀錄'),
-      quickReplyMessage_('處置重點', topic + '感染管制處置重點')
+    if (subtopic !== 'audit' && subtopic.indexOf('audit-') !== 0) {
+      return [
+        quickReplyMessage_('委員提問', topic + '評鑑委員可能提問'),
+        quickReplyMessage_('KM佐證', topic + 'KM佐證'),
+        quickReplyMessage_('執行紀錄', topic + '可出示執行紀錄'),
+        quickReplyMessage_('處置重點', topic + '感染管制處置重點')
+      ];
+    }
+    const auditFacets = [
+      { key: 'audit-reporting', item: quickReplyMessage_('通報與時限', topic + '通報與時限查核') },
+      { key: 'audit-isolation', item: quickReplyMessage_('隔離標示', topic + '隔離標示查核') },
+      { key: 'audit-ppe', item: quickReplyMessage_('PPE防護', topic + 'PPE防護查核') },
+      { key: 'audit-placement', item: quickReplyMessage_('病人安置', topic + '病人安置查核') },
+      { key: 'audit-specimen', item: quickReplyMessage_('採檢送驗', topic + '採檢送驗查核') },
+      { key: 'audit-sanitization', item: quickReplyMessage_('環境清消', topic + '環境清消查核') },
+      { key: 'audit-records', item: quickReplyMessage_('相關紀錄', topic + '相關紀錄查核') }
     ];
+    return auditFacets
+      .filter(function(row) { return row.key !== subtopic; })
+      .map(function(row) { return row.item; });
   }
   if (/教育|訓練/i.test(q) && answerObj && answerObj.mode === 'audit') {
     return [
