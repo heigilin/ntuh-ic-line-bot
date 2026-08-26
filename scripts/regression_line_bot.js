@@ -908,9 +908,35 @@ globalDiseaseMatrix.forEach((diseaseName, diseaseIndex) => {
       ? ['通報定義', '隔離醫囑', '病人安置', '採檢送驗']
       : ['委員提問', 'KM佐證', '執行紀錄', '處置重點']
   });
+  if (!isMdroAuditClause && diseaseName !== '庫賈氏病') {
+    const facetCases = [
+      { id: 'reporting', command: '通報與時限查核', marker: '規定時限', label: '通報與時限' },
+      { id: 'isolation', command: '隔離標示查核', marker: '隔離標示查核', label: '隔離標示' },
+      { id: 'ppe', command: 'PPE防護查核', marker: 'PPE防護查核', label: 'PPE防護' },
+      { id: 'placement', command: '病人安置查核', marker: '病人安置查核', label: '病人安置' },
+      { id: 'specimen', command: '採檢送驗查核', marker: '採檢送驗查核', label: '採檢送驗' },
+      { id: 'sanitization', command: '環境清消查核', marker: '環境清消查核', label: '環境清消' },
+      { id: 'records', command: '相關紀錄查核', marker: '委員勾稽方式', label: '相關紀錄' }
+    ];
+    facetCases.forEach((facet, facetIndex) => {
+      cases.push({
+        id: 'global-audit-facet-' + diseaseIndex + '-' + facet.id,
+        user: 'global-audit-facet-' + diseaseIndex + '-' + facetIndex,
+        sequence: ['評鑑查核', diseaseName + facet.command],
+        expect: [diseaseName, facet.marker],
+        forbid: ['對應查核面向：通報、隔離標示', '請點選下方想查詢的面向', '關鍵字檢索命中度較低', '目前未檢索到完全相符的規範'],
+        quickNot: [facet.label]
+      });
+    });
+  }
 });
 officialAuditClauses.forEach((clause, index) => {
   const clauseMenuQuickReplies = ['條文重點', '委員提問', 'KM佐證', '執行紀錄'];
+  const focusTitle = clause.id === '1.6'
+    ? '感染率監測與改善'
+    : clause.id === '4.1'
+      ? '傳染病通報'
+      : clause.title;
   const firstKmEvidence = clause.id === '5.1'
     ? { name: '員工預防接種措施', url: 'https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54430' }
     : clause.id === '1.6'
@@ -938,7 +964,7 @@ officialAuditClauses.forEach((clause, index) => {
     user: 'audit-clause-question-view-' + index,
     sequence: ['評鑑查核', '查核條文 ' + clause.id + ' 委員提問'],
     expect: questionClauseExpect,
-    forbid: ['關鍵字檢索命中度較低', '可能相關主題', '查核佐證路徑與用途', '以下路徑只在', 'Y:\\'],
+    forbid: ['關鍵字檢索命中度較低', '可能相關主題', '查核佐證路徑與用途', '以下路徑只在', 'Y:\\', '請點選下方想查詢的面向'],
     quick: ['條文重點', 'KM佐證', '執行紀錄'],
     quickNot: ['委員提問'],
   });
@@ -947,9 +973,27 @@ officialAuditClauses.forEach((clause, index) => {
     user: 'audit-clause-km-view-' + index,
     sequence: ['評鑑查核', '查核條文 ' + clause.id + ' KM佐證'],
     expect: kmClauseExpect,
-    forbid: ['關鍵字檢索命中度較低', '可能相關主題', '查核佐證路徑與用途', '以下路徑只在', 'Y:\\'],
+    forbid: ['關鍵字檢索命中度較低', '可能相關主題', '查核佐證路徑與用途', '以下路徑只在', 'Y:\\', '請點選下方想查詢的面向'],
     quick: ['條文重點', '委員提問', '執行紀錄'],
     quickNot: ['KM佐證'],
+  });
+  cases.push({
+    id: 'audit-clause-focus-view-' + clause.id,
+    user: 'audit-clause-focus-view-' + index,
+    sequence: ['評鑑查核', '查核條文 ' + clause.id + ' 重點'],
+    expect: [focusTitle, '查核條文 ' + clause.id],
+    forbid: ['請點選下方想查詢的面向', '關鍵字檢索命中度較低', 'Y:\\'],
+    quick: ['委員提問', 'KM佐證', '執行紀錄'],
+    quickNot: ['條文重點'],
+  });
+  cases.push({
+    id: 'audit-clause-records-view-' + clause.id,
+    user: 'audit-clause-records-view-' + index,
+    sequence: ['評鑑查核', '查核條文 ' + clause.id + ' 執行紀錄'],
+    expect: [clause.title, '查核條文 ' + clause.id, '執行紀錄', '執行時間', '異常處理', '追蹤結果'],
+    forbid: ['請點選下方想查詢的面向', '關鍵字檢索命中度較低', 'Y:\\'],
+    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quickNot: ['執行紀錄'],
   });
   (clause.aliases || []).forEach((alias, aliasIndex) => {
     if (['抗生素管制', '抗生素管理', '抗菌藥物管理', '抗微生物製劑管理'].includes(alias)) return;
@@ -964,15 +1008,6 @@ officialAuditClauses.forEach((clause, index) => {
         : clauseMenuQuickReplies,
     });
   });
-});
-
-cases.push({
-  id: 'audit-clause-records-view-5.1',
-  user: 'audit-clause-records-view-5-1',
-  sequence: ['評鑑查核', '查核條文 5.1 執行紀錄'],
-  expect: ['查核條文 5.1', '執行紀錄', '執行時間', '負責人', '異常處理', '改善措施', '追蹤結果'],
-  quick: ['條文重點', '委員提問', 'KM佐證'],
-  quickNot: ['執行紀錄'],
 });
 
 let failures = 0;

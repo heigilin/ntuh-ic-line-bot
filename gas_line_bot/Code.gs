@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-all-audit-menus-6',
+  BOT_VERSION: '2026-08-26-quick-reply-validation-7',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -2244,25 +2244,33 @@ function auditDiseaseTopicReply_(diseaseName, question) {
 function auditDiseaseFacetReply_(diseaseName, question) {
   const d = String(diseaseName || '').trim();
   const profile = diseaseInfectionControlProfile_(d);
-  if (!d || !profile) return null;
+  if (!d) return null;
   const q = normalizeIntentText_(question || '');
   if (/通報與時限查核|通報時限查核/.test(q)) {
-    return { facet: 'audit-reporting', text: d + '通報與時限查核：\n- ' + profile.category + '\n- 可出示通報完成時間、退補件與追蹤完成紀錄；委員會勾稽辨識時間、通報時間及規定時限。' };
+    const reporting = profile
+      ? d + '通報與時限查核：\n- ' + profile.category
+      : (cdcNotificationDefinitionReply_(d) || safeDiseaseSubtopicFallback_(d, 'definition'));
+    return { facet: 'audit-reporting', text: reporting + '\n- 可出示通報完成時間、退補件與追蹤完成紀錄；委員會勾稽辨識時間、通報時間及規定時限。' };
   }
   if (/隔離標示查核/.test(q)) {
-    return { facet: 'audit-isolation', text: d + '隔離標示查核：\n- ' + profile.order + '\n- 可出示隔離與取消隔離醫囑、病室或床旁標示及啟動時間，確認醫囑、標示與實際執行一致。' };
+    const isolation = profile ? profile.order : safeDiseaseSubtopicFallback_(d, 'isolation');
+    return { facet: 'audit-isolation', text: d + '隔離標示查核：\n- ' + isolation + '\n- 可出示隔離與取消隔離醫囑、病室或床旁標示及啟動時間，確認醫囑、標示與實際執行一致。' };
   }
   if (/ppe防護查核|防護裝備查核/i.test(q)) {
-    return { facet: 'audit-ppe', text: d + ' PPE防護查核：\n- ' + profile.ppe + '\n- 可出示 PPE 配置、效期巡查、教育訓練或穿脫技術查核紀錄。' };
+    const ppe = profile ? profile.ppe : safeDiseaseSubtopicFallback_(d, 'care');
+    return { facet: 'audit-ppe', text: d + ' PPE防護查核：\n- ' + ppe + '\n- 可出示 PPE 配置、效期巡查、教育訓練或穿脫技術查核紀錄。' };
   }
   if (/病人安置查核/.test(q)) {
-    return { facet: 'audit-placement', text: d + '病人安置查核：\n- ' + profile.placement + '\n- 可出示床位安排、同類集中照護或轉床紀錄，確認未與不適合的病人同室。' };
+    const placement = profile ? profile.placement : safeDiseaseSubtopicFallback_(d, 'placement');
+    return { facet: 'audit-placement', text: d + '病人安置查核：\n- ' + placement + '\n- 可出示床位安排、同類集中照護或轉床紀錄，確認未與不適合的病人同室。' };
   }
   if (/採檢送驗查核/.test(q)) {
-    return { facet: 'audit-specimen', text: d + '採檢送驗查核：\n- ' + profile.specimen + '\n- 可出示醫令、採檢時間、檢體種類、檢驗結果及適用的防疫檢體送驗紀錄。' };
+    const specimen = profile ? profile.specimen : (cdcSpecimenReply_(d) || safeDiseaseSubtopicFallback_(d, 'specimen'));
+    return { facet: 'audit-specimen', text: d + '採檢送驗查核：\n- ' + specimen + '\n- 可出示醫令、採檢時間、檢體種類、檢驗結果及適用的防疫檢體送驗紀錄。' };
   }
   if (/環境清消查核/.test(q)) {
-    return { facet: 'audit-sanitization', text: d + '環境清消查核：\n- ' + profile.sanitization + '\n- 可出示每日與終期清消紀錄、消毒劑濃度／泡製日期標示及共用設備清消紀錄。' };
+    const sanitization = profile ? profile.sanitization : genericDiseaseSanitizationReply_(d);
+    return { facet: 'audit-sanitization', text: d + '環境清消查核：\n- ' + sanitization + '\n- 可出示每日與終期清消紀錄、消毒劑濃度／泡製日期標示及共用設備清消紀錄。' };
   }
   if (/相關紀錄查核/.test(q)) {
     return { facet: 'audit-records', text: auditDiseaseEvidenceReply_(d, profile) };
