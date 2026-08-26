@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-quick-reply-validation-7',
+  BOT_VERSION: '2026-08-26-cjd-summary-8',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -400,6 +400,14 @@ function cjdOperationalPriorityReply_(question) {
       '- 沒有勾稽紀錄：查看交班單或改做手動查詢；臨時排程或已知有風險時不可只等待批次勾稽。\n' +
       '- 程式勾稽範圍：排程前 6 日至後 2 日。\n' +
       '- KM「庫賈氏病單筆勾稽、批次查詢、查看 API 歷程操作方法」：https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=157420';
+  }
+
+  if (/(中高感染力組織|中高風險組織|高感染力組織|中感染力組織).*(有哪些|是什麼|包含|分類)?/.test(q)) {
+    return 'CJD 中、高感染力組織摘要：\n' +
+      '- 高感染力（各型 CJD）：腦、脊髓、顱神經與顱神經節、後眼部及腦下垂體。\n' +
+      '- 中感染力（各型 CJD）：脊神經節、嗅覺上皮。\n' +
+      '- vCJD／未確定型另注意：扁桃腺、脾、闌尾、胸腺、腎上腺、淋巴結及腸相關淋巴組織。\n' +
+      '- 侵入性處置前仍須依病型、部位及院內正式規範判定器械分流。';
   }
 
   if (/鼻腔/.test(q) && /(手術|內視鏡|侵入性處置|處置)/.test(q)) {
@@ -2210,11 +2218,10 @@ function auditDiseaseTopicReply_(diseaseName, question) {
     lines.push('- KM 可查閱佐證：麻疹感染管制措施、法定傳染病通報流程、接觸者處置及相關表單。');
     lines.push('- 現場／系統執行紀錄：通報紀錄、隔離醫囑、接觸者名冊、員工健康監測及暴露追蹤紀錄。');
   } else if (d === '庫賈氏病') {
-    lines.push('- 對應查核面向：CJD 風險辨識、手術或侵入性處置前勾稽、器械分流與去活化、跨單位通知及紀錄保存。');
-    lines.push('- 委員可能詢問：如何確認列管狀態、臨時排程如何補查、涉及中高感染力組織時器械如何處理。');
-    lines.push('- 現場回答重點：先查院內 CJD 勾稽歷程及排程列管狀態；必要處置前通知手術室、供應室與感染管制中心，器械依感染力分流並按正式規範處理。');
-    lines.push('- KM 可查閱佐證：核定之「庫賈氏病感染管制措施」及相關作業表單。');
-    lines.push('- 現場／系統執行紀錄：CJD 勾稽紀錄、手術或檢查排程紀錄、跨單位通知紀錄、器械分流及去活化處理紀錄。');
+    lines.push('- 查核面向：風險辨識與勾稽、侵入性處置前通知、器械分流及去活化。');
+    lines.push('- 委員可能詢問：列管狀態怎麼查？臨時排程怎麼補查？中高感染力組織器械怎麼處理？');
+    lines.push('- 可出示紀錄：CJD 勾稽、排程、跨單位通知及器械處理紀錄。');
+    lines.push('- KM：50300-3-000013「庫賈氏病感染管制措施」。');
   } else if (profile) {
     lines.push('- 對應查核面向：' + profile.category + '；隔離與安置、PPE、採檢送驗、環境清消及完成紀錄須能相互勾稽。');
     lines.push('- 委員可能詢問：何時啟動通報與隔離？隔離醫囑如何開立及取消？採什麼檢體？照護人員如何防護？');
@@ -2233,9 +2240,7 @@ function auditDiseaseTopicReply_(diseaseName, question) {
     const placement = String(profile.placement || '').replace(/[。；;]+$/, '');
     lines.push('- 現場回答重點：' + placement + '；' + profile.ppe);
   }
-  if (d === '庫賈氏病') {
-    lines.push('- KM 位置：登入院內 KM 系統，查詢文件編號 50300-3-000013「庫賈氏病感染管制措施」。');
-  } else {
+  if (d !== '庫賈氏病') {
     lines.push('- KM 位置：登入院內 KM 系統，搜尋單位「50300 感染管制中心」，查詢「' + d + '感染管制措施」或相關通報流程。');
   }
   return lines.join('\n');
@@ -3463,13 +3468,15 @@ function buildQuickReplyForDisease_(diseaseName, answerObj) {
 function contextualQuickReplyItems_(answerObj) {
   const q = String(answerObj && (answerObj.effectiveQuestion || answerObj.originalQuestion) || '');
   if (answerObj && answerObj.cjdAuditPrompt) {
-    return [
-      quickReplyMessage_('院內勾稽紀錄', 'CJD 院內系統勾稽紀錄怎麼查'),
-      quickReplyMessage_('手動勾稽', 'CJD 疾管署手動勾稽怎麼查'),
-      quickReplyMessage_('風險判定', 'CJD 病人要做鼻腔手術怎麼辦'),
-      quickReplyMessage_('器械處理', 'CJD 病人鼻腔內視鏡或手術器械要怎麼處理'),
-      quickReplyMessage_('KM佐證', 'CJD KM佐證')
+    const cjdItems = [
+      { pattern: /院內.*勾稽|系統.*勾稽/i, item: quickReplyMessage_('院內勾稽紀錄', 'CJD 院內系統勾稽紀錄怎麼查') },
+      { pattern: /手動勾稽/i, item: quickReplyMessage_('手動勾稽', 'CJD 疾管署手動勾稽怎麼查') },
+      { pattern: /鼻腔手術|風險判定/i, item: quickReplyMessage_('風險判定', 'CJD 病人要做鼻腔手術怎麼辦') },
+      { pattern: /器械.*處理|鼻腔內視鏡/i, item: quickReplyMessage_('器械處理', 'CJD 病人鼻腔內視鏡或手術器械要怎麼處理') },
+      { pattern: /中高感染力組織|中高風險組織/i, item: quickReplyMessage_('中高感染力組織', 'CJD 中高感染力組織有哪些') },
+      { pattern: /KM佐證/i, item: quickReplyMessage_('KM佐證', 'CJD KM佐證') }
     ];
+    return cjdItems.filter(function(row) { return !row.pattern.test(q); }).map(function(row) { return row.item; });
   }
   if (answerObj && answerObj.auditTopicMenu === 'antibiotic') {
     return [
