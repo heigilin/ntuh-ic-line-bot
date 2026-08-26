@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-text-only-1',
+  BOT_VERSION: '2026-08-26-needlestick-routing-2',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -478,7 +478,7 @@ function finalizeAnswer_(answerObj, event, originalQuestion, effectiveQuestion, 
 function appendPolicySummaryReminder_(text, answerObj, question) {
   const body = String(text || '').trim();
   const obj = answerObj || {};
-  const reminder = '一般流程摘要｜如與正式公告不一致，以正式公告為準。';
+  const reminder = '如與正式公告不一致，以正式公告為準。';
   if (!body || body.indexOf(reminder) >= 0) return body;
   if (obj.clarification || obj.diseaseName === '會議檢索' || obj.diseaseName === '閒聊' || obj.diseaseName === '語言切換') return body;
   return body + '\n\n' + reminder;
@@ -487,7 +487,7 @@ function appendPolicySummaryReminder_(text, answerObj, question) {
 function appendPrivacyReminder_(text) {
   const body = String(text || '').trim();
   const reminder = '請勿輸入病人姓名、病歷號、床號等個資。';
-  const policyReminder = '一般流程摘要｜如與正式公告不一致，以正式公告為準。';
+  const policyReminder = '如與正式公告不一致，以正式公告為準。';
   if (!body || body.indexOf(reminder) >= 0) return body;
   return body + (body.endsWith(policyReminder) ? ' ' : '\n\n') + reminder;
 }
@@ -3318,6 +3318,20 @@ function contextualQuickReplyItems_(answerObj) {
       quickReplyMessage_('傳染病通報', '查核條文 4.1 重點'),
       quickReplyMessage_('防疫物資', '查核條文 4.6 重點'),
       quickReplyMessage_('員工保護', '查核條文 5.1 重點')
+    ];
+  }
+  const isNeedlestickAudit = answerObj && answerObj.mode === 'audit' && (
+    String(answerObj.auditClauseId || '') === '5.2' ||
+    String(answerObj.diseaseName || '') === '針扎與體液暴露' ||
+    /針扎|針刺|尖銳物|血液體液暴露|職業暴露|HIV\s*PEP/i.test(q)
+  );
+  if (isNeedlestickAudit) {
+    return [
+      quickReplyMessage_('立即處理', '針扎暴露後立即處理'),
+      quickReplyMessage_('HIV PEP', '針扎 HIV PEP'),
+      quickReplyMessage_('檢驗追蹤', '針扎檢驗與追蹤'),
+      quickReplyMessage_('委員提問', '查核條文 5.2 委員提問'),
+      quickReplyMessage_('KM佐證', '查核條文 5.2 KM佐證')
     ];
   }
   if (answerObj && answerObj.auditClauseId) {

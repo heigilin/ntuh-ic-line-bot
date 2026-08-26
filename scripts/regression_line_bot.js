@@ -362,10 +362,19 @@ const cases = [
     id: 'clinical-cjd-reconciliation-method-direct',
     user: 'clinical-cjd-method',
     q: 'CJD 院內系統勾稽紀錄怎麼查',
-    expect: ['CJD 院內系統勾稽紀錄查詢', 'portal', '排程畫面', '列管中', 'API 歷程', 'documentId=157420', '一般流程摘要｜如與正式公告不一致，以正式公告為準。'],
-    forbid: ['目前未檢索到', '關鍵字檢索命中度較低', '感染管制小幫手'],
+    expect: ['CJD 院內系統勾稽紀錄查詢', 'portal', '排程畫面', '列管中', 'API 歷程', 'documentId=157420', '如與正式公告不一致，以正式公告為準。'],
+    forbid: ['目前未檢索到', '關鍵字檢索命中度較低', '感染管制小幫手', '一般流程摘要｜'],
     quick: ['手動勾稽', '風險判定', '器械處理', 'KM佐證'],
     quickNot: ['通報定義', '隔離醫囑', '病人安置'],
+  },
+  {
+    id: 'audit-needlestick-contextual-routing',
+    user: 'audit-needlestick-context',
+    sequence: ['評鑑查核', '針扎'],
+    expect: ['針扎', '尖銳物', 'KM'],
+    forbid: ['一般流程摘要｜'],
+    quick: ['立即處理', 'HIV PEP', '檢驗追蹤', '委員提問', 'KM佐證'],
+    quickNot: ['通報定義', '隔離醫囑', '病人安置', '採檢送驗', 'PPE防護', '清消', '解隔標準'],
   },
   {
     id: 'audit-cjd-manual-reconciliation',
@@ -853,6 +862,9 @@ globalDiseaseMatrix.forEach((diseaseName, diseaseIndex) => {
   });
 });
 officialAuditClauses.forEach((clause, index) => {
+  const clauseQuickReplies = clause.id === '5.2'
+    ? ['立即處理', 'HIV PEP', '檢驗追蹤', '委員提問', 'KM佐證']
+    : ['條文重點', '委員提問', 'KM佐證'];
   const firstKmEvidence = clause.id === '5.1'
     ? { name: '員工預防接種措施', url: 'https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54430' }
     : clause.id === '1.6'
@@ -877,7 +889,7 @@ officialAuditClauses.forEach((clause, index) => {
     sequence: ['評鑑查核', '查核條文 ' + clause.id],
     expect: defaultClauseExpect,
     forbid: ['關鍵字檢索命中度較低', '可能相關主題'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: clauseQuickReplies,
   });
   cases.push({
     id: 'audit-clause-question-view-' + clause.id,
@@ -885,7 +897,7 @@ officialAuditClauses.forEach((clause, index) => {
     sequence: ['評鑑查核', '查核條文 ' + clause.id + ' 委員提問'],
     expect: questionClauseExpect,
     forbid: ['關鍵字檢索命中度較低', '可能相關主題', '查核佐證路徑與用途', '以下路徑只在', 'Y:\\'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: clauseQuickReplies,
   });
   cases.push({
     id: 'audit-clause-km-view-' + clause.id,
@@ -893,7 +905,7 @@ officialAuditClauses.forEach((clause, index) => {
     sequence: ['評鑑查核', '查核條文 ' + clause.id + ' KM佐證'],
     expect: kmClauseExpect,
     forbid: ['關鍵字檢索命中度較低', '可能相關主題', '查核佐證路徑與用途', '以下路徑只在', 'Y:\\'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: clauseQuickReplies,
   });
   (clause.aliases || []).forEach((alias, aliasIndex) => {
     if (['抗生素管制', '抗生素管理', '抗菌藥物管理', '抗微生物製劑管理'].includes(alias)) return;
