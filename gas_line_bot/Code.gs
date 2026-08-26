@@ -1,4 +1,5 @@
 const CONFIG = {
+  BOT_VERSION: '2026-08-26-text-only-1',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -18,7 +19,7 @@ let CLEARANCE_RUNTIME_CACHE_ = null;
 
 function doGet(e) {
   return ContentService
-    .createTextOutput('LINE Bot Webhook 運作正常！')
+    .createTextOutput('LINE Bot Webhook 運作正常！版本：' + CONFIG.BOT_VERSION)
     .setMimeType(ContentService.MimeType.TEXT);
 }
 
@@ -72,6 +73,18 @@ function answerQuestion_(question, event) {
   const originalQuestion = convertFullWidthToHalfWidth_(String(question || '')).trim();
   question = originalQuestion;
 
+  // This high-frequency menu must never fall through to knowledge retrieval.
+  const catheterReply = catheterCareReply_(question, event);
+  if (catheterReply) {
+    return finalizeAnswer_({
+      text: catheterReply.text,
+      diseaseName: '導管照護',
+      subtopic: 'catheter-care',
+      clarification: true,
+      catheterPrompt: true
+    }, event, originalQuestion, question, { skipCount: true });
+  }
+
   const languageReply = languageGateReply_(question, event);
   if (languageReply) return finalizeAnswer_(languageReply, event, originalQuestion, question, { skipCount: true });
 
@@ -87,17 +100,6 @@ function answerQuestion_(question, event) {
 
   const suggestionReply = suggestionBoxReply_(question, event);
   if (suggestionReply) return finalizeAnswer_({ text: suggestionReply, diseaseName: '閒聊' }, event, originalQuestion, question, { skipCount: true });
-
-  const catheterReply = catheterCareReply_(question, event);
-  if (catheterReply) {
-    return finalizeAnswer_({
-      text: catheterReply.text,
-      diseaseName: '導管照護',
-      subtopic: 'catheter-care',
-      clarification: true,
-      catheterPrompt: true
-    }, event, originalQuestion, question, { skipCount: true });
-  }
 
   const auditGeneralReply = auditGeneralTopicReply_(question, event);
   if (auditGeneralReply) {
