@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-audit-facet-menu-5',
+  BOT_VERSION: '2026-08-26-all-audit-menus-6',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -109,6 +109,7 @@ function answerQuestion_(question, event) {
       subtopic: 'audit',
       auditClauseId: auditGeneralReply.clauseId || '',
       auditClauseTitle: auditGeneralReply.clauseTitle || '',
+      auditClauseMenu: !!auditGeneralReply.auditClauseMenu,
       auditTopicMenu: auditGeneralReply.auditTopicMenu || ''
     }, event, originalQuestion, question);
   }
@@ -2308,10 +2309,10 @@ function auditGeneralTopicReply_(question, event) {
   // do not let the generic "SOP / evidence" topic consume them first.
   if (detectedDisease && /(?:評鑑委員可能提問|委員提問|km佐證|可出示執行紀錄|感染管制處置重點|通報與時限查核|通報時限查核|隔離標示查核|ppe防護查核|防護裝備查核|病人安置查核|採檢送驗查核|環境清消查核|相關紀錄查核)/i.test(q)) return '';
   if (/^(傳染病通報|法定傳染病通報|通報機制|疾病通報)$/.test(q.replace(/\s+/g, ''))) {
-    return officialAuditClauseReply_('查核條文 4.1 重點');
+    return officialAuditClauseReply_('查核條文 4.1');
   }
   if (/^(感染率監測|感染率|HAI監測|醫療照護相關感染監測|院內感染監測)$/.test(q.replace(/\s+/g, ''))) {
-    return officialAuditClauseReply_('查核條文 1.6 重點');
+    return officialAuditClauseReply_('查核條文 1.6');
   }
   const menuReply = auditBroadTopicMenuReply_(q);
   if (menuReply) return menuReply;
@@ -2405,8 +2406,31 @@ function officialAuditClauseReply_(question) {
   }
   if (!selected) return null;
 
-  const asksEvidence = /(?:km|佐證|紀錄|資料位置)/i.test(q);
+  const asksRecords = /(?:執行紀錄|現場紀錄|系統紀錄|相關紀錄)/i.test(q);
+  const asksEvidence = !asksRecords && /(?:km|佐證|資料位置)/i.test(q);
   const asksQuestions = /委員.*(?:問|提問)|可能提問/i.test(q);
+  const asksFocus = /(?:條文重點|重點|符合|優良)/i.test(q);
+  if (!asksEvidence && !asksQuestions && !asksFocus && !asksRecords) {
+    return {
+      text: selected.title + '（查核條文 ' + selected.id + '）對應查核面向：條文重點、委員提問、KM佐證及執行紀錄。\n請點選下方想查詢的面向。',
+      clauseId: selected.id,
+      clauseTitle: selected.title,
+      auditClauseMenu: true
+    };
+  }
+  if (asksRecords) {
+    const recordNames = (selected.evidence || []).slice(0, 6).map(function(item) {
+      return String(item.name || '').trim();
+    }).filter(Boolean);
+    return {
+      text: selected.title + '（查核條文 ' + selected.id + '）執行紀錄：\n' +
+        '- 現場應能從一筆實際紀錄勾稽制度要求、執行時間、負責人、異常處理、改善措施及追蹤結果。\n' +
+        '- 建議備妥：' + recordNames.join('、') + '。\n' +
+        '- 委員會確認文件內容與現場作法一致，且缺失有完成複查或成效追蹤。',
+      clauseId: selected.id,
+      clauseTitle: selected.title
+    };
+  }
   const specialText = officialAuditClauseSpecialReply_(selected, asksEvidence, asksQuestions);
   if (specialText) return { text: specialText, clauseId: selected.id, clauseTitle: selected.title };
   const allEvidence = (selected.evidence || []).slice().sort(function(a, b) {
@@ -3457,7 +3481,6 @@ function contextualQuickReplyItems_(answerObj) {
     ];
   }
   const isNeedlestickAudit = answerObj && answerObj.mode === 'audit' && (
-    String(answerObj.auditClauseId || '') === '5.2' ||
     String(answerObj.diseaseName || '') === '針扎與體液暴露' ||
     /針扎|針刺|尖銳物|血液體液暴露|職業暴露|HIV\s*PEP/i.test(q)
   );
@@ -3472,11 +3495,15 @@ function contextualQuickReplyItems_(answerObj) {
   }
   if (answerObj && answerObj.auditClauseId) {
     const clauseId = String(answerObj.auditClauseId);
-    return [
-      quickReplyMessage_('條文重點', '查核條文 ' + clauseId + ' 重點'),
-      quickReplyMessage_('委員提問', '查核條文 ' + clauseId + ' 委員提問'),
-      quickReplyMessage_('KM佐證', '查核條文 ' + clauseId + ' KM佐證')
+    const clauseFacets = [
+      { pattern: /(?:條文)?重點/i, item: quickReplyMessage_('條文重點', '查核條文 ' + clauseId + ' 重點') },
+      { pattern: /委員.*(?:問|提問)|可能提問/i, item: quickReplyMessage_('委員提問', '查核條文 ' + clauseId + ' 委員提問') },
+      { pattern: /(?:km|佐證|資料位置)/i, item: quickReplyMessage_('KM佐證', '查核條文 ' + clauseId + ' KM佐證') },
+      { pattern: /(?:執行紀錄|現場紀錄|系統紀錄|相關紀錄)/i, item: quickReplyMessage_('執行紀錄', '查核條文 ' + clauseId + ' 執行紀錄') }
     ];
+    return clauseFacets
+      .filter(function(row) { return !row.pattern.test(q); })
+      .map(function(row) { return row.item; });
   }
   if (answerObj && answerObj.mode === 'audit' && answerObj.diseaseName && answerObj.diseaseName !== '評鑑查核') {
     const topic = String(answerObj.diseaseName);

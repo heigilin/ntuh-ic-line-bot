@@ -174,9 +174,9 @@ const cases = [
     id: 'audit-catheter-care-menu',
     user: 'audit-catheter-care',
     sequence: ['評鑑查核', '導管照護'],
-    expect: ['查核條文 1.3', '侵入性裝置bundle', '委員可能的提問', 'KM 可出示佐證', 'CLABSI', 'CAUTI'],
+    expect: ['查核條文 1.3', '對應查核面向', '條文重點、委員提問、KM佐證及執行紀錄'],
     forbid: ['隔壁床', '先不用太緊張', '感染管制處置與規範重點整理'],
-    quick: ['條文重點', '委員提問', 'KM佐證', '臨床照護'],
+    quick: ['條文重點', '委員提問', 'KM佐證', '執行紀錄', '臨床照護'],
     quickNot: ['評鑑查核'],
   },
   {
@@ -413,7 +413,7 @@ const cases = [
     id: 'audit-needlestick-contextual-routing',
     user: 'audit-needlestick-context',
     sequence: ['評鑑查核', '針扎'],
-    expect: ['針扎', '尖銳物', 'KM'],
+    expect: ['尖銳物品扎傷', '對應查核面向', 'KM佐證'],
     forbid: ['一般流程摘要｜'],
     quick: ['立即處理', 'HIV PEP', '檢驗追蹤', '委員提問', 'KM佐證'],
     quickNot: ['通報定義', '隔離醫囑', '病人安置', '採檢送驗', 'PPE防護', '清消', '解隔標準'],
@@ -734,17 +734,17 @@ const cases = [
     id: 'audit-mode-education-routes-to-clause-evidence',
     user: 'audit-education',
     sequence: ['評鑑查核', '教育'],
-    expect: ['查核條文 1.3', '條文重點', '委員可能的提問', 'KM 可出示佐證'],
+    expect: ['查核條文 1.3', '對應查核面向', '條文重點、委員提問、KM佐證及執行紀錄'],
     forbid: ['疫災應變人員教育訓練行動計畫', '計畫部感染分析及應變小組'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: ['條文重點', '委員提問', 'KM佐證', '執行紀錄'],
   },
   {
     id: 'audit-mode-vaccine-policy-routes-to-clause-evidence',
     user: 'audit-vaccine',
     sequence: ['評鑑查核', '疫苗政策'],
-    expect: ['查核條文 5.1', '預防接種', '健康監測', '胸部 X 光', '暴露處置', '未接種或抗體陰性', 'KM 可出示佐證'],
+    expect: ['查核條文 5.1', '對應查核面向', '條文重點、委員提問、KM佐證及執行紀錄'],
     forbid: ['關鍵字檢索命中度較低', '民眾版', '出國旅遊的疫苗'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: ['條文重點', '委員提問', 'KM佐證', '執行紀錄'],
   },
   {
     id: 'audit-broad-antibiotic-menu',
@@ -774,17 +774,17 @@ const cases = [
     id: 'audit-broad-notifiable-reporting-routes-to-4-1',
     user: 'audit-notifiable-reporting',
     sequence: ['評鑑查核', '傳染病通報'],
-    expect: ['查核條文 4.1', '委員要確認', '疾病別時限完成通報、採檢及隔離', '夜間、假日也不中斷', '現場回答', '追蹤退補件', '委員常問', 'KM 可出示佐證'],
+    expect: ['查核條文 4.1', '對應查核面向', '條文重點、委員提問、KM佐證及執行紀錄'],
     forbid: ['外籍人士', '即將出境', '航班', '簽證', '不是處罰病人', '感染管制處置與規範重點整理'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: ['條文重點', '委員提問', 'KM佐證', '執行紀錄'],
   },
   {
     id: 'audit-infection-rate-monitoring-routes-to-1-6',
     user: 'audit-infection-rate-monitoring',
     sequence: ['評鑑查核', '感染率監測'],
-    expect: ['查核條文 1.6', '數據須有分母、感染率與趨勢', '月報或年報回饋臨床單位', '複核個案、調查原因', '改善前後感染率', 'KM 可出示佐證'],
+    expect: ['查核條文 1.6', '對應查核面向', '條文重點、委員提問、KM佐證及執行紀錄'],
     forbid: ['感染率監測查核重點', '感染風險為何？數據如何回饋？改善後如何確認有效', '通報定義', '隔離醫囑', '病人安置', '採檢送驗', 'PPE防護', '解隔標準'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: ['條文重點', '委員提問', 'KM佐證', '執行紀錄'],
     quickNot: ['通報定義', '隔離醫囑', '病人安置', '採檢送驗', 'PPE防護', '清消', '解隔標準'],
   },
   {
@@ -801,7 +801,8 @@ const cases = [
     sequence: ['評鑑查核', '查核條文 5.1 委員提問'],
     expect: ['查核條文 5.1', '委員可能的提問與回答方向', '哪些人納入員工保護', '疫苗如何管理', '員工出現症狀如何處理', '胸部 X 光如何落實', '發生傳染病暴露怎麼辦', '建議先備妥的 KM 佐證'],
     forbid: ['關鍵字檢索命中度較低'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: ['條文重點', 'KM佐證', '執行紀錄'],
+    quickNot: ['委員提問'],
   },
   {
     id: 'audit-clause-km-evidence-detail',
@@ -809,7 +810,8 @@ const cases = [
     sequence: ['評鑑查核', '查核條文 5.1 KM佐證'],
     expect: ['查核條文 5.1', 'KM佐證', '【預防接種】', '員工預防接種措施', '【健康監測】', '健康監測通報規範', '【胸部 X 光與暴露處置】', '員工胸部 X 光檢查計畫', '員工暴露傳染性疾病調查'],
     forbid: ['Y:\\IFC_V', '關鍵字檢索命中度較低'],
-    quick: ['條文重點', '委員提問', 'KM佐證'],
+    quick: ['條文重點', '委員提問', '執行紀錄'],
+    quickNot: ['KM佐證'],
   },
   {
     id: 'influenza-clearance-specific',
@@ -892,7 +894,7 @@ globalDiseaseMatrix.forEach((diseaseName, diseaseIndex) => {
     user: 'global-audit-disease-' + diseaseIndex,
     sequence: ['評鑑查核', diseaseName],
     expect: isMdroAuditClause
-      ? ['查核條文 3.3', '抗藥性微生物', '委員可能的提問', 'KM 可出示佐證']
+      ? ['查核條文 3.3', '對應查核面向', '條文重點、委員提問、KM佐證及執行紀錄']
       : diseaseName === '庫賈氏病'
         ? [diseaseName, '評鑑查核重點', '委員可能詢問', 'KM']
         : [diseaseName + '對應查核面向', '通報、隔離標示、PPE、病人安置、採檢送驗、環境清消及相關紀錄'],
@@ -900,7 +902,7 @@ globalDiseaseMatrix.forEach((diseaseName, diseaseIndex) => {
     quick: diseaseName === '庫賈氏病'
       ? ['院內勾稽紀錄', '手動勾稽']
       : isMdroAuditClause
-        ? ['條文重點', '委員提問', 'KM佐證']
+        ? ['條文重點', '委員提問', 'KM佐證', '執行紀錄']
         : ['通報與時限', '隔離標示', 'PPE防護', '病人安置', '採檢送驗', '環境清消', '相關紀錄'],
     quickNot: diseaseName === '庫賈氏病' || isMdroAuditClause
       ? ['通報定義', '隔離醫囑', '病人安置', '採檢送驗']
@@ -908,9 +910,7 @@ globalDiseaseMatrix.forEach((diseaseName, diseaseIndex) => {
   });
 });
 officialAuditClauses.forEach((clause, index) => {
-  const clauseQuickReplies = clause.id === '5.2'
-    ? ['立即處理', 'HIV PEP', '檢驗追蹤', '委員提問', 'KM佐證']
-    : ['條文重點', '委員提問', 'KM佐證'];
+  const clauseMenuQuickReplies = ['條文重點', '委員提問', 'KM佐證', '執行紀錄'];
   const firstKmEvidence = clause.id === '5.1'
     ? { name: '員工預防接種措施', url: 'https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54430' }
     : clause.id === '1.6'
@@ -918,11 +918,7 @@ officialAuditClauses.forEach((clause, index) => {
     : clause.id === '4.1'
       ? { name: '傳染病監視通報機制', url: 'https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=87870' }
     : ((clause.evidence || []).find((item) => /^https:\/\/km\.ntuh\.gov\.tw\//.test(String(item.url || ''))) || {});
-  const defaultClauseExpect = clause.id === '4.1'
-    ? ['傳染病通報', '查核條文 4.1', '委員要確認', '現場回答', '委員常問', 'KM 可出示佐證']
-    : clause.id === '1.6'
-      ? ['感染率監測與改善', '查核條文 1.6', '監測', '回饋', '異常處理', '成效驗證', 'KM 可出示佐證']
-    : [clause.title, '查核條文 ' + clause.id, '條文重點', '委員可能的提問', 'KM 可出示佐證'];
+  const defaultClauseExpect = [clause.title, '查核條文 ' + clause.id, '對應查核面向', '條文重點、委員提問、KM佐證及執行紀錄', '請點選下方想查詢的面向'];
   const questionClauseExpect = clause.id === '1.6'
     ? ['感染率監測與改善', '查核條文 1.6', '委員可能的提問與回答方向', '監測哪些感染', '改善是否有效', '建議先備妥的 KM 佐證', 'THAS統計']
     : [clause.title, '查核條文 ' + clause.id, '委員可能的提問', '回答方向', '建議先備妥的 KM 佐證', firstKmEvidence.name];
@@ -935,7 +931,7 @@ officialAuditClauses.forEach((clause, index) => {
     sequence: ['評鑑查核', '查核條文 ' + clause.id],
     expect: defaultClauseExpect,
     forbid: ['關鍵字檢索命中度較低', '可能相關主題'],
-    quick: clauseQuickReplies,
+    quick: clauseMenuQuickReplies,
   });
   cases.push({
     id: 'audit-clause-question-view-' + clause.id,
@@ -943,7 +939,8 @@ officialAuditClauses.forEach((clause, index) => {
     sequence: ['評鑑查核', '查核條文 ' + clause.id + ' 委員提問'],
     expect: questionClauseExpect,
     forbid: ['關鍵字檢索命中度較低', '可能相關主題', '查核佐證路徑與用途', '以下路徑只在', 'Y:\\'],
-    quick: clauseQuickReplies,
+    quick: ['條文重點', 'KM佐證', '執行紀錄'],
+    quickNot: ['委員提問'],
   });
   cases.push({
     id: 'audit-clause-km-view-' + clause.id,
@@ -951,7 +948,8 @@ officialAuditClauses.forEach((clause, index) => {
     sequence: ['評鑑查核', '查核條文 ' + clause.id + ' KM佐證'],
     expect: kmClauseExpect,
     forbid: ['關鍵字檢索命中度較低', '可能相關主題', '查核佐證路徑與用途', '以下路徑只在', 'Y:\\'],
-    quick: clauseQuickReplies,
+    quick: ['條文重點', '委員提問', '執行紀錄'],
+    quickNot: ['KM佐證'],
   });
   (clause.aliases || []).forEach((alias, aliasIndex) => {
     if (['抗生素管制', '抗生素管理', '抗菌藥物管理', '抗微生物製劑管理'].includes(alias)) return;
@@ -961,8 +959,20 @@ officialAuditClauses.forEach((clause, index) => {
       sequence: ['評鑑查核', alias],
       expect: defaultClauseExpect,
       forbid: ['關鍵字檢索命中度較低', '可能相關主題'],
+      quick: clause.id === '5.2' && /針扎|尖銳物|血液體液暴露|職業暴露|HIV\s*PEP/i.test(alias)
+        ? ['立即處理', 'HIV PEP', '檢驗追蹤', '委員提問', 'KM佐證']
+        : clauseMenuQuickReplies,
     });
   });
+});
+
+cases.push({
+  id: 'audit-clause-records-view-5.1',
+  user: 'audit-clause-records-view-5-1',
+  sequence: ['評鑑查核', '查核條文 5.1 執行紀錄'],
+  expect: ['查核條文 5.1', '執行紀錄', '執行時間', '負責人', '異常處理', '改善措施', '追蹤結果'],
+  quick: ['條文重點', '委員提問', 'KM佐證'],
+  quickNot: ['執行紀錄'],
 });
 
 let failures = 0;
