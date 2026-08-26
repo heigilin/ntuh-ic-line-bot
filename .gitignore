@@ -21,6 +21,15 @@ lottery_*.csv
 lottery_*.md
 survey_responses.csv
 抽獎提示詞.txt
+gas_line_bot/*9千列*
+platform_performance_summary.md
+scripts/extract_9k_design_inventory.py
+scripts/run_lottery_analysis.py
+output/感染管制_LINE_聊天機器人原著草稿.md
+台大感管 LINE 官方帳號*.docx
+台大感管 LINE 官方帳號*.pdf
+競賽簽文.pdf
+簽呈.pdf
 *.zip
 *.log
 .DS_Store
