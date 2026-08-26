@@ -33,27 +33,10 @@
    - `KB_FOLDER_ID`
    - `LINE_CHANNEL_ACCESS_TOKEN`
    - `GEMINI_API_KEY`
-   - `CJD_RECONCILIATION_IMAGE_URL`：CJD 院內／手動勾稽桌面宣導圖的公開 HTTPS 圖片網址。
-   - `CJD_TISSUE_IMAGE_URL`：CJD 組織感染力分級圖的公開 HTTPS 圖片網址。
-
-LINE 圖片訊息不能讀取本機 `D:\` 路徑；兩張圖須先放到可公開讀取、直接回傳圖片內容的 HTTPS 網址。若圖片網址尚未設定或不是 HTTPS，CJD 文字回答仍會正常送出，但不附圖。
-
-CJD 圖片上傳來源固定使用專案根目錄中的：
-
-- `桌面宣導_標準版大小.png` → `CJD_RECONCILIATION_IMAGE_URL`
-- `投影片11.JPG` → `CJD_TISSUE_IMAGE_URL`
-
-目前公開圖片網址：
-
-- `CJD_RECONCILIATION_IMAGE_URL` = `https://heigilin.github.io/ntuh_cdc/assets/line-bot/cjd/reconciliation-guide.png`
-- `CJD_TISSUE_IMAGE_URL` = `https://heigilin.github.io/ntuh_cdc/assets/line-bot/cjd/tissue-infectivity.jpg`
-- VRE 解隔補充圖維護於 `clearance_rules.json` 的 `VRE.image_url`，不在 `Code.gs` 新增專屬常數或函式。
-
-`Code.gs` 內含上述已驗證網址作為預設值；若 Script Properties 有同名設定，則以 Script Properties 為準。
+LINE 回覆固定只送文字訊息與快捷鈕，不附加 CJD、VRE 或其他圖片，避免圖片網址或 LINE 圖片規格異常使整包 reply 失敗。CJD 勾稽、組織感染力與 VRE 解隔均以文字說明。
 
 疾病解隔規則另存於 `clearance_rules.json`，部署知識庫時須與 `kb_index.json`、`audit_clauses.json` 放在同一個 `KB_FOLDER_ID` 資料夾。
 
-對應關係亦記錄於 `gas_line_bot/cjd_image_assets.json`，避免日後從其他資料夾誤傳同名舊圖。
 4. 第一次部署：部署 > 新增部署作業 > 網頁應用程式。
 5. 執行身分：我。
 6. 存取權：任何人。

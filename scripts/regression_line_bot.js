@@ -17,8 +17,6 @@ const props = {
   KB_FOLDER_ID: 'local-test-folder',
   LINE_CHANNEL_ACCESS_TOKEN: 'test-token',
   GEMINI_API_KEY: 'test-gemini-key',
-  CJD_RECONCILIATION_IMAGE_URL: 'https://example.org/cjd-reconciliation.png',
-  CJD_TISSUE_IMAGE_URL: 'https://example.org/cjd-tissue.jpg',
   SUGGESTION_RECORDS: JSON.stringify([{ text: '這是不可由 LINE 讀取的測試意見內容' }]),
 };
 const cache = {};
@@ -981,53 +979,20 @@ outputs.push({
   preview: auditQuickReplyCoverageOk ? 'All audit topics use contextual quick replies.' : auditQuickReplyViolations.map((item) => item.id).join(', '),
 });
 
-const cjdReconciliationImages = ctx.cjdImageMessages_({
-  diseaseName: '庫賈氏病',
-  effectiveQuestion: 'CJD 院內系統勾稽紀錄怎麼查'
-});
-const cjdTissueImages = ctx.cjdImageMessages_({
-  diseaseName: '庫賈氏病',
-  effectiveQuestion: 'CJD 病人鼻腔內視鏡或手術器械要怎麼處理'
-});
-const unrelatedImages = ctx.cjdImageMessages_({ diseaseName: '麻疹', effectiveQuestion: '麻疹隔離' });
-const cjdImageRoutingOk = cjdReconciliationImages.length === 1 &&
-  cjdReconciliationImages[0].originalContentUrl === props.CJD_RECONCILIATION_IMAGE_URL &&
-  cjdTissueImages.length === 1 &&
-  cjdTissueImages[0].originalContentUrl === props.CJD_TISSUE_IMAGE_URL &&
-  unrelatedImages.length === 0;
-if (!cjdImageRoutingOk) failures += 1;
+const textOnlyReplyOk = /messages:\s*\[messageObj\]/.test(code) && !/type:\s*['"]image['"]/.test(code);
+if (!textOnlyReplyOk) failures += 1;
 outputs.push({
-  id: 'cjd-contextual-image-routing',
-  ok: cjdImageRoutingOk,
-  question: '[CJD image routing]',
-  diseaseName: '庫賈氏病',
-  missing: cjdImageRoutingOk ? [] : ['contextual CJD image message'],
-  forbidden: [],
+  id: 'line-reply-is-text-only',
+  ok: textOnlyReplyOk,
+  question: '[LINE reply payload]',
+  diseaseName: '',
+  missing: textOnlyReplyOk ? [] : ['single text message payload'],
+  forbidden: textOnlyReplyOk ? [] : ['image message'],
   missingQuick: [],
   forbiddenQuick: [],
   wrongQuickTail: null,
   quickReplyLabels: [],
-  preview: JSON.stringify({ cjdReconciliationImages, cjdTissueImages, unrelatedImages }).slice(0, 260),
-});
-
-const vreClearanceImages = ctx.clearanceImageMessages_({ diseaseName: 'VRE', effectiveQuestion: 'VRE 解隔標準' });
-const vreIsolationImages = ctx.clearanceImageMessages_({ diseaseName: 'VRE', effectiveQuestion: 'VRE 隔離醫囑' });
-const vreImageRoutingOk = vreClearanceImages.length === 1 &&
-  vreClearanceImages[0].originalContentUrl === JSON.parse(clearanceText).rules.VRE.image_url &&
-  vreIsolationImages.length === 0;
-if (!vreImageRoutingOk) failures += 1;
-outputs.push({
-  id: 'vre-clearance-image-routing',
-  ok: vreImageRoutingOk,
-  question: '[VRE clearance image routing]',
-  diseaseName: 'VRE',
-  missing: vreImageRoutingOk ? [] : ['VRE CDC MDRO image'],
-  forbidden: [],
-  missingQuick: [],
-  forbiddenQuick: [],
-  wrongQuickTail: null,
-  quickReplyLabels: [],
-  preview: JSON.stringify({ vreClearanceImages, vreIsolationImages }).slice(0, 260),
+  preview: textOnlyReplyOk ? 'All LINE replies send one text message only.' : 'Image routing remains in Code.gs.',
 });
 
 const internalPathSample = [

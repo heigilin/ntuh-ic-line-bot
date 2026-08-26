@@ -2,8 +2,6 @@ const CONFIG = {
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
-  CJD_RECONCILIATION_IMAGE_URL: 'https://heigilin.github.io/ntuh_cdc/assets/line-bot/cjd/reconciliation-guide.png',
-  CJD_TISSUE_IMAGE_URL: 'https://heigilin.github.io/ntuh_cdc/assets/line-bot/cjd/tissue-infectivity.jpg',
   MAX_HITS: 6,
   MIN_ANSWER_SCORE: 8,
   MIN_SUGGEST_SCORE: 3,
@@ -2706,7 +2704,6 @@ function officialClearanceRule_(diseaseName) {
     precautions: String(rule.precautions || '依疾病別規範'),
     criteria: String(rule.criteria || ''),
     reply: String(rule.reply || ''),
-    image_url: String(rule.image_url || ''),
     source: String(rule.source || data.primary_source || ''),
     source_title: String(rule.source_title || data.primary_source_title || '')
   };
@@ -3125,59 +3122,19 @@ function replyToLine_(replyToken, text, diseaseName, answerObj) {
   if (quickReply) {
     messageObj.quickReply = quickReply;
   }
-  const messages = [messageObj]
-    .concat(cjdImageMessages_(answerObj))
-    .concat(clearanceImageMessages_(answerObj));
-
   const res = UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', {
     method: 'post',
     contentType: 'application/json',
     headers: { Authorization: 'Bearer ' + token },
     payload: JSON.stringify({
       replyToken: replyToken,
-      messages: messages.slice(0, 5),
+      messages: [messageObj],
     }),
     muteHttpExceptions: true,
   });
   if (res.getResponseCode() < 200 || res.getResponseCode() >= 300) {
     console.error('LINE Reply Error: ' + res.getContentText());
   }
-}
-
-function cjdImageMessages_(answerObj) {
-  const obj = answerObj || {};
-  if (obj.diseaseName !== '庫賈氏病') return [];
-  const q = String(obj.effectiveQuestion || obj.originalQuestion || '');
-  const urls = [];
-  if (/院內系統勾稽|院內勾稽紀錄|手動勾稽|勾稽系統怎麼看/i.test(q)) {
-    urls.push(getProp_('CJD_RECONCILIATION_IMAGE_URL') || CONFIG.CJD_RECONCILIATION_IMAGE_URL);
-  }
-  if (/風險判定|鼻腔手術|鼻腔內視鏡|器械處理|組織感染力|高感染力|中感染力/i.test(q)) {
-    urls.push(getProp_('CJD_TISSUE_IMAGE_URL') || CONFIG.CJD_TISSUE_IMAGE_URL);
-  }
-  return urls.filter(function(url, index, all) {
-    return /^https:\/\//i.test(String(url || '')) && all.indexOf(url) === index;
-  }).map(function(url) {
-    return {
-      type: 'image',
-      originalContentUrl: url,
-      previewImageUrl: url
-    };
-  });
-}
-
-function clearanceImageMessages_(answerObj) {
-  const obj = answerObj || {};
-  const q = String(obj.effectiveQuestion || obj.originalQuestion || '');
-  if (!/(解隔|解除.*隔離|取消.*隔離)/i.test(q)) return [];
-  const rule = officialClearanceRule_(String(obj.diseaseName || ''));
-  const url = rule && rule.image_url;
-  if (!/^https:\/\//i.test(String(url || ''))) return [];
-  return [{
-    type: 'image',
-    originalContentUrl: url,
-    previewImageUrl: url
-  }];
 }
 
 function sanitizeLineText_(text) {
