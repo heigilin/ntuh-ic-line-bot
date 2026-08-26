@@ -38,6 +38,14 @@ DISEASE_KEYWORDS = (
     "mrsa",
 )
 
+# These files are source/reference material rather than approved public-answer
+# chunks. Meeting files are queried separately by the date-only responder.
+PUBLIC_SEARCH_EXCLUDED_PREFIXES = (
+    "感染管制PP_臨床重點整理_",
+    "週會紀錄_",
+    "月會議題_",
+)
+
 
 @dataclass(frozen=True)
 class SearchHit:
@@ -112,6 +120,8 @@ class MarkdownKnowledgeBase:
             raise FileNotFoundError(f"Knowledge folder not found: {self.knowledge_dir}")
 
         for path in sorted(self.knowledge_dir.glob("*.md")):
+            if path.name.startswith(PUBLIC_SEARCH_EXCLUDED_PREFIXES):
+                continue
             text = path.read_text(encoding="utf-8", errors="ignore")
             for title, chunk in _split_markdown(path, text):
                 tokens = set(_tokenize(title + "\n" + chunk))

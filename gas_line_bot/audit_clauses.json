@@ -1,0 +1,1791 @@
+{
+  "version": "115.7.26",
+  "official_clause_count": 22,
+  "source_self_assessment": "02-2.115年度醫院感染管制查核作業醫院自評表_上傳版V1(final)115.7.21更新.docx",
+  "source_evidence": "115年感染管制查核條文佐證資料清單1150726(最新).xlsx",
+  "clauses": [
+    {
+      "id": "1.1",
+      "title": "成立感染管制會，有定期開會並有紀錄，且確實執行會議決議事項",
+      "aliases": [
+        "感染管制會",
+        "感管會",
+        "委員會",
+        "會議決議",
+        "年度工作計畫"
+      ],
+      "focus": "感染管制會組成須符合醫院業務，至少每3個月開會並留存院長批示之紀錄；年度工作計畫、跨部門分工、決議追蹤及前次缺失改善均須送會監督。",
+      "questions": "感管會多久開一次？哪些部門參與？決議如何追蹤？年度計畫與前次查核缺失如何呈現執行成果？",
+      "evidence": [
+        {
+          "name": "前次查核不符合事項改善情形及建議事項執行情形",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=158097"
+        },
+        {
+          "name": "前次查核不符合事項改善情形及建議事項執行情形(113年度醫院感染管制查核作業結果報告(113年第06次會議紀錄))",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=160205"
+        },
+        {
+          "name": "前次查核不符合事項改善情形及建議事項執行情形(改善報告(113年第07次會議記錄))",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=160925"
+        },
+        {
+          "name": "前次查核不符合事項改善情形及建議事項執行情形(追蹤紀錄)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19190"
+        },
+        {
+          "name": "前次醫院評鑑之感染管制相關事項辦理情形",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37810"
+        },
+        {
+          "name": "感染管制委員會出席率",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=20656"
+        },
+        {
+          "name": "感染管制委員會會議紀錄(113年第08次會議紀錄如內視鏡案件改善)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=34171"
+        },
+        {
+          "name": "感染管制委員會決議單位執行情形追蹤單(114-115年追蹤)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19315"
+        },
+        {
+          "name": "感染管制委員會組織架構",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=105215"
+        },
+        {
+          "name": "感染管制委員會聘函",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=20656"
+        },
+        {
+          "name": "感染管制委員會設置要點",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=64325"
+        },
+        {
+          "name": "感染管制委員會開會時程",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=20600"
+        },
+        {
+          "name": "感染管制年度工作計畫",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54719"
+        },
+        {
+          "name": "感染管制年度工作計畫執行成效-感染管制委員會會議紀錄(114年第8次會議紀錄-- 114年感管成果for風險評估)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=168838"
+        },
+        {
+          "name": "流行病學訓練相關證明",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=26500"
+        }
+      ]
+    },
+    {
+      "id": "1.2",
+      "title": "應設立感染管制單位，聘有合格且足夠之感染管制人力負責業務推行",
+      "aliases": [
+        "感染管制單位",
+        "感管中心",
+        "感管人力",
+        "感染管制師",
+        "人力配置",
+        "感管組織"
+      ],
+      "focus": "感染管制單位須有明確組織定位、職責與實質資源；感染症醫師、感管護理及醫檢人力應按開放床數配置，具合格證書與前一年20學分，並有缺額代理及人才留任機制。",
+      "questions": "目前開放床數與感管人力如何核算？證書與學分是否符合？缺額期間誰代理？院方提供哪些經費、空間與資訊支援？",
+      "evidence": [
+        {
+          "name": "感染症專科醫師執業執照",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=32226"
+        },
+        {
+          "name": "感染症專科醫師學分證明",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=26429"
+        },
+        {
+          "name": "感染症專科醫師證書(總院)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=26432"
+        },
+        {
+          "name": "感染管制中心工作職責",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=30949"
+        },
+        {
+          "name": "感染管制中心組織圖",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22745"
+        },
+        {
+          "name": "感染管制師(護理師)證書",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=26433"
+        },
+        {
+          "name": "感染管制師(醫檢師)證書",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=26434"
+        },
+        {
+          "name": "感染管制護理師執業執照",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=32227"
+        },
+        {
+          "name": "感染管制護理師學分證明",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=26430"
+        },
+        {
+          "name": "感染管制醫檢師執業執照",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=32228"
+        },
+        {
+          "name": "感染管制醫檢師學分證明",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=26431"
+        },
+        {
+          "name": "育才或人力留任機制",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37478"
+        },
+        {
+          "name": "醫院對於感染管制所執行的實質支援紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22746"
+        }
+      ]
+    },
+    {
+      "id": "1.3",
+      "title": "制訂與更新感染管制手冊，並辦理教育訓練使員工落實執行；定期收集國際疫情傳達員工知悉",
+      "aliases": [
+        "感染管制手冊",
+        "手冊更新",
+        "感染管制教育",
+        "教育",
+        "教育訓練",
+        "國際疫情",
+        "疫情資訊",
+        "新興傳染病教育",
+        "導管照護",
+        "導管照護查核",
+        "管路照護",
+        "侵入性導管照護",
+        "侵入性裝置照護"
+      ],
+      "focus": "感染管制手冊應涵蓋標準與傳播途徑防護、侵入性裝置bundle、醫材與環境清消、廢棄物及特定區域管理，定期更新並依職別教育；同時持續蒐集國內外疫情與實證並傳達全院。",
+      "questions": "手冊何時更新、由誰核定？同仁從哪裡取得最新版？教育如何依職別規劃？國際疫情如何蒐集、傳達並確認落實？",
+      "evidence": [
+        {
+          "name": "2024年CLABSI組合式照護改善方案的執行紀錄及成果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=158570"
+        },
+        {
+          "name": "2026年CLABSI組合式照護改善方案的執行紀錄及成果",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=20192"
+        },
+        {
+          "name": "CAUTI組合式照護改善方案的執行紀錄及成果(2025年)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=170984"
+        },
+        {
+          "name": "CAUTI組合式照護稽核結果及分析",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91087"
+        },
+        {
+          "name": "CAUTI組合式照護稽核表單",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37802"
+        },
+        {
+          "name": "CLABSI組合式照護稽核結果及分析",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172913"
+        },
+        {
+          "name": "CLABSI組合式照護稽核表單",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37802"
+        },
+        {
+          "name": "SSI組合式照護改善方案的執行紀錄及成果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172080"
+        },
+        {
+          "name": "SSI組合式照護稽核結果及分析",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172080"
+        },
+        {
+          "name": "SSI組合式照護稽核表單",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37802"
+        },
+        {
+          "name": "VAP組合式照護改善方案的執行紀錄及成果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=158058"
+        },
+        {
+          "name": "VAP組合式照護稽核結果及分析",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172272"
+        },
+        {
+          "name": "VAP組合式照護稽核表單",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37802"
+        },
+        {
+          "name": "侵入性醫療感染管制標準作業程序",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=12103"
+        },
+        {
+          "name": "傳染病教育訓練完成率",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=29499"
+        },
+        {
+          "name": "口腔醫學部(牙科)診療感染管制措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=67137"
+        },
+        {
+          "name": "商店街感染管制措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=51013"
+        },
+        {
+          "name": "導管相關血流感染預防措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54433"
+        },
+        {
+          "name": "尿管相關泌尿道感染預防措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54330"
+        },
+        {
+          "name": "年度計畫及成果(年報)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=31904"
+        },
+        {
+          "name": "感染管制中心發訊統計",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=102941"
+        },
+        {
+          "name": "感染管制手冊",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=531"
+        },
+        {
+          "name": "感染管制手冊編修分配表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=84907"
+        },
+        {
+          "name": "感染管制教育及宣導施行細則",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=120379"
+        },
+        {
+          "name": "感染管制教育完成率",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=29490"
+        },
+        {
+          "name": "感染管制教育訓練辦法",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=47660"
+        },
+        {
+          "name": "手術傷口感染預防措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=64097"
+        },
+        {
+          "name": "手部衛生實地稽核結果",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19235"
+        },
+        {
+          "name": "手部衛生計畫及成果_感染管制委員會會議紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171103"
+        },
+        {
+          "name": "抗藥性細菌相關感染管制措施稽核結果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91047"
+        },
+        {
+          "name": "教育訓練成果",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19131"
+        },
+        {
+          "name": "新進員工感染管制教育完成率",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=29491"
+        },
+        {
+          "name": "特殊抗藥性菌株監測及防治報告_感染管制委員會會議紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=166582"
+        },
+        {
+          "name": "聯合巡檢查核結果報告_感染管制委員會會議紀錄(健康促進品質管理報告)114年第01次會議紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=164049"
+        },
+        {
+          "name": "聯合巡檢查核結果報告_感染管制委員會會議紀錄(健康促進品質管理報告)115年第02次會議紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171103"
+        },
+        {
+          "name": "訪客感染管制措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=55764"
+        },
+        {
+          "name": "遊戲室感染管制措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=55735"
+        },
+        {
+          "name": "醫療區環境安全聯合巡檢執行成果- 安衛室年報(114)P194-195",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=170873"
+        },
+        {
+          "name": "醫療照護相關肺炎感染預防措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54791"
+        },
+        {
+          "name": "感染管制中心院內網-疫情訊息",
+          "url": ""
+        },
+        {
+          "name": "感染管制中心院外網-疫情訊息",
+          "url": ""
+        },
+        {
+          "name": "感染管制學習網站(chrome進入)",
+          "url": ""
+        },
+        {
+          "name": "教育訓練管理系統(TMS)",
+          "url": ""
+        },
+        {
+          "name": "民眾健康電子報-疫情訊息",
+          "url": ""
+        },
+        {
+          "name": "臺大醫院官網-疫情訊息",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "1.4",
+      "title": "院內應有充足且適當之洗手設備，訂有手部衛生作業程序且有管控與稽核機制",
+      "aliases": [
+        "手部衛生",
+        "洗手設備",
+        "乾洗手",
+        "濕洗手",
+        "洗手稽核",
+        "五時機"
+      ],
+      "focus": "各醫療區須有適當洗手設備與point of care乾洗手液，訂有手部衛生程序；定期稽核五時機、正確率、設備完整性及乾洗手液用量，回饋缺失並追蹤改善。",
+      "questions": "乾洗手與濕洗手何時使用？設備如何巡查？遵從率與正確率是多少？低落單位如何改善及再查核？",
+      "evidence": [
+        {
+          "name": "以品管手法推動手部衛生",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=89396"
+        },
+        {
+          "name": "全院手部衛生成績公告紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19256"
+        },
+        {
+          "name": "手部衛生內部實地稽核紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=89395"
+        },
+        {
+          "name": "手部衛生內部實地稽核紀錄(DIA)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37462"
+        },
+        {
+          "name": "手部衛生外部實地稽核紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19235"
+        },
+        {
+          "name": "手部衛生實地稽核回饋單",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19250"
+        },
+        {
+          "name": "手部衛生要點",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54479"
+        },
+        {
+          "name": "手部衛生計畫及成果_感染管制委員會會議紀錄(114年)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=164675"
+        },
+        {
+          "name": "手部衛生計畫及成果_感染管制委員會會議紀錄(115年)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171103"
+        },
+        {
+          "name": "擦手紙、手部消毒劑及酒精性乾洗手液的採購量和使用量的統計資料",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171676"
+        },
+        {
+          "name": "洗手設備稽核紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=32323"
+        },
+        {
+          "name": "酒精性乾洗手液及給液設備使用管理細則",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54715"
+        },
+        {
+          "name": "醫療人員手部衛生實施細則",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54520"
+        },
+        {
+          "name": "員工電子報(手部衛生單位競賽)",
+          "url": ""
+        },
+        {
+          "name": "感染管制教育網站",
+          "url": ""
+        },
+        {
+          "name": "感染管制衛教之手部衛生篇(要在Chrome 下打開)",
+          "url": ""
+        },
+        {
+          "name": "手護神網站",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "1.5",
+      "title": "應訂有合適之隔離措施及動線規劃，且訂有大規模感染事件發生之應變計畫，並確實執行",
+      "aliases": [
+        "隔離措施",
+        "隔離動線",
+        "病人分流",
+        "TOCC",
+        "PPE穿脫",
+        "大規模感染",
+        "疫災應變",
+        "負壓病室"
+      ],
+      "focus": "依傳播途徑建立檢傷、分流、隔離、轉送與PPE流程，維持負壓與隔離病室管理；並備有大規模感染事件應變計畫、演練、物資與跨單位協調紀錄。",
+      "questions": "疑似感染病人如何從入口分流？隔離床不足或負壓異常怎麼辦？PPE如何選擇與穿脫？大規模事件如何啟動、演練及檢討？",
+      "evidence": [
+        {
+          "name": "個人防護裝備使用規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=52898"
+        },
+        {
+          "name": "個人防護裝備種子教師名單暨受訓人數",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=29500"
+        },
+        {
+          "name": "傳染病防治醫療網核心照護醫院公告(含名單)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=170897"
+        },
+        {
+          "name": "兒童醫院疫災應變組織架構",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171610"
+        },
+        {
+          "name": "感染管制教育及宣導施行細則",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=120379"
+        },
+        {
+          "name": "感染管制教育訓練辦法",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=47660"
+        },
+        {
+          "name": "感染管制群突發及異常事件處理規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=13573"
+        },
+        {
+          "name": "應變計畫演習劇本及演習檢討與照片",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19209"
+        },
+        {
+          "name": "教育年度計畫及成果",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=31904"
+        },
+        {
+          "name": "新興傳染病防治教育訓練完成率",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=29499"
+        },
+        {
+          "name": "新興與再浮現傳染病防治課程清單",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=102955"
+        },
+        {
+          "name": "法傳之暴露接觸者追蹤 感染管制中心內部分工",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=119247"
+        },
+        {
+          "name": "特殊感染症之防護措施",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=13283"
+        },
+        {
+          "name": "疑似或確診傳染病病人運送、廢棄物清理之動線規劃",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171621"
+        },
+        {
+          "name": "疫災應變行動計畫及19篇附錄行動計畫",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=34780"
+        },
+        {
+          "name": "總院疫災應變組織架構",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171609"
+        },
+        {
+          "name": "衛生福利部住宿式機構感染管制獎勵計畫感染管制合約",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=32679"
+        },
+        {
+          "name": "負壓隔離病室檢測紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=25757"
+        },
+        {
+          "name": "進出「高風險傳染性疾病」隔離室之個人防護裝備穿脫流程",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=153770"
+        },
+        {
+          "name": "門急診就醫動線圖咳嗽禮節TOCC提醒機制",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=90866"
+        },
+        {
+          "name": "防疫整備報告-危機管理委員會(114年第4次)(範例)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=168425"
+        },
+        {
+          "name": "防疫整備報告-感染管制委員會(114年第7次)(範例)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=168291"
+        },
+        {
+          "name": "個人防護裝備相關教材",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "1.6",
+      "title": "定期對醫療照護相關感染的發生及其動向開會檢討分析，並訂定改善方案",
+      "aliases": [
+        "醫療照護相關感染",
+        "HAI",
+        "感染率",
+        "THAS",
+        "群聚",
+        "群突發",
+        "bundle成效"
+      ],
+      "focus": "持續監測HAI、重要菌株、侵入性裝置及群聚事件，定期於相關會議分析趨勢並回饋單位；異常須調查、提出改善方案並追蹤具體成效。",
+      "questions": "單位主要感染風險與趨勢為何？異常警示如何啟動？資料回饋到哪些會議？改善後如何證明有效？",
+      "evidence": [
+        {
+          "name": "CAUTI組合式照護計畫及改善報告",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=144976"
+        },
+        {
+          "name": "CLABSI組合式照護計畫及成果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171126"
+        },
+        {
+          "name": "NNIS報表( ICU導管報表)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=18954"
+        },
+        {
+          "name": "SSI組合式照護計畫及成果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172082"
+        },
+        {
+          "name": "VAP組合式照護計畫及成果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=158058"
+        },
+        {
+          "name": "台灣醫院感染管制與抗藥性監測管理系統(THAS)醫療照護相關感染模組(HAI)通報統計表",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22728"
+        },
+        {
+          "name": "感染管制群突發及異常事件處理規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=13573"
+        },
+        {
+          "name": "手術傷口感染預防措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=64097"
+        },
+        {
+          "name": "抗藥性菌株趨勢分析",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19140"
+        },
+        {
+          "name": "特殊抗藥性菌株監測及防治報告_感染管制委員會會議紀錄(114年第5次會議紀錄)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=166582"
+        },
+        {
+          "name": "群突發委員會報告-小兒血液腫瘤病房RSV異常事件處理報告(113年第6次會議)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=160205"
+        },
+        {
+          "name": "群突發委員會報告-某內科病房COVID-19群聚事件(12C)(114年第2次會議)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=164675"
+        },
+        {
+          "name": "群突發委員會報告-某內科病房流感群聚事件處理報告(14D)(114年第5次會議)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=166582"
+        },
+        {
+          "name": "群突發委員會報告-某精神科病房COVID-19群聚事件處理(114年第4次會議)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=165545"
+        },
+        {
+          "name": "臺灣臨床成效指標(TCPI)季報摘要",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91206"
+        },
+        {
+          "name": "醫療照護相關感染檢討報告-品質暨病人安全委員會會議紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=15165&pi=5"
+        },
+        {
+          "name": "醫療照護相關感染檢討報告_感染管制委員會會議紀錄(114年第02次會議)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=164675"
+        },
+        {
+          "name": "醫療照護相關感染檢討報告_感染管制委員會會議紀錄(115年第02次會議)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171103"
+        },
+        {
+          "name": "醫療照護相關感染異常事件調查報告",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=20190&pi=2"
+        },
+        {
+          "name": "醫療照護相關感染的統計報表(年報)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=9412"
+        },
+        {
+          "name": "醫療照護相關感染的統計報表(年報)摘要",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19271"
+        },
+        {
+          "name": "醫療照護相關感染的統計報表(月報)摘要",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19270"
+        },
+        {
+          "name": "抗藥性菌株監視資訊系統(Portal系統)",
+          "url": ""
+        },
+        {
+          "name": "臺灣臨床成效指標(TCPI)季報表",
+          "url": ""
+        },
+        {
+          "name": "醫療照護相關感染的統計報表(月報)BI系統",
+          "url": ""
+        },
+        {
+          "name": "醫療照護相關感染的統計報表(月報)Portal系統",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "1.7",
+      "title": "落實安全注射行為",
+      "aliases": [
+        "安全注射",
+        "注射安全",
+        "單次使用",
+        "藥品分裝",
+        "多劑量藥瓶",
+        "無菌操作"
+      ],
+      "focus": "注射準備與執行須符合無菌技術及單次使用原則，安全處理針具、藥品與注射用品；對多劑量藥瓶、分裝區域及異常事件訂有管理與稽核。",
+      "questions": "注射藥品在哪裡準備？單次使用用品能否共用？多劑量藥瓶如何管理？現場如何稽核安全注射？",
+      "evidence": [
+        {
+          "name": "病房照護單位注射劑備藥作業規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=7850"
+        },
+        {
+          "name": "藥品儲存管理辦法",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=7853"
+        },
+        {
+          "name": "藥物治療－給藥安全",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=80385"
+        },
+        {
+          "name": "護理技術/如靜脈注射法",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=53573"
+        }
+      ]
+    },
+    {
+      "id": "2.1",
+      "title": "確實執行衛材、器械、機器與內視鏡之清潔、消毒及滅菌管理",
+      "aliases": [
+        "衛材清潔",
+        "器械消毒",
+        "滅菌",
+        "內視鏡再處理",
+        "高層次消毒",
+        "醫療儀器清消",
+        "AER"
+      ],
+      "focus": "依Spaulding分類及廠商說明完成器械、機器與內視鏡的清洗、消毒或滅菌；流程須包含人員訓練、清污分流、設備維護、消毒劑監測、乾燥儲存及完整追溯。",
+      "questions": "哪些物品需滅菌或高層次消毒？清洗品質如何確認？內視鏡如何測漏、乾燥與儲存？異常批次如何停用、召回及改善？",
+      "evidence": [
+        {
+          "name": "低溫電漿滅菌測試常規",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104423"
+        },
+        {
+          "name": "低溫電漿滅菌鍋操作及測試紀錄表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104425"
+        },
+        {
+          "name": "供應室人員接受清洗滅菌設備教育訓練資料",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104962"
+        },
+        {
+          "name": "供應室滅菌之衛材包、器械包處理規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104084"
+        },
+        {
+          "name": "供應室無菌物存放品管查核表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104804"
+        },
+        {
+          "name": "供應室非屬本院之手術器械管理辦法",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=132176"
+        },
+        {
+          "name": "儲存區溫濕度紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104628"
+        },
+        {
+          "name": "儲存區滅菌物品儲存規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104625"
+        },
+        {
+          "name": "內視鏡儲存櫃溫溼度紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=32289"
+        },
+        {
+          "name": "內視鏡微生物監測及異常檢討(內視鏡科務會議紀錄節錄)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37748"
+        },
+        {
+          "name": "內視鏡微生物監測報告及異常改善報告",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19491"
+        },
+        {
+          "name": "內視鏡櫃溫溼度紀錄(健康管理中心)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37434"
+        },
+        {
+          "name": "內視鏡消毒液有效濃度測試紀錄(健康管理中心)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37435"
+        },
+        {
+          "name": "內視鏡高層次消毒作業管理要點",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=44248"
+        },
+        {
+          "name": "內視鏡高層次消毒液有效濃度測試紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=1126"
+        },
+        {
+          "name": "各區工作人員衣著及防護用具標準",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104080"
+        },
+        {
+          "name": "各類物品之包裝、滅菌及有效期間規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104074"
+        },
+        {
+          "name": "感管中心手術器械檢測結果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104808"
+        },
+        {
+          "name": "手術使用之器械、物品清洗標準作業程序",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104066"
+        },
+        {
+          "name": "手術器械車使用規範及清洗照片",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104631"
+        },
+        {
+          "name": "手術器械車配送無菌物品照片",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=107430"
+        },
+        {
+          "name": "消毒/滅菌物品貯存區溫溼度紀錄(健康管理中心)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37447"
+        },
+        {
+          "name": "清洗滅菌設備之保養合約書",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104446"
+        },
+        {
+          "name": "清洗滅菌設備保養紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104447"
+        },
+        {
+          "name": "清洗滅菌設備故障處理流程",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104848"
+        },
+        {
+          "name": "清洗滅菌設備故障處理紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104849"
+        },
+        {
+          "name": "清洗滅菌設備種類及數量",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104817"
+        },
+        {
+          "name": "滅菌包存放儲櫃照片",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104626"
+        },
+        {
+          "name": "滅菌測試結果異常改善方案PDCA",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104810"
+        },
+        {
+          "name": "滅菌測試結果異常標準作業程序",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104430"
+        },
+        {
+          "name": "滅菌測試結果異常物品回收標準作業程序",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104432"
+        },
+        {
+          "name": "滅菌物品使用前注意事項",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104428"
+        },
+        {
+          "name": "環氧乙烷氣體滅菌器操作測試紀錄表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104800"
+        },
+        {
+          "name": "環氧乙烷洩漏緊急應變標準程序",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104351"
+        },
+        {
+          "name": "環氧乙烷滅菌測試標準及測試常規",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104339"
+        },
+        {
+          "name": "環氧乙烷滅菌鍋運作巡視常規",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104342"
+        },
+        {
+          "name": "環氧乙烷滅菌鍋運作巡視紀錄表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104345"
+        },
+        {
+          "name": "環氧乙烷濃度偵測紀錄常規",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104347"
+        },
+        {
+          "name": "環氧乙烷濃度監測紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104802"
+        },
+        {
+          "name": "環氧乙烷監測儀及警報器照片",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104340"
+        },
+        {
+          "name": "病房配送作業規範及配送車照片",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104632"
+        },
+        {
+          "name": "第一種壓力容器合格證",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104448"
+        },
+        {
+          "name": "綜合診療部內視鏡科內視鏡再處理作業流程及相關規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=79605"
+        },
+        {
+          "name": "綜合診療部內視鏡科清洗消毒間工作人員防護作業規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=4178"
+        },
+        {
+          "name": "非屬本院之手術器械登錄單",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104785"
+        },
+        {
+          "name": "高壓蒸氣滅菌安全衛生設施檢點表(每月定期檢查表、每日檢點表)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104795"
+        },
+        {
+          "name": "高壓蒸氣滅菌測試標準及常規",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104085"
+        },
+        {
+          "name": "高壓蒸氣滅菌鍋--「快速滅菌模式」使用管理辦法",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=142743"
+        },
+        {
+          "name": "高壓蒸汽滅菌測試及操作紀錄表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104086"
+        },
+        {
+          "name": "降低手術器械使用快速滅菌模式之件數PDCA",
+          "url": ""
+        },
+        {
+          "name": "高壓滅菌鍋快速滅菌模式使用登記表",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "2.2",
+      "title": "供應室應配置適當人力，清潔區及污染區應做區隔且動線規劃合宜",
+      "aliases": [
+        "供應室",
+        "CSSD",
+        "清潔區污染區",
+        "無菌物品",
+        "滅菌物品配發",
+        "供應室動線"
+      ],
+      "focus": "供應室須配置適當且受訓人力，污染區、清潔區及無菌區應有明確實體區隔與單向動線；落實環境、包裝、儲存、運送及設備品質監測。",
+      "questions": "清污與無菌區如何區隔？人員與物品動線是否交叉？滅菌物品如何儲存與配發？環境及設備異常如何處理？",
+      "evidence": [
+        {
+          "name": "中小型滅菌鍋使用單位查核表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104870"
+        },
+        {
+          "name": "中小型滅菌鍋使用與維護管理辦法",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=75775"
+        },
+        {
+          "name": "供應室「第一種壓力容器訓練合格」人員",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104854"
+        },
+        {
+          "name": "供應室人員、物品動線規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104877"
+        },
+        {
+          "name": "供應室人員、物品流程動線圖(兒醫)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=119826"
+        },
+        {
+          "name": "供應室人員、物品流程動線圖(東址)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104878"
+        },
+        {
+          "name": "供應室各項品管監測結果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104879"
+        },
+        {
+          "name": "供應室品管會議紀錄(滅菌監測會議紀錄)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=105431"
+        },
+        {
+          "name": "供應室新進人員與在職工作人員訂有教育訓練課程",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104903"
+        },
+        {
+          "name": "供應室氣流方向圖(兒醫)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=119829"
+        },
+        {
+          "name": "供應室氣流方向圖(總院)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104901"
+        },
+        {
+          "name": "供應室氣流方向紀錄(兒醫)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=119830"
+        },
+        {
+          "name": "供應室氣流方向紀錄(總院)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104902"
+        },
+        {
+          "name": "供應室無菌物儲存品管查核表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104868"
+        },
+        {
+          "name": "供應室環境清潔常規",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104865"
+        },
+        {
+          "name": "儲存區溫濕度紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104867"
+        },
+        {
+          "name": "內視鏡再處理之新進人員訓練計畫(綜診部)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=130392"
+        },
+        {
+          "name": "內視鏡再處理在職教育訓練(綜診部)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=28682"
+        },
+        {
+          "name": "各班別人力配置表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104850"
+        },
+        {
+          "name": "感染管制委員會之委員聘書",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=166118"
+        },
+        {
+          "name": "感管中心與供應室稽核紀錄與建議事項",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104871"
+        },
+        {
+          "name": "排班表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104851"
+        },
+        {
+          "name": "提升人工清洗器械清潔度PDCA",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=105431"
+        },
+        {
+          "name": "清洗、滅菌設備種類及數量",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104852"
+        },
+        {
+          "name": "第一壓力容器合格證",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104855"
+        },
+        {
+          "name": "第一種壓力容器操作人員合格證書",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=104856"
+        }
+      ]
+    },
+    {
+      "id": "2.3",
+      "title": "落實環境清潔消毒及管理",
+      "aliases": [
+        "環境清潔",
+        "環境消毒",
+        "終期清潔",
+        "清潔人員",
+        "消毒劑",
+        "高頻表面",
+        "病室清消"
+      ],
+      "focus": "依區域與感染風險訂定清潔頻率、工具分區、消毒劑濃度與接觸時間；管理高頻表面、共用設備及終期清潔，並以教育、紀錄、稽核與改善確保品質。",
+      "questions": "清潔頻率與責任如何訂定？消毒劑如何泡製與標示？隔離病人轉出後如何執行及確認終期清潔？缺失如何追蹤？",
+      "evidence": [
+        {
+          "name": "健康管理中心內視鏡通風設備",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=170803"
+        },
+        {
+          "name": "內視鏡室環境清潔管理",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=1700"
+        },
+        {
+          "name": "內視鏡檢查室清潔紀錄表",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=1700"
+        },
+        {
+          "name": "冷卻水塔退伍軍人菌採測報告",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=7246"
+        },
+        {
+          "name": "加護病房負壓隔離病房檢測/維護紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=25757"
+        },
+        {
+          "name": "口腔醫學部(牙科)診療感染管制措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=67137"
+        },
+        {
+          "name": "急診區環境清潔作業程序、查檢表(急診醫學部)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=106284"
+        },
+        {
+          "name": "急診區環境清潔教育機制和紀錄(急診醫學部)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172299"
+        },
+        {
+          "name": "感染管制手冊「環境清潔作業規定」",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54204"
+        },
+        {
+          "name": "支氣管鏡檢查室每月負壓檢查表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=169626"
+        },
+        {
+          "name": "東址台大醫院負壓隔離室換氣次數表(負壓隔離室檢查表)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=25757"
+        },
+        {
+          "name": "氣管鏡室負壓隔離室設施日檢查表(使用單位檢查)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=31441"
+        },
+        {
+          "name": "牙科治療台清潔、管路保養及消毒紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=106221"
+        },
+        {
+          "name": "環境清潔作業規定(加強環境清潔應變機制)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54204"
+        },
+        {
+          "name": "環境清潔品質實驗室檢測報告-滅菌及高層次消毒品質",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19142"
+        },
+        {
+          "name": "環境清潔品質實驗室檢測報告-環境表面及醫療儀器表面",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=21795"
+        },
+        {
+          "name": "環境清潔品質實驗室檢測報告-空氣及水質",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=21796"
+        },
+        {
+          "name": "環境清潔履約管理報告",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19322"
+        },
+        {
+          "name": "環境清潔履約管理報告_感染管制委員會會議紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19322"
+        },
+        {
+          "name": "環境清潔履約管理報告_感染管制委員會會議紀錄(114年第一次)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=164049"
+        },
+        {
+          "name": "環境清潔消毒及管理(血液透析室)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=34810"
+        },
+        {
+          "name": "病房區環境清潔作業程序、查檢表、教育機制和紀錄(護理部)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=2505"
+        },
+        {
+          "name": "綜合診療部內視鏡科環境清潔消毒標準作業流程",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=79602"
+        },
+        {
+          "name": "總院肺功能室負壓設備日檢查表(使用單位檢查)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=33284"
+        },
+        {
+          "name": "肺功能室負壓隔離室設施保養紀錄(東址負壓隔離室檢查表)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=25757"
+        },
+        {
+          "name": "自來水系統退伍軍人菌環境監測及採檢報告及檢討",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=21796"
+        },
+        {
+          "name": "負壓隔離室檢查表",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=25757"
+        },
+        {
+          "name": "負壓隔離病室管理施行細則",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54191"
+        },
+        {
+          "name": "退伍軍人症感染管制措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=55763"
+        },
+        {
+          "name": "退伍軍人症防治計畫",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=57683"
+        },
+        {
+          "name": "門診及公共區環境清潔作業程序、查檢表、教育機制和紀錄(總務室)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172656"
+        },
+        {
+          "name": "手術室環境清潔作業程序、 查檢表、教育機制和紀錄(品管會議紀錄) (東址範例)",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "3.1",
+      "title": "抗生素管理計畫之領導與責任",
+      "aliases": [
+        "抗生素管理計畫",
+        "抗菌藥物管理",
+        "ASP",
+        "抗生素管理小組",
+        "抗生素領導"
+      ],
+      "focus": "由院級領導支持跨專業抗生素管理計畫，明訂權責、專責人力、資訊及資源，定期於委員會檢討目標、策略與執行成果。",
+      "questions": "誰負責領導抗生素管理？跨專業成員如何分工？年度目標、資源與成果如何向院方報告？",
+      "evidence": [
+        {
+          "name": "110年-111年「感染管制與抗生素管理卓越計畫」補捐助案申請計畫書",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=31942"
+        },
+        {
+          "name": "115年「感染管制與抗生素管理卓越計畫」再認證申請計畫書",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=31942"
+        },
+        {
+          "name": "感管委員會「抗微生物製劑管理小組」會議紀錄(含簽名單)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=103482"
+        },
+        {
+          "name": "抗微生物製劑教育學程完成率",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19488"
+        },
+        {
+          "name": "抗微生物製劑管理計畫(含修訂之年月日)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=92299"
+        },
+        {
+          "name": "抗生素管理小組成員與職責",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91315"
+        },
+        {
+          "name": "抗生素管理計畫執行情形及成果",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19285"
+        },
+        {
+          "name": "醫院對於抗微生物製劑管理計畫執行的實質支援紀錄",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=130890"
+        },
+        {
+          "name": "抗微生物製劑臺大醫院教育訓練管理系統教學檔",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "3.2",
+      "title": "抗生素使用監測管理機制",
+      "aliases": [
+        "抗生素使用監測",
+        "抗生素用量",
+        "抗生素處方",
+        "管制性抗生素",
+        "手術預防性抗生素",
+        "de-escalation"
+      ],
+      "focus": "建立抗生素用量、處方適當性、培養採檢、管制藥審核、去升階或停藥及手術預防性抗生素監測，回饋處方者並追蹤改善。",
+      "questions": "如何監測用量與適當性？何時重新評估或停藥？異常科別如何回饋？手術預防性抗生素指標如何追蹤？",
+      "evidence": [
+        {
+          "name": "待研討處方範例",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=103305"
+        },
+        {
+          "name": "急診後線抗生素FQ用量分析",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=92297"
+        },
+        {
+          "name": "手術預防性抗微生物製劑使用規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=30533"
+        },
+        {
+          "name": "抗微生物製劑使用管理規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=3126"
+        },
+        {
+          "name": "抗感染藥品用藥建議分析",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=103305"
+        },
+        {
+          "name": "抗生素使用管制措施與資訊提醒機制",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=92297"
+        },
+        {
+          "name": "抗生素使用量之監測與分析(見BI報表)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91362"
+        },
+        {
+          "name": "抗生素病歷抽樣審查紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19198"
+        },
+        {
+          "name": "抗生素管理稽核與成效",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91363"
+        },
+        {
+          "name": "抗生素開方異常紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19196"
+        },
+        {
+          "name": "抗生素靜脈注射處方轉為口服",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=133430"
+        },
+        {
+          "name": "特殊感染症治療建議指引",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=134134&att=Vancomycin%20-resistant%20Enterococcus%E8%8F%8C%E8%A1%80%E7%97%87%E6%B2%BB%E7%99%82%E5%BB%BA%E8%AD%B020220915.docx"
+        },
+        {
+          "name": "臨床分離細菌對抗生素感受性",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19213"
+        },
+        {
+          "name": "臨床藥師用藥建議範例",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=103305"
+        },
+        {
+          "name": "藥師審核處方紀錄範例",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=103305"
+        },
+        {
+          "name": "抗微生物製劑院內治療指引",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "3.3",
+      "title": "抗藥性微生物之監測診斷及隔離防治措施",
+      "aliases": [
+        "抗藥性監測",
+        "抗藥菌管理",
+        "MDRO",
+        "VRE",
+        "CRE",
+        "CRAB",
+        "CRPA",
+        "MRSA",
+        "抗生素抗藥性"
+      ],
+      "focus": "持續監測抗藥性微生物與趨勢，檢驗結果應及時通知並連結隔離、床位、器材清消、轉送及終期清潔；異常與群聚須調查並追蹤改善。",
+      "questions": "重要抗藥菌如何定義與警示？陽性後如何通知及隔離？再入院如何辨識？群聚或趨勢上升時如何處理？",
+      "evidence": [
+        {
+          "name": "QP1304能力試驗外部品管品保作業程序",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172440"
+        },
+        {
+          "name": "QP1701不符合事件管制作業程序",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172357"
+        },
+        {
+          "name": "微生物實驗室檢驗標準作業程序文件及品管紀錄(內部品管標準作業程序)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=172437"
+        },
+        {
+          "name": "抗生素抗藥性通報統計表",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22726"
+        },
+        {
+          "name": "抗藥性細菌相關感染管制措施查核結果",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91047"
+        },
+        {
+          "name": "抗藥性菌株感染管制措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=52896"
+        },
+        {
+          "name": "抗藥菌防治對策及執行成效_感染管制委員會會議紀錄(114年第5次)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=166582"
+        },
+        {
+          "name": "臨床分離細菌對抗生素之感受性",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19213"
+        },
+        {
+          "name": "進行抗藥性趨勢與抗生素用量之相關性分析",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=106231"
+        },
+        {
+          "name": "內、外部品管監測異常之改善方案或對策",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "4.1",
+      "title": "訂有傳染病監視通報機制，並有專人負責傳染病之通報並主動與當地衛生機關聯繫",
+      "aliases": [
+        "傳染病通報",
+        "法定傳染病",
+        "通報機制",
+        "衛生局聯繫",
+        "疾病通報",
+        "疫情通報"
+      ],
+      "focus": "建立疑似法定傳染病的辨識、通報、採檢、隔離及聯繫機制，指定專責人員確認通報時效、資料完整性及與衛生主管機關之後續協調。",
+      "questions": "誰負責通報與複核？夜間假日如何處理？如何確認沒有逾時或漏報？衛生局要求補件時如何追蹤？",
+      "evidence": [
+        {
+          "name": "103-105年防疫雲計畫參與醫院名單",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91205"
+        },
+        {
+          "name": "傳染病監視通報機制",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=87870"
+        },
+        {
+          "name": "傳染病通報統計報表(本院法定傳染病系統含統計)",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=157825"
+        },
+        {
+          "name": "定期檢討通報機制之紀錄等相關佐證資料",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91204"
+        },
+        {
+          "name": "庫賈氏病單筆勾稽、批次查詢、查看API歷程操作方法",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=157420"
+        },
+        {
+          "name": "檢驗室檢體採集傳送接收作業規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=171109"
+        },
+        {
+          "name": "防疫雲資料交換訊息頁面",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=157824"
+        },
+        {
+          "name": "院內傳染病檢體包裝及運送作業流程",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=87871"
+        },
+        {
+          "name": "疾管署庫賈氏病查詢系統CMS紀錄",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "4.2",
+      "title": "具有痰液耐酸性塗片陽性病人之相關感染管制措施",
+      "aliases": [
+        "痰液耐酸性塗片陽性",
+        "耐酸性塗片陽性",
+        "AFB陽性",
+        "疑似肺結核",
+        "結核隔離"
+      ],
+      "focus": "痰液耐酸性塗片陽性或疑似具傳染性結核個案應立即採空氣隔離、安排適當病室與轉送防護，完成通報、檢體追蹤、環境及暴露風險管理。",
+      "questions": "AFB陽性後如何安置與通報？外出檢查如何防護？何時可解除空氣隔離？接觸者如何啟動追蹤？",
+      "evidence": [
+        {
+          "name": "住院個案使用人工氣道合併呼吸器病人使用密閉式抽痰之醫囑紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22873"
+        },
+        {
+          "name": "住院結核病人啟動負壓隔離病室之相關紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22873"
+        },
+        {
+          "name": "痰液耐酸性塗片陽性通知診療醫師之相關紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22873"
+        },
+        {
+          "name": "結核病住院病人負壓隔離防護施行細則",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22873"
+        },
+        {
+          "name": "結核菌感染防護工作要點",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22873"
+        },
+        {
+          "name": "通知診療醫師之相關紀錄及病歷註記",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22873"
+        }
+      ]
+    },
+    {
+      "id": "4.3",
+      "title": "有專人負責結核病個案管理及衛教工作",
+      "aliases": [
+        "結核個案管理",
+        "結核個管",
+        "都治",
+        "結核衛教",
+        "TB個管"
+      ],
+      "focus": "指定人員負責結核病個案管理、通報、治療銜接、都治與衛教，持續追蹤服藥、檢驗、轉歸及失聯個案，並與公衛單位協調。",
+      "questions": "個案由誰管理？出院後如何銜接都治？服藥與檢驗如何追蹤？失聯或轉院個案如何處理？",
+      "evidence": [
+        {
+          "name": "「疾病管制署-結核病追蹤管理系統」納管率及用藥檢驗紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22874"
+        },
+        {
+          "name": "列管中結核/潛伏結核個案數及結核病疾病管理師工作說明書",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22874"
+        },
+        {
+          "name": "結核病疾病管理師在職教育訓練時數",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22874"
+        },
+        {
+          "name": "結核病疾病管理師工作職責",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22874"
+        },
+        {
+          "name": "結核病疾病管理師訓練證書",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22874"
+        },
+        {
+          "name": "結核病衛教內容及成果",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22874"
+        }
+      ]
+    },
+    {
+      "id": "4.4",
+      "title": "具有結核病診治機制",
+      "aliases": [
+        "結核診治",
+        "TB診治",
+        "結核檢驗",
+        "結核治療",
+        "MDRTB",
+        "抗藥性結核"
+      ],
+      "focus": "具備結核病診斷、檢驗、治療與跨科照護機制，依規範完成痰檢、培養、藥敏及個案分類；疑似抗藥性或特殊個案應及時轉介與專案管理。",
+      "questions": "疑似結核如何安排檢驗與治療？檢驗結果如何追蹤？抗藥性或複雜個案由誰會診及轉介？",
+      "evidence": [
+        {
+          "name": "TB/LTBI通報及管理及後續追蹤列管紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22875"
+        },
+        {
+          "name": "結核病管理委員會(結核病防治業務與診治現況)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22875"
+        },
+        {
+          "name": "結核病管理委員會組織圖",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22875"
+        },
+        {
+          "name": "結核病管理委員會設置要點",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22875"
+        }
+      ]
+    },
+    {
+      "id": "4.5",
+      "title": "住院確定為結核病之病人，有完整的院內接觸者的追蹤資料",
+      "aliases": [
+        "結核接觸者",
+        "院內接觸者",
+        "TB接觸者",
+        "結核暴露",
+        "接觸者追蹤"
+      ],
+      "focus": "住院確診具傳染性結核時，須依可傳染期、病室動線與防護情形完整匡列院內接觸者，完成通知、檢查、列管及追蹤結果。",
+      "questions": "如何界定可傳染期與接觸者？工作人員及病人如何通知與檢查？未完成追蹤者如何管理？",
+      "evidence": [
+        {
+          "name": "接觸者調查及處理機制納入員工教育訓練",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22876"
+        },
+        {
+          "name": "痰抹片陰性培養結核菌確診病人之院內接觸者追蹤資料比例大於90%",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22876"
+        },
+        {
+          "name": "痰抹片陽性確診病人之院內接觸者追蹤資料比例大於90%",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22876"
+        },
+        {
+          "name": "結核菌感染防護工作要點",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22876"
+        },
+        {
+          "name": "轉介至轄區衛生主管機關持續追蹤紀錄(院內接觸者追蹤期間出院)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22876"
+        },
+        {
+          "name": "轉介至轄區衛生主管機關接續追蹤紀錄(醫院工作人員之院內接觸者追蹤期間離職)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22876"
+        },
+        {
+          "name": "醫院工作人員有主動提供結核病診斷及治療",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=22876"
+        }
+      ]
+    },
+    {
+      "id": "4.6",
+      "title": "防護裝備儲備管理符合規定",
+      "aliases": [
+        "防護裝備儲備",
+        "防疫物資",
+        "PPE庫存",
+        "N95庫存",
+        "口罩儲備",
+        "物資效期",
+        "安全庫存"
+      ],
+      "focus": "依主管機關規定及風險評估維持口罩、N95、隔離衣、手套等防護裝備安全庫存，管理合格證明、效期、輪替、盤點、領用及緊急調度。",
+      "questions": "安全庫存量如何設定？物資是否符合規格？效期與先進先出如何管理？疫情大量需求時如何調度？",
+      "evidence": [
+        {
+          "name": "防疫物資月報表",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=17588"
+        },
+        {
+          "name": "防護裝備儲備環境管理相關報表(包括溫濕度紀錄表、使用紀錄表)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=17588"
+        },
+        {
+          "name": "防護裝備醫療器材許可證證明資料(範例)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=17970"
+        }
+      ]
+    },
+    {
+      "id": "4.7",
+      "title": "透析單位之肝炎預防措施",
+      "aliases": [
+        "透析肝炎",
+        "透析室B肝",
+        "透析室C肝",
+        "透析分區",
+        "透析機消毒",
+        "透析肝炎監測"
+      ],
+      "focus": "透析工作人員及病人須定期監測B、C型肝炎；B肝病人分區分床機、C肝病人集中照護，班次間完成透析機與照護區清消，陽轉者須追蹤及依法通報。",
+      "questions": "員工與病人多久檢查一次？B肝如何分區分機？C肝如何集中照護？每位病人後的機器與環境如何消毒？陽轉如何處理？",
+      "evidence": [
+        {
+          "name": "血液透析中心儀器與環境作業流程",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=34810"
+        },
+        {
+          "name": "透析室員工BC肝檢查與追蹤紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37463"
+        },
+        {
+          "name": "門診透析病人肝炎相關監測紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37464"
+        },
+        {
+          "name": "透析機器消毒紀錄(HDS技術員專區)",
+          "url": ""
+        }
+      ]
+    },
+    {
+      "id": "5.1",
+      "title": "訂有醫療照護人員預防接種、健康監測及胸部X光檢查等保護措施，並據以落實執行",
+      "aliases": [
+        "疫苗政策",
+        "預防接種",
+        "員工疫苗",
+        "健康監測",
+        "胸部X光",
+        "胸部X光檢查",
+        "MMR",
+        "流感疫苗",
+        "新冠疫苗"
+      ],
+      "focus": "訂定全院工作人員疫苗、健康監測及胸部X光保護計畫，涵蓋適用的外包、實習與志工；追蹤接種率、麻疹免疫力、健康異常、胸部X光達成率及暴露後處置。",
+      "questions": "流感、MMR、COVID-19及B肝疫苗對象與達成率為何？未接種或抗體陰性如何追蹤？健康異常與胸部X光結果如何管理？",
+      "evidence": [
+        {
+          "name": "114-115年職業安全衛生管理競賽活動",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=37730"
+        },
+        {
+          "name": "健康監測通報系統",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=91353"
+        },
+        {
+          "name": "健康監測通報規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=117071"
+        },
+        {
+          "name": "員工暴露傳染性疾病病人之調查與處理紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19220"
+        },
+        {
+          "name": "員工胸部X光檢查作業實施計畫暨作業流程",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=67831"
+        },
+        {
+          "name": "員工胸部X光檢查作業實施計畫暨作業流程及成果資料",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=67831"
+        },
+        {
+          "name": "員工預防接種措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=54430"
+        },
+        {
+          "name": "感染管制群突發及異常事件處理規範",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=13573"
+        },
+        {
+          "name": "暴露傳染性疾病病人之相關處理規範",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=17313"
+        },
+        {
+          "name": "本院員工預防接種相關資料庫之介面分享",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=20370"
+        },
+        {
+          "name": "本院醫事及非醫事人員接種COVID-19疫苗之成果",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=29190"
+        },
+        {
+          "name": "本院醫事及非醫事人員接種流感疫苗之成果",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=29190"
+        },
+        {
+          "name": "獎勵機制",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=131887"
+        },
+        {
+          "name": "胸部X光檢查異常的追蹤、處理紀錄及達成率",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=67831"
+        },
+        {
+          "name": "醫療照護人員預防接種紀錄(如：A、B型肝炎、流感疫苗、MMR疫苗、水痘疫苗、白喉、破傷風、百日咳(Tdap)疫苗、COVID-19疫苗接種紀錄)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=20370"
+        },
+        {
+          "name": "領導階層帶領(醫政會議會議紀錄、院長的信)",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=34934"
+        },
+        {
+          "name": "體溫異常追蹤及處理紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=20151"
+        }
+      ]
+    },
+    {
+      "id": "5.2",
+      "title": "對於暴露於病人血液、體液及尖銳物品扎傷事件的預防及處置（包含切傷等其他出血）訂有作業流程",
+      "aliases": [
+        "針扎",
+        "尖銳物扎傷",
+        "血液體液暴露",
+        "切傷",
+        "職業暴露",
+        "HIV PEP",
+        "暴露後處理"
+      ],
+      "focus": "訂有尖銳物與血液體液暴露預防、立即處理、通報、風險評估、檢驗、預防用藥、心理支持及追蹤流程；事件須統計分析、回饋並改善。",
+      "questions": "暴露後第一步做什麼？何時啟動HIV PEP？通報、檢驗與追蹤在哪裡完成？事件原因及改善如何回饋？",
+      "evidence": [
+        {
+          "name": "「拒絕針扎運動」工作小組會議紀錄",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19149"
+        },
+        {
+          "name": "員工污染性尖銳器械傷害職業災害報告單",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=1492"
+        },
+        {
+          "name": "員工血液、體液暴露及尖銳物扎傷事件報告統計分析和檢討",
+          "url": "https://km.ntuh.gov.tw/km/listfolders.aspx?uid=19149"
+        },
+        {
+          "name": "員工被血液、體液暴露及尖銳物扎傷事件統計表",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=95073"
+        },
+        {
+          "name": "尖銳物傷害與血體液暴露之預防及暴露後處理措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=53166"
+        },
+        {
+          "name": "感染防護措施",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=51078"
+        },
+        {
+          "name": "每季各單位回覆針扎改善方案之資料彙整",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=95076"
+        },
+        {
+          "name": "臺大醫院污染性尖銳器械扎傷及血體液暴露後之處理追蹤流程",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=53166"
+        },
+        {
+          "name": "醫療尖銳器械扎傷、或不明血體液接觸後之處理及注意事項衛教單張_員工",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=53166"
+        },
+        {
+          "name": "醫療尖銳器械扎傷、或不明血體液接觸後之處理及注意事項衛教單張_非員工",
+          "url": "https://km.ntuh.gov.tw/km/readdocument.aspx?documentId=53166"
+        },
+        {
+          "name": "非員工血液、體液暴露及尖銳物扎傷事件報告統計分析和檢討",
+          "url": ""
+        }
+      ]
+    }
+  ]
+}

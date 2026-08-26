@@ -5,6 +5,7 @@ import hashlib
 import hmac
 import json
 import os
+import re
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
@@ -47,8 +48,16 @@ SYSTEM_PROMPT = """你是台大感管中心的 LINE 臨床問答助手。
 只能根據提供的知識庫內容回答；若資料不足，請清楚說明目前知識庫沒有足夠資訊，並建議洽感染管制中心、感染科、胸腔科、皮膚科或依院內最新規範確認。
 不要編造固定解隔天數、藥物劑量或不存在的政策。
 藥物問題只說明類別與需醫師評估，不提供劑量。
-提醒使用者不要在 LINE 輸入病人姓名、病歷號、床號或可識別個資。
+回答末尾簡短提醒：「請勿輸入病人姓名、病歷號、床號等個資。」
 """
+
+POLICY_NOTICE = "一般流程摘要｜如與正式公告不一致，以正式公告為準。"
+PRIVACY_NOTICE = "請勿輸入病人姓名、病歷號、床號等個資。"
+HELP_REPLY = (
+    "您好，我是台大感管 LINE 查詢助手。可查感染管制、法定傳染病通報、隔離／解隔、"
+    "檢體送驗、疫區、清消濃度、查核重點，也可查週會／月會議題曾在哪些日期出現。\n\n"
+    "提問範例：VRE解隔、登革熱通報、伊波拉疫區、感染月報在哪些週會出現。"
+)
 
 
 def verify_line_signature(body: bytes, signature: str | None) -> bool:
@@ -117,7 +126,7 @@ def extractive_answer(context: str, style: str = "clinical") -> str:
     if not context.strip():
         return (
             "目前知識庫沒有找到足夠相關內容，建議先洽感染管制中心確認。"
-            "\n\n提醒：請不要在 LINE 輸入病人姓名、病歷號、床號或可識別個資。"
+            f"\n\n{PRIVACY_NOTICE}"
         )
 
     sections: list[str] = []
@@ -177,20 +186,20 @@ def extractive_answer(context: str, style: str = "clinical") -> str:
     if not sections:
         return (
             "目前有找到相關資料，但內容不足以整理成明確答案，建議先洽感染管制中心確認。"
-            "\n\n提醒：請不要在 LINE 輸入病人姓名、病歷號、床號或可識別個資。"
+            f"\n\n{PRIVACY_NOTICE}"
         )
 
     if style == "travel":
         answer = "依疾管署國際旅遊疫情建議等級整理如下；疫情建議等級會隨疫情變動，出國前請再次確認疾管署最新頁面。\n\n"
     else:
-        answer = "我先依知識庫內容整理重點如下；若是個案處置，仍請依醫囑與感染管制中心最新規範確認。\n\n"
+        answer = "我先依知識庫內容整理重點如下。\n\n"
     answer += "\n\n".join(sections)
     if sources:
         answer += "\n\n資料來源：" + "、".join(sources[:3])
     if style == "travel":
         answer += "\n\n提醒：旅遊疫情建議等級為行前參考，返國後如有不適請儘速就醫並告知旅遊史。"
     else:
-        answer += "\n\n提醒：請不要在 LINE 輸入病人姓名、病歷號、床號或可識別個資。"
+        answer += f"\n\n{POLICY_NOTICE}\n\n{PRIVACY_NOTICE}"
     return answer
 
 
@@ -242,8 +251,60 @@ def clarification_response(question: str) -> str | None:
         "1. 臨床通報流程：通報時限、病例定義、採檢/檢驗醫令、通報路徑。\n"
         "2. 感管中心內部紀錄：週會或月會曾在哪些日期出現這個議題。\n\n"
         "請回覆例如：「登革熱通報流程」或「登革熱週會紀錄」。\n\n"
-        "提醒：請不要在 LINE 輸入病人姓名、病歷號、床號或可識別個資。"
+        + PRIVACY_NOTICE
     )
+
+
+def is_explicit_meeting_date_query(question: str) -> bool:
+    compact = "".join(str(question or "").split()).lower()
+    meeting_terms = ("週會", "月會", "會議", "會報", "委員會", "感管會")
+    query_terms = ("在哪", "哪個", "哪次", "何時", "有無", "討論過", "紀錄", "記錄", "日期", "時間", "出現")
+    return any(term in compact for term in meeting_terms) and any(term in compact for term in query_terms)
+
+
+def _meeting_topic(question: str) -> str:
+    compact = "".join(str(question or "").split())
+    compact = re.sub(r"請問|想問|查詢|幫我|可以|麻煩", "", compact)
+    compact = re.sub(r"在哪些|在哪個|在哪|哪個|哪次|哪一次|曾經|曾在|曾|何時|什麼時候|有無|是否|有沒有", "", compact)
+    compact = re.sub(r"週會|月會|會議紀錄|會議記錄|會議|會報|委員會|感管會|紀錄|記錄|日期|時間|出現|討論過|討論|議題|清單|相關", "", compact)
+    compact = re.sub(r"[?？,，.。:：;；]", "", compact)
+    return compact[:30] if len(compact) >= 2 else ""
+
+
+def meeting_date_only_answer(question: str) -> str | None:
+    if not is_explicit_meeting_date_query(question):
+        return None
+
+    topic = _meeting_topic(question)
+    if not topic:
+        return f"請用「議題＋週會／月會」明確查詢，例如：VRE在哪些週會出現。\n\n{PRIVACY_NOTICE}"
+
+    compact = "".join(question.split())
+    weekly_only = "週會" in compact and "月會" not in compact
+    monthly_only = "月會" in compact and "週會" not in compact
+    prefixes = ("週會紀錄_",) if weekly_only else (("月會議題_",) if monthly_only else ("週會紀錄_", "月會議題_"))
+    date_pattern = re.compile(r"(?<!\d)(20\d{2})[-/.年](0?[1-9]|1[0-2])[-/.月](0?[1-9]|[12]\d|3[01])日?")
+    roc_pattern = re.compile(r"(?<!\d)(\d{2,3})[-/.年](0?[1-9]|1[0-2])[-/.月](0?[1-9]|[12]\d|3[01])日?")
+    dates: set[str] = set()
+
+    for path in sorted(KNOWLEDGE_DIR.glob("*.md")):
+        if not path.name.startswith(prefixes):
+            continue
+        for line in path.read_text(encoding="utf-8", errors="ignore").splitlines():
+            if topic.lower() not in line.lower():
+                continue
+            for year, month, day in date_pattern.findall(line):
+                dates.add(f"{int(year):04d}-{int(month):02d}-{int(day):02d}")
+            for year, month, day in roc_pattern.findall(line):
+                y = int(year)
+                if y < 1911:
+                    dates.add(f"{y + 1911:04d}-{int(month):02d}-{int(day):02d}")
+
+    if not dates:
+        return f"目前沒有查到「{topic}」可供顯示的明確會議日期。\n\n{PRIVACY_NOTICE}"
+    ordered = sorted(dates)
+    suffix = f" 等{len(ordered)}筆" if len(ordered) > 30 else ""
+    return f"「{topic}」查得日期：\n" + "、".join(ordered[:30]) + suffix + f"\n\n{PRIVACY_NOTICE}"
 
 
 def query_intent(question: str) -> str:
@@ -307,7 +368,33 @@ def filter_hits_by_intent(question: str, hits: list[Any]) -> list[Any]:
     return filtered or hits
 
 
+def convert_full_width_to_half_width(text: str) -> str:
+    result = []
+    for char in str(text or ""):
+        code = ord(char)
+        if 0xFF01 <= code <= 0xFF5E:
+            result.append(chr(code - 65248))
+        elif code == 0x3000:
+            result.append(' ')
+        else:
+            result.append(char)
+    return "".join(result)
+
+
 def answer_question(question: str) -> str:
+    question = convert_full_width_to_half_width(question)
+    compact = "".join(question.split()).lower()
+    help_phrases = {
+        "可以查什麼", "可以問什麼", "你能做什麼", "你能查什麼", "你能回答什麼", "你能答什麼",
+        "你可以做什麼", "你可以回答什麼", "你可以答什麼", "你會做什麼", "你能幫我什麼",
+        "你提供什麼服務", "有什麼功能", "你現在有什麼在執行的事", "你現在在執行什麼",
+        "你目前在執行什麼", "你現在在做什麼", "你目前在做什麼", "功能", "幫助", "help", "menu",
+    }
+    if compact in help_phrases:
+        return f"{HELP_REPLY}\n\n{PRIVACY_NOTICE}"
+    meeting_answer = meeting_date_only_answer(question)
+    if meeting_answer is not None:
+        return meeting_answer
     clarification = clarification_response(question)
     if clarification:
         return clarification
@@ -479,6 +566,10 @@ def answer_question(question: str) -> str:
     except Exception as exc:
         print(f"AI call failed, using extractive answer: {exc}")
         answer = extractive_answer(context, style=answer_style)
+
+    if answer_style == "clinical":
+        answer = answer.replace(POLICY_NOTICE, "").replace(PRIVACY_NOTICE, "").rstrip()
+        answer += f"\n\n{POLICY_NOTICE}\n\n{PRIVACY_NOTICE}"
 
     if len(answer) > MAX_LINE_REPLY_CHARS:
         answer = answer[: MAX_LINE_REPLY_CHARS - 30] + "\n\n（內容較長，已截短）"
