@@ -35,6 +35,7 @@
    - `GEMINI_API_KEY`
    - `CJD_RECONCILIATION_IMAGE_URL`：CJD 院內／手動勾稽桌面宣導圖的公開 HTTPS 圖片網址。
    - `CJD_TISSUE_IMAGE_URL`：CJD 組織感染力分級圖的公開 HTTPS 圖片網址。
+   - `VRE_CDC_PRECAUTIONS_IMAGE_URL`：疾管署附錄 A 的 MDRO/VRE 防護原則頁，僅在 VRE 解隔查詢時作為補充圖片。
 
 LINE 圖片訊息不能讀取本機 `D:\` 路徑；兩張圖須先放到可公開讀取、直接回傳圖片內容的 HTTPS 網址。若圖片網址尚未設定或不是 HTTPS，CJD 文字回答仍會正常送出，但不附圖。
 
@@ -47,6 +48,7 @@ CJD 圖片上傳來源固定使用專案根目錄中的：
 
 - `CJD_RECONCILIATION_IMAGE_URL` = `https://heigilin.github.io/ntuh_cdc/assets/line-bot/cjd/reconciliation-guide.png`
 - `CJD_TISSUE_IMAGE_URL` = `https://heigilin.github.io/ntuh_cdc/assets/line-bot/cjd/tissue-infectivity.jpg`
+- `VRE_CDC_PRECAUTIONS_IMAGE_URL` = `https://heigilin.github.io/ntuh_cdc/assets/line-bot/vre/tw-cdc-mdro-precautions.png`
 
 `Code.gs` 內含上述已驗證網址作為預設值；若 Script Properties 有同名設定，則以 Script Properties 為準。
 

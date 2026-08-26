@@ -4,6 +4,7 @@ const CONFIG = {
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
   CJD_RECONCILIATION_IMAGE_URL: 'https://heigilin.github.io/ntuh_cdc/assets/line-bot/cjd/reconciliation-guide.png',
   CJD_TISSUE_IMAGE_URL: 'https://heigilin.github.io/ntuh_cdc/assets/line-bot/cjd/tissue-infectivity.jpg',
+  VRE_CDC_PRECAUTIONS_IMAGE_URL: 'https://heigilin.github.io/ntuh_cdc/assets/line-bot/vre/tw-cdc-mdro-precautions.png',
   MAX_HITS: 6,
   MIN_ANSWER_SCORE: 8,
   MIN_SUGGEST_SCORE: 3,
@@ -2638,7 +2639,15 @@ function mdroClearanceReply_(diseaseName) {
     '- 符合解隔條件後，需開立對應「取消隔離」醫囑來取消特殊註記，不是終止原本那張隔離醫囑。'
   ];
   if (d === 'VRE') {
-    common.splice(3, 0, '- VRE 通常需先確認原部位陰性後，再做肛門/直腸篩檢；2 週內完成 3 次陰性，才可評估解除接觸隔離。');
+    return [
+      'VRE解除接觸隔離重點（以本院現行規範為主）：',
+      '- 原感染病灶已消失，無發燒或持續感染症狀，臨床狀況已改善。',
+      '- 導管或引流管應已拔除；若仍需留置，原感染或移生部位檢驗需為陰性。',
+      '- 採檢前停用對 VRE 有效或可能影響培養的抗生素至少 72 小時，例如 daptomycin、linezolid、tigecycline。',
+      '- 採肛門拭子（anus/rectal swab），於 1 至 2 週內連續 3 次培養陰性，每次間隔至少 72 小時，才可評估解除接觸隔離。',
+      '- 符合條件後開立對應「取消隔離」醫囑以取消特殊註記，不是終止原隔離醫囑。',
+      '- 疾管署附錄 A 僅列 VRE 為 MDRO，並說明由感染管制計畫依臨床、流行病學及傳播風險判斷接觸防護；未規定上述解隔採檢次數、間隔或停藥時間。附圖供查閱疾管署一般原則。'
+    ].join('\n');
   } else if (/^(CRE|CRAB|CRPA|MRSA|MDROE|MDRO|耳念珠菌|Candida auris)$/i.test(d)) {
     common.splice(3, 0, '- 依菌種與院內規範採指定部位篩檢，並達到規定陰性次數後，才可評估解除接觸隔離。');
   } else if (d === 'MRSE') {
@@ -3108,7 +3117,9 @@ function replyToLine_(replyToken, text, diseaseName, answerObj) {
   if (quickReply) {
     messageObj.quickReply = quickReply;
   }
-  const messages = [messageObj].concat(cjdImageMessages_(answerObj));
+  const messages = [messageObj]
+    .concat(cjdImageMessages_(answerObj))
+    .concat(vreImageMessages_(answerObj));
 
   const res = UrlFetchApp.fetch('https://api.line.me/v2/bot/message/reply', {
     method: 'post',
@@ -3145,6 +3156,20 @@ function cjdImageMessages_(answerObj) {
       previewImageUrl: url
     };
   });
+}
+
+function vreImageMessages_(answerObj) {
+  const obj = answerObj || {};
+  if (String(obj.diseaseName || '').toUpperCase() !== 'VRE') return [];
+  const q = String(obj.effectiveQuestion || obj.originalQuestion || '');
+  if (!/(解隔|解除.*隔離|取消.*隔離)/i.test(q)) return [];
+  const url = getProp_('VRE_CDC_PRECAUTIONS_IMAGE_URL') || CONFIG.VRE_CDC_PRECAUTIONS_IMAGE_URL;
+  if (!/^https:\/\//i.test(String(url || ''))) return [];
+  return [{
+    type: 'image',
+    originalContentUrl: url,
+    previewImageUrl: url
+  }];
 }
 
 function sanitizeLineText_(text) {

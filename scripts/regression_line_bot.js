@@ -19,6 +19,7 @@ const props = {
   GEMINI_API_KEY: 'test-gemini-key',
   CJD_RECONCILIATION_IMAGE_URL: 'https://example.org/cjd-reconciliation.png',
   CJD_TISSUE_IMAGE_URL: 'https://example.org/cjd-tissue.jpg',
+  VRE_CDC_PRECAUTIONS_IMAGE_URL: 'https://example.org/vre-cdc-mdro.png',
   SUGGESTION_RECORDS: JSON.stringify([{ text: '這是不可由 LINE 讀取的測試意見內容' }]),
 };
 const cache = {};
@@ -302,7 +303,7 @@ const cases = [
     id: 'vre-clear',
     user: 'staff4',
     q: 'VRE的解隔標準',
-    expect: ['VRE', '解隔', '肛門'],
+    expect: ['VRE', '解隔', '肛門', '1 至 2 週', '3 次', '間隔至少 72 小時', '疾管署附錄 A'],
     forbid: ['各菌種解除接觸隔離採檢速查'],
   },
   {
@@ -999,6 +1000,26 @@ outputs.push({
   wrongQuickTail: null,
   quickReplyLabels: [],
   preview: JSON.stringify({ cjdReconciliationImages, cjdTissueImages, unrelatedImages }).slice(0, 260),
+});
+
+const vreClearanceImages = ctx.vreImageMessages_({ diseaseName: 'VRE', effectiveQuestion: 'VRE 解隔標準' });
+const vreIsolationImages = ctx.vreImageMessages_({ diseaseName: 'VRE', effectiveQuestion: 'VRE 隔離醫囑' });
+const vreImageRoutingOk = vreClearanceImages.length === 1 &&
+  vreClearanceImages[0].originalContentUrl === props.VRE_CDC_PRECAUTIONS_IMAGE_URL &&
+  vreIsolationImages.length === 0;
+if (!vreImageRoutingOk) failures += 1;
+outputs.push({
+  id: 'vre-clearance-image-routing',
+  ok: vreImageRoutingOk,
+  question: '[VRE clearance image routing]',
+  diseaseName: 'VRE',
+  missing: vreImageRoutingOk ? [] : ['VRE CDC MDRO image'],
+  forbidden: [],
+  missingQuick: [],
+  forbiddenQuick: [],
+  wrongQuickTail: null,
+  quickReplyLabels: [],
+  preview: JSON.stringify({ vreClearanceImages, vreIsolationImages }).slice(0, 260),
 });
 
 const internalPathSample = [
