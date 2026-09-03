@@ -14,5 +14,5 @@
 
 ## 建議連結
 
-- 響應式網站：<https://heigilin.github.io/ntuh-ic-line-bot/#promo-video>
+- 觀看暫版影片與漫畫介紹：<https://heigilin.github.io/ntuh-ic-line-bot/#promo-video>
 - 漫畫宣導圖：<https://heigilin.github.io/ntuh-ic-line-bot/assets/qbee_promo_comic_20260903e.jpg>
