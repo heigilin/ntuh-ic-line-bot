@@ -1,0 +1,26 @@
+.reading-control {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 15;
+  min-height: 46px;
+  padding: 0 17px;
+  border: 1px solid #ffffff70;
+  border-radius: 6px;
+  background: #526b62ed;
+  color: #fff;
+  font: 700 13px "Noto Sans TC", sans-serif;
+  box-shadow: 0 9px 25px #554c4545;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.reading-control[hidden] { display: none; }
+.reading-icon { display: inline-block; min-width: 18px; margin-right: 7px; }
+.reading-control.paused { background: #fffdf9ed; color: var(--green-deep); border-color: #aca49b; }
+.reading-control.paused .reading-icon { font-size: 11px; }
+.auto-reading { scroll-behavior: auto; }
+
+@media (max-width: 760px) {
+  .reading-control { left: 16px; bottom: 16px; }
+}

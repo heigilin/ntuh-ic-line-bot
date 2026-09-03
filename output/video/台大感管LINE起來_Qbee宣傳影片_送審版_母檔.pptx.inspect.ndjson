@@ -1,0 +1,117 @@
+{"kind":"deck","id":"pr/hxyl9u","name":"Deck"}
+{"kind":"layout","layoutId":"75beed10-f3b9-4ef6-9f1e-657595c8579e","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"19eff480-34bc-4c9f-9a26-cb35ca1e9a29","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/xyoevz","slide":1,"title":"臨床忙碌時","textShapes":6}
+{"kind":"shape","id":"sh/jm1cfa9w","slide":1,"bbox":[0,0,1280,720]}
+{"kind":"shape","id":"sh/c7u54zid","slide":1,"bbox":[810,-90,590,590]}
+{"kind":"textbox","id":"sh/1orytsvu","slide":1,"text":"臨床忙碌時","textPreview":"臨床忙碌時","textChars":5,"textLines":1,"bbox":[72,76,600,52]}
+{"kind":"textbox","id":"sh/u9knih4b","slide":1,"text":"感管問題，\n不用再翻找不同文件","textPreview":"感管問題， | 不用再翻找不同文件","textChars":15,"textLines":2,"bbox":[72,132,680,180]}
+{"kind":"textbox","id":"sh/judg7ads","slide":1,"text":"直接用日常語句提問，快速找到處置重點。","textPreview":"直接用日常語句提問，快速找到處置重點。","textChars":19,"textLines":1,"bbox":[76,330,620,56]}
+{"kind":"shape","id":"sh/cfa9w3m9","slide":1,"bbox":[76,424,292,48]}
+{"kind":"textbox","id":"sh/1032lszq","slide":1,"text":"台大感管 LINE 起來","textPreview":"台大感管 LINE 起來","textChars":12,"textLines":1,"bbox":[76,424,292,48]}
+{"kind":"shape","id":"sh/udg7adsj","slide":1,"bbox":[865,82,260,470]}
+{"kind":"textbox","id":"sh/v6psfil0","slide":1,"text":"Qbee 陪你隨手查","textPreview":"Qbee 陪你隨手查","textChars":10,"textLines":1,"bbox":[882,420,226,56]}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":1,"text":"院內送審版","textPreview":"院內送審版","textChars":5,"textLines":1,"bbox":[1046,652,160,24]}
+{"kind":"image","id":"im/uxc3ylc7","slide":1,"name":"","geometry":"rect","alt":"image","bbox":[912,105,166,285]}
+{"kind":"notes","id":"nt/xyoevz","slide":1,"text":""}
+{"kind":"slide","id":"sl/0dtzn7","slide":2,"title":"9 月 1 日起","textShapes":10}
+{"kind":"textbox","id":"sh/l87ed8ba","slide":2,"text":"9 月 1 日起","textPreview":"9 月 1 日起","textChars":8,"textLines":1,"bbox":[72,42,600,28]}
+{"kind":"textbox","id":"sh/ahoza1gv","slide":2,"text":"加入官方帳號，就能直接問","textPreview":"加入官方帳號，就能直接問","textChars":12,"textLines":1,"bbox":[72,74,1136,70]}
+{"kind":"shape","id":"sh/32lszqtc","slide":2,"bbox":[72,176,1136,416]}
+{"kind":"textbox","id":"sh/lkjm1cfa","slide":2,"text":"台大感管 LINE 起來","textPreview":"台大感管 LINE 起來","textChars":12,"textLines":1,"bbox":[424,220,650,58]}
+{"kind":"textbox","id":"sh/at47y1kr","slide":2,"text":"官方專屬 ID","textPreview":"官方專屬 ID","textChars":7,"textLines":1,"bbox":[424,306,190,30]}
+{"kind":"textbox","id":"sh/3ex0nuxc","slide":2,"text":"@ntuhic","textPreview":"@ntuhic","textChars":7,"textLines":1,"bbox":[424,342,430,78]}
+{"kind":"shape","id":"sh/w3m94fu1","slide":2,"bbox":[424,458,150,48]}
+{"kind":"textbox","id":"sh/loj2t83i","slide":2,"text":"臨床照護","textPreview":"臨床照護","textChars":4,"textLines":1,"bbox":[424,458,150,48]}
+{"kind":"shape","id":"sh/9knih4by","slide":2,"bbox":[592,458,150,48]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":2,"text":"評鑑查核","textPreview":"評鑑查核","textChars":4,"textLines":1,"bbox":[592,458,150,48]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":2,"text":"不需背關鍵字，直接描述你遇到的問題。","textPreview":"不需背關鍵字，直接描述你遇到的問題。","textChars":18,"textLines":1,"bbox":[424,526,650,36]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":2,"text":"台大醫院感染管制中心","textPreview":"台大醫院感染管制中心","textChars":10,"textLines":1,"bbox":[72,674,400,22]}
+{"kind":"textbox","id":"sh/9w3m94fu","slide":2,"text":"請勿輸入病人姓名、病歷號、床號等個資","textPreview":"請勿輸入病人姓名、病歷號、床號等個資","textChars":18,"textLines":1,"bbox":[690,674,518,22]}
+{"kind":"image","id":"im/pg3ex0nu","slide":2,"name":"","geometry":"roundRect","alt":"image","bbox":[118,224,250,250]}
+{"kind":"notes","id":"nt/0dtzn7","slide":2,"text":""}
+{"kind":"slide","id":"sl/2av114","slide":3,"title":"真實工作情境","textShapes":13}
+{"kind":"textbox","id":"sh/hk3q5o7q","slide":3,"text":"真實工作情境","textPreview":"真實工作情境","textChars":6,"textLines":1,"bbox":[72,42,600,28]}
+{"kind":"textbox","id":"sh/6xkf6dcb","slide":3,"text":"你平常怎麼問，就怎麼輸入","textPreview":"你平常怎麼問，就怎麼輸入","textChars":12,"textLines":1,"bbox":[72,74,1136,70]}
+{"kind":"shape","id":"sh/zed8v6ps","slide":3,"bbox":[90,178,1100,112]}
+{"kind":"shape","id":"sh/obm58z25","slide":3,"bbox":[118,210,68,48]}
+{"kind":"textbox","id":"sh/hwfyxobm","slide":3,"text":"問","textPreview":"問","textChars":1,"textLines":1,"bbox":[118,210,68,48]}
+{"kind":"textbox","id":"sh/65wjudg7","slide":3,"text":"流感解隔標準","textPreview":"流感解隔標準","textChars":6,"textLines":1,"bbox":[210,192,500,48]}
+{"kind":"textbox","id":"sh/zqtcj6to","slide":3,"text":"掌握解隔條件與取消隔離醫囑","textPreview":"掌握解隔條件與取消隔離醫囑","textChars":13,"textLines":1,"bbox":[716,192,430,72]}
+{"kind":"shape","id":"sh/sfil0rqd","slide":3,"bbox":[90,320,1100,112]}
+{"kind":"shape","id":"sh/h0fepkzu","slide":3,"bbox":[118,352,68,48]}
+{"kind":"textbox","id":"sh/5wjudg7a","slide":3,"text":"問","textPreview":"問","textChars":1,"textLines":1,"bbox":[118,352,68,48]}
+{"kind":"textbox","id":"sh/gbq1oryt","slide":3,"text":"透析室消毒濃度","textPreview":"透析室消毒濃度","textChars":7,"textLines":1,"bbox":[210,334,500,48]}
+{"kind":"textbox","id":"sh/nuxc3ylc","slide":3,"text":"依情境整理濃度與污染處理","textPreview":"依情境整理濃度與污染處理","textChars":12,"textLines":1,"bbox":[716,334,430,72]}
+{"kind":"shape","id":"sh/y90je9cv","slide":3,"bbox":[90,462,1100,112]}
+{"kind":"shape","id":"sh/58z25kb6","slide":3,"bbox":[118,494,68,48]}
+{"kind":"textbox","id":"sh/gn29gr2p","slide":3,"text":"問","textPreview":"問","textChars":1,"textLines":1,"bbox":[118,494,68,48]}
+{"kind":"textbox","id":"sh/n29gr2p8","slide":3,"text":"CJD 院內系統勾稽怎麼查","textPreview":"CJD 院內系統勾稽怎麼查","textChars":13,"textLines":1,"bbox":[210,476,500,48]}
+{"kind":"textbox","id":"sh/yhgn29gr","slide":3,"text":"找到查詢入口與執行紀錄","textPreview":"找到查詢入口與執行紀錄","textChars":11,"textLines":1,"bbox":[716,476,430,72]}
+{"kind":"textbox","id":"sh/5kb6xkf6","slide":3,"text":"台大醫院感染管制中心","textPreview":"台大醫院感染管制中心","textChars":10,"textLines":1,"bbox":[72,674,400,22]}
+{"kind":"textbox","id":"sh/czed8v6p","slide":3,"text":"請勿輸入病人姓名、病歷號、床號等個資","textPreview":"請勿輸入病人姓名、病歷號、床號等個資","textChars":18,"textLines":1,"bbox":[690,674,518,22]}
+{"kind":"notes","id":"nt/2av114","slide":3,"text":""}
+{"kind":"slide","id":"sl/115c83","slide":4,"title":"依工作目的切換","textShapes":10}
+{"kind":"textbox","id":"sh/z61032ls","slide":4,"text":"依工作目的切換","textPreview":"依工作目的切換","textChars":7,"textLines":1,"bbox":[72,42,600,28]}
+{"kind":"textbox","id":"sh/orytsvu9","slide":4,"text":"同一個主題，可以換一種回答方向","textPreview":"同一個主題，可以換一種回答方向","textChars":15,"textLines":1,"bbox":[72,74,1136,70]}
+{"kind":"shape","id":"sh/hcrmhk3q","slide":4,"bbox":[72,182,538,390]}
+{"kind":"shape","id":"sh/a9w3m94f","slide":4,"bbox":[108,214,170,48]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":4,"text":"臨床照護","textPreview":"臨床照護","textChars":4,"textLines":1,"bbox":[108,214,170,48]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":4,"text":"今天要怎麼做？","textPreview":"今天要怎麼做？","textChars":7,"textLines":1,"bbox":[108,290,430,50]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":4,"text":"• 隔離與病人安置\n• 採檢送驗與 PPE\n• 清消與解除隔離","textPreview":"• 隔離與病人安置 | • 採檢送驗與 PPE | • 清消與解除隔離","textChars":31,"textLines":3,"bbox":[108,366,410,150]}
+{"kind":"shape","id":"sh/65wjudg7","slide":4,"bbox":[670,182,538,390]}
+{"kind":"shape","id":"sh/zqtcj6to","slide":4,"bbox":[706,214,170,48]}
+{"kind":"textbox","id":"sh/zupwb2hw","slide":4,"text":"評鑑查核","textPreview":"評鑑查核","textChars":4,"textLines":1,"bbox":[706,214,170,48]}
+{"kind":"textbox","id":"sh/a9w3m94f","slide":4,"text":"委員可能問什麼？","textPreview":"委員可能問什麼？","textChars":8,"textLines":1,"bbox":[706,290,430,50]}
+{"kind":"textbox","id":"sh/h0fepkzu","slide":4,"text":"• 對應查核面向\n• 可出示的執行紀錄\n• KM 核定文件與勾稽","textPreview":"• 對應查核面向 | • 可出示的執行紀錄 | • KM 核定文件與勾稽","textChars":32,"textLines":3,"bbox":[706,366,410,150]}
+{"kind":"textbox","id":"sh/sfil0rqd","slide":4,"text":"台大醫院感染管制中心","textPreview":"台大醫院感染管制中心","textChars":10,"textLines":1,"bbox":[72,674,400,22]}
+{"kind":"textbox","id":"sh/z61032ls","slide":4,"text":"請勿輸入病人姓名、病歷號、床號等個資","textPreview":"請勿輸入病人姓名、病歷號、床號等個資","textChars":18,"textLines":1,"bbox":[690,674,518,22]}
+{"kind":"notes","id":"nt/115c83","slide":4,"text":""}
+{"kind":"slide","id":"sl/6ydjiz","slide":5,"title":"完成體驗，就有抽獎資格","textShapes":11}
+{"kind":"textbox","id":"sh/m58z25kb","slide":5,"text":"完成體驗，就有抽獎資格","textPreview":"完成體驗，就有抽獎資格","textChars":11,"textLines":1,"bbox":[72,42,600,28]}
+{"kind":"textbox","id":"sh/twra5gbq","slide":5,"text":"三個步驟，一次完成","textPreview":"三個步驟，一次完成","textChars":9,"textLines":1,"bbox":[72,74,1136,70]}
+{"kind":"shape","id":"sh/4byhgn29","slide":5,"bbox":[74,196,350,310]}
+{"kind":"shape","id":"sh/b2hwfyxo","slide":5,"bbox":[190,228,118,118]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":5,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[190,228,118,118]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":5,"text":"加入並開始提問","textPreview":"加入並開始提問","textChars":7,"textLines":1,"bbox":[106,376,286,74]}
+{"kind":"shape","id":"sh/4nap4r65","slide":5,"bbox":[466,196,350,310]}
+{"kind":"shape","id":"sh/bat47y1k","slide":5,"bbox":[582,228,118,118]}
+{"kind":"textbox","id":"sh/mp0bi9s3","slide":5,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[582,228,118,118]}
+{"kind":"textbox","id":"sh/4byhgn29","slide":5,"text":"完成 5 次有效問答","textPreview":"完成 5 次有效問答","textChars":10,"textLines":1,"bbox":[498,376,286,74]}
+{"kind":"shape","id":"sh/twra5gbq","slide":5,"bbox":[858,196,350,310]}
+{"kind":"shape","id":"sh/m58z25kb","slide":5,"bbox":[974,228,118,118]}
+{"kind":"textbox","id":"sh/bq1oryts","slide":5,"text":"✓","textPreview":"✓","textChars":1,"textLines":1,"bbox":[974,228,118,118]}
+{"kind":"textbox","id":"sh/4nap4r65","slide":5,"text":"完成滿意度問卷","textPreview":"完成滿意度問卷","textChars":7,"textLines":1,"bbox":[890,376,286,74]}
+{"kind":"textbox","id":"sh/t83itgfm","slide":5,"text":"完成問卷即取得一次抽獎資格；每個 LINE 帳號限一次。","textPreview":"完成問卷即取得一次抽獎資格；每個 LINE 帳號限一次。","textChars":28,"textLines":1,"bbox":[180,540,920,44]}
+{"kind":"textbox","id":"sh/mhk3q5o7","slide":5,"text":"台大醫院感染管制中心","textPreview":"台大醫院感染管制中心","textChars":10,"textLines":1,"bbox":[72,674,400,22]}
+{"kind":"textbox","id":"sh/b2hwfyxo","slide":5,"text":"請勿輸入病人姓名、病歷號、床號等個資","textPreview":"請勿輸入病人姓名、病歷號、床號等個資","textChars":18,"textLines":1,"bbox":[690,674,518,22]}
+{"kind":"notes","id":"nt/6ydjiz","slide":5,"text":""}
+{"kind":"slide","id":"sl/crwpgd","slide":6,"title":"一百份好禮即享券","textShapes":8}
+{"kind":"textbox","id":"sh/d0z61032","slide":6,"text":"一百份好禮即享券","textPreview":"一百份好禮即享券","textChars":8,"textLines":1,"bbox":[72,42,600,28]}
+{"kind":"textbox","id":"sh/29gr2p8n","slide":6,"text":"完成體驗，還有機會把午餐帶走","textPreview":"完成體驗，還有機會把午餐帶走","textChars":14,"textLines":1,"bbox":[72,74,1136,70]}
+{"kind":"shape","id":"sh/vu9knih4","slide":6,"bbox":[72,184,1136,400]}
+{"kind":"textbox","id":"sh/d8bat47y","slide":6,"text":"摩斯漢堡 C153","textPreview":"摩斯漢堡 C153","textChars":9,"textLines":1,"bbox":[586,224,520,52]}
+{"kind":"textbox","id":"sh/2lszqtcj","slide":6,"text":"蜜汁烤雞堡\n＋ 方塊薯餅 3 個\n＋ 冰紅茶 L","textPreview":"蜜汁烤雞堡 | ＋ 方塊薯餅 3 個 | ＋ 冰紅茶 L","textChars":24,"textLines":3,"bbox":[586,292,520,150]}
+{"kind":"shape","id":"sh/v6psfil0","slide":6,"bbox":[586,470,180,48]}
+{"kind":"textbox","id":"sh/kre1w7mp","slide":6,"text":"共 100 份","textPreview":"共 100 份","textChars":7,"textLines":1,"bbox":[586,470,180,48]}
+{"kind":"textbox","id":"sh/dcbulwva","slide":6,"text":"中獎後由官方帳號傳送至 LINE 對話。","textPreview":"中獎後由官方帳號傳送至 LINE 對話。","textChars":20,"textLines":1,"bbox":[786,470,330,50]}
+{"kind":"textbox","id":"sh/lszqtcj6","slide":6,"text":"台大醫院感染管制中心","textPreview":"台大醫院感染管制中心","textChars":10,"textLines":1,"bbox":[72,674,400,22]}
+{"kind":"textbox","id":"sh/s72x4nap","slide":6,"text":"請勿輸入病人姓名、病歷號、床號等個資","textPreview":"請勿輸入病人姓名、病歷號、床號等個資","textChars":18,"textLines":1,"bbox":[690,674,518,22]}
+{"kind":"image","id":"im/1kre1w7m","slide":6,"name":"","geometry":"roundRect","alt":"image","bbox":[112,226,410,306]}
+{"kind":"notes","id":"nt/crwpgd","slide":6,"text":""}
+{"kind":"slide","id":"sl/7rcofs","slide":7,"title":"9 月 1 日起","textShapes":9}
+{"kind":"textbox","id":"sh/ulwval87","slide":7,"text":"9 月 1 日起","textPreview":"9 月 1 日起","textChars":8,"textLines":1,"bbox":[72,62,500,32]}
+{"kind":"textbox","id":"sh/1cfa9w3m","slide":7,"text":"搜尋 @ntuhic\n和 Qbee 一起，感管 LINE 起來","textPreview":"搜尋 @ntuhic | 和 Qbee 一起，感管 LINE 起來","textChars":31,"textLines":2,"bbox":[72,112,710,154]}
+{"kind":"textbox","id":"sh/crmhk3q5","slide":7,"text":"前 3 天完成問卷，抽獎機會加碼 5 倍","textPreview":"前 3 天完成問卷，抽獎機會加碼 5 倍","textChars":20,"textLines":1,"bbox":[72,306,660,46]}
+{"kind":"shape","id":"sh/ji5snelo","slide":7,"bbox":[860,92,280,350]}
+{"kind":"textbox","id":"sh/1kre1w7m","slide":7,"text":"掃碼加入","textPreview":"掃碼加入","textChars":4,"textLines":1,"bbox":[900,348,200,44]}
+{"kind":"shape","id":"sh/c3ylc7u5","slide":7,"bbox":[72,412,150,48]}
+{"kind":"textbox","id":"sh/jqh0fepk","slide":7,"text":"臨床照護","textPreview":"臨床照護","textChars":4,"textLines":1,"bbox":[72,412,150,48]}
+{"kind":"shape","id":"sh/q5o7qpg3","slide":7,"bbox":[238,412,150,48]}
+{"kind":"textbox","id":"sh/kzupwb2h","slide":7,"text":"評鑑查核","textPreview":"評鑑查核","textChars":4,"textLines":1,"bbox":[238,412,150,48]}
+{"kind":"shape","id":"sh/9knih4by","slide":7,"bbox":[404,412,190,48]}
+{"kind":"textbox","id":"sh/2t83itgf","slide":7,"text":"滿意度抽獎","textPreview":"滿意度抽獎","textChars":5,"textLines":1,"bbox":[404,412,190,48]}
+{"kind":"textbox","id":"sh/re1w7mp0","slide":7,"text":"如與正式公告不一致，以正式公告為準。請勿輸入病人姓名、病歷號、床號等個資。","textPreview":"如與正式公告不一致，以正式公告為準。請勿輸入病人姓名、病歷號、床號等個資。","textChars":37,"textLines":1,"bbox":[72,614,1068,34]}
+{"kind":"textbox","id":"sh/kb6xkf6d","slide":7,"text":"主辦單位｜台大醫院感染管制中心","textPreview":"主辦單位｜台大醫院感染管制中心","textChars":15,"textLines":1,"bbox":[72,660,500,24]}
+{"kind":"image","id":"im/7adsji5s","slide":7,"name":"","geometry":"rect","alt":"image","bbox":[900,126,200,200]}
+{"kind":"notes","id":"nt/7rcofs","slide":7,"text":""}

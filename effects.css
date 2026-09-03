@@ -1,0 +1,99 @@
+.petal-field {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wind-petal {
+  --x: 50vw;
+  --drift: 100px;
+  --duration: 15s;
+  --delay: 0s;
+  --size: 10px;
+  position: absolute;
+  top: -8%;
+  left: var(--x);
+  width: var(--size);
+  height: calc(var(--size) * 1.55);
+  border-radius: 70% 25% 65% 30%;
+  opacity: .55;
+  animation: wind-fall var(--duration) var(--delay) linear infinite;
+  will-change: transform;
+}
+
+.petal-rose { background: #d2a9a1; }
+.petal-cream { background: #e8ddc8; }
+.leaf-sage {
+  background: #9cad9f;
+  border-radius: 90% 15% 90% 15%;
+  opacity: .48;
+}
+
+@keyframes wind-fall {
+  0% { transform: translate3d(0, -10vh, 0) rotate(0deg); }
+  25% { transform: translate3d(calc(var(--drift) * -.45), 24vh, 0) rotate(105deg); }
+  55% { transform: translate3d(var(--drift), 58vh, 0) rotate(245deg); }
+  78% { transform: translate3d(calc(var(--drift) * .2), 82vh, 0) rotate(350deg); }
+  100% { transform: translate3d(calc(var(--drift) * 1.15), 112vh, 0) rotate(510deg); }
+}
+
+.wave-field {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 64px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wave-field i {
+  position: absolute;
+  left: -12%;
+  bottom: -42px;
+  width: 125%;
+  height: 82px;
+  border-radius: 48% 52% 0 0 / 48% 56% 0 0;
+  background: #f4f0ea;
+  opacity: .92;
+  animation: soft-wave 8s ease-in-out infinite alternate;
+  transform-origin: 50% 100%;
+}
+
+.wave-field i:nth-child(2) {
+  bottom: -54px;
+  background: #aebdb5;
+  opacity: .38;
+  animation-duration: 11s;
+  animation-direction: alternate-reverse;
+}
+
+.page-turn {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 12%, #f4f0ea99 48%, #d8cfc399 54%, transparent 88%);
+  transform: translateX(-115%);
+  opacity: 0;
+}
+
+.page-turn.active { animation: page-breeze .8s ease-in-out; }
+
+@keyframes soft-wave {
+  from { transform: translateX(-2%) rotate(-1deg) scaleY(.82); }
+  to { transform: translateX(2%) rotate(1deg) scaleY(1.08); }
+}
+
+@keyframes page-breeze {
+  0% { transform: translateX(-115%); opacity: 0; }
+  35% { opacity: .62; }
+  100% { transform: translateX(115%); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .petal-field, .wave-field, .page-turn { display: none; }
+}

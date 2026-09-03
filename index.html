@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#075f50">
+  <meta name="description" content="加入台大感管 LINE 官方帳號，體驗智慧感管服務，活動起日與官方 QR code 以後續公告為準。">
+  <title>台大感管 LINE 起來｜智慧感管服務</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css?v=6">
+  <link rel="stylesheet" href="reading.css?v=2">
+  <link rel="stylesheet" href="effects.css?v=2">
+  <link rel="stylesheet" href="bright.css?v=3">
+  <link rel="stylesheet" href="video-intro.css?v=1">
+</head>
+<body class="intro-playing">
+  <section class="video-intro" id="video-intro" aria-label="台大感管宣傳影片">
+    <video id="intro-video" autoplay playsinline preload="auto" poster="assets/video-poster.png">
+      <source src="assets/台大感管line起來_暫_web.mp4" type="video/mp4">
+    </video>
+    <div class="intro-video-controls">
+      <button id="intro-sound" type="button" aria-pressed="true">關閉聲音</button>
+      <button id="intro-skip" type="button">略過影片</button>
+    </div>
+    <div class="intro-progress" aria-hidden="true"><i id="intro-progress-bar"></i></div>
+  </section>
+  <header class="nav" id="top">
+    <a class="brand" href="#top" aria-label="回到頁首">
+      <img src="assets/avatar.jpg" alt="台大感管官方帳號頭像">
+      <span>台大感管 <strong>LINE 起來</strong></span>
+    </a>
+    <nav aria-label="主要導覽">
+      <a href="#features">服務亮點</a><a href="#event">活動辦法</a>
+      <a class="nav-cta" href="https://line.me/R/ti/p/@ntuhic" target="_blank" rel="noopener">加入 LINE</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <video class="hero-video" autoplay loop playsinline poster="assets/video-poster.png">
+        <source src="assets/台大感管line起來_暫_web.mp4" type="video/mp4">
+      </video>
+      <div class="hero-shade"></div>
+      <div class="petal-field" id="petal-field" aria-hidden="true"></div>
+      <div class="wave-field" aria-hidden="true"><i></i><i></i></div>
+      <div class="intro-wave" id="intro-wave" aria-hidden="true"><i></i><i></i></div>
+      <div class="hero-content">
+        <p class="eyebrow">NTUH INFECTION CONTROL</p>
+        <h1 id="hero-title">台大感管<br><span>LINE 起來</span></h1>
+        <p class="lead">需要的感管資訊，不必翻找、不再苦等。<br>陪你把複雜問題，問得簡單一點。</p>
+        <div class="hero-actions">
+          <a class="button line-button" href="https://line.me/R/ti/p/@ntuhic" target="_blank" rel="noopener">立即加入 @ntuhic <span aria-hidden="true">↗</span></a>
+          <button class="button ghost-button" id="sound-toggle" type="button" aria-pressed="true">關閉影片聲音</button>
+          <button class="button ghost-button" id="auto-scroll-start" type="button">自動閱讀</button>
+        </div>
+        <p class="privacy-note">免安裝新 App · 活動起日與官方 QR code 以後續公告為準 · 請勿輸入病人姓名、病歷號、床號等個資</p>
+      </div>
+      <a class="scroll-cue" href="#features"><span>往下探索</span><i aria-hidden="true"></i></a>
+    </section>
+
+    <section class="feature-band" id="features">
+      <div class="section-heading reveal">
+        <p class="eyebrow dark">YOUR SMART IPC PARTNER</p>
+        <h2 class="mascot-heading"><span>感管大小事，</span><img class="inline-mascot" src="assets/qbee-character.png" alt="可愛的感管小幫手"><span>隨時在</span></h2>
+        <p>從臨床流程到日常衛教，把正確資訊送到每一個需要的時刻。</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature reveal"><b>01</b><img class="feature-mascot pose-one" src="assets/qbee-character.png" alt=""><h3>臨床照護</h3><p>快速查詢通報、隔離、解隔、採檢與清消流程，掌握現場執行重點。</p></article>
+        <article class="feature reveal"><b>02</b><img class="feature-mascot pose-two" src="assets/qbee-character.png" alt=""><h3>評鑑查核</h3><p>整理常見提問與佐證方向，讓新進與輪調同仁也能迅速找到答案。</p></article>
+        <article class="feature reveal"><b>03</b><img class="feature-mascot pose-three" src="assets/qbee-character.png" alt=""><h3>旅遊與衛教</h3><p>提供國內外疫情、旅遊健康提醒與白話感染預防資訊。</p></article>
+      </div>
+    </section>
+
+    <section class="promo-video" id="promo-video">
+      <div class="promo-video-inner reveal">
+        <div class="section-heading">
+          <p class="eyebrow dark">PROMO VIDEO TEMP</p>
+          <h2>台大感管 LINE 起來（暫）</h2>
+          <p>影片為暫版宣傳素材；正式活動起日、官方 QR code 與活動辦法，將以感染管制中心後續公告為準。</p>
+        </div>
+        <figure class="promo-comic">
+          <img src="assets/qbee_promo_comic_temp.jpg" alt="台大感管 LINE 起來暫版漫畫宣導圖">
+        </figure>
+        <div class="promo-media">
+          <video controls playsinline preload="metadata" poster="assets/video-poster.png">
+            <source src="assets/台大感管line起來_暫_web.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <section class="event" id="event">
+      <div class="event-inner">
+        <div class="prize-visual reveal">
+          <span class="prize-tag">限量 100 份</span>
+          <img src="assets/mos-meal.jpg" alt="摩斯漢堡蜜汁烤雞堡套餐">
+          <div class="prize-caption"><small>填問卷 · 抽電子好禮</small><strong>摩斯漢堡套餐</strong><span>蜜汁烤雞堡＋方塊薯餅＋冰紅茶</span></div>
+        </div>
+        <div class="event-copy reveal">
+          <p class="eyebrow dark">活動起日待公告</p>
+          <h2>早鳥完成問卷，<br><span>享 5倍抽獎機會。</span></h2>
+          <p class="odds-intro">正式啟用日尚待官方帳號付費與上線流程確認；以下時程為暫定規劃，將以後續公告為準。</p>
+          <div class="early-bird-callout" aria-label="早鳥加碼說明">
+            <small>第一波早鳥加碼</small>
+            <strong>活動前 3 日完成：享 5倍抽獎機會</strong>
+            <span>也就是比一般活動期間完成多 4 次抽獎機會。每個 LINE 帳號仍限一次抽獎資格；加碼是抽獎時計算次數增加，不是保證中獎。</span>
+          </div>
+          <div class="schedule-table" aria-label="問卷完成時程與抽獎機會">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">階段</th>
+                  <th scope="col">完成問卷期間</th>
+                  <th scope="col">抽獎時計算</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="schedule-highlight">
+                  <th scope="row">第一波早鳥</th>
+                  <td>正式起日後第 1 — 3 日</td>
+                  <td><strong>5倍機會</strong><span>比一般多 4 次</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">第二波加碼</th>
+                  <td>正式起日後第 4 — 7 日</td>
+                  <td><strong>列 3 次</strong><span>比一般多 2 次</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">一般活動</th>
+                  <td>第 8 日起至活動截止日</td>
+                  <td><strong>列 1 次</strong><span>基本抽獎機會</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <a class="text-link" href="assets/event-rules.pdf" target="_blank">查看完整活動辦法 <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps">
+      <div class="section-heading reveal"><p class="eyebrow dark">THREE SIMPLE STEPS</p><h2>三步驟，讓好資訊發生</h2></div>
+      <ol>
+        <li class="reveal"><span>1</span><div><h3>加入好友</h3><p>活動正式啟用後，點擊按鈕前往 LINE，加入 <strong>@ntuhic</strong>。</p></div></li>
+        <li class="reveal"><span>2</span><div><h3>完成 5 次有效問答</h3><p>依需求體驗感管政策、查核重點、疫情或健康衛教。</p></div></li>
+        <li class="reveal"><span>3</span><div><h3>填問卷，取得抽獎資格</h3><p>每個 LINE 帳號限一次資格，得獎將由官方帳號直接通知。</p></div></li>
+      </ol>
+    </section>
+
+    <section class="final-cta">
+      <div class="cta-orbit" aria-hidden="true">Q</div>
+      <div class="reveal"><p class="eyebrow">READY WHEN YOU ARE</p><h2 class="final-mascot-title">有問題，就交給我 <img class="inline-mascot" src="assets/qbee-character.png" alt="可愛的感管小幫手"></h2><p>現在加入台大感管 LINE 官方帳號，讓每一次查詢都更靠近答案。</p>
+        <a class="button light-button" href="https://line.me/R/ti/p/@ntuhic" target="_blank" rel="noopener">前往 LINE 官方帳號 <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+  <footer><p>主辦暨開發維運單位｜台大醫院感染管制中心</p><p>本服務為感管知識與衛教輔助工具，不取代醫師診斷、治療或院內正式公告。</p></footer>
+  <a class="floating-line" href="https://line.me/R/ti/p/@ntuhic" target="_blank" rel="noopener" aria-label="加入 LINE 官方帳號">LINE</a>
+  <button class="reading-control" id="reading-control" type="button" aria-pressed="false" hidden>
+    <span class="reading-icon" aria-hidden="true">Ⅱ</span><span class="reading-label">暫停閱讀</span>
+  </button>
+  <div class="page-turn" id="page-turn" aria-hidden="true"></div>
+  <script src="site.js?v=11"></script>
+</body>
+</html>

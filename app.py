@@ -6,6 +6,7 @@ import hmac
 import json
 import os
 import re
+import mimetypes
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
@@ -604,8 +605,42 @@ class Handler(BaseHTTPRequestHandler):
     def send_json(self, status: int, payload: dict[str, Any]) -> None:
         self.send_text(status, json.dumps(payload, ensure_ascii=False), "application/json; charset=utf-8")
 
+    def send_file(self, path: Path) -> None:
+        if not path.is_file():
+            self.send_text(404, "Not found")
+            return
+        body = path.read_bytes()
+        content_type = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        self.send_response(200)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(len(body)))
+        cache_policy = "no-cache" if path.suffix in {".html", ".css", ".js"} else "public, max-age=3600"
+        self.send_header("Cache-Control", cache_policy)
+        self.end_headers()
+        self.wfile.write(body)
+
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
+        public_files = {
+            "/": BASE_DIR / "index.html",
+            "/site.css": BASE_DIR / "site.css",
+            "/reading.css": BASE_DIR / "reading.css",
+            "/effects.css": BASE_DIR / "effects.css",
+            "/bright.css": BASE_DIR / "bright.css",
+            "/video-intro.css": BASE_DIR / "video-intro.css",
+            "/site.js": BASE_DIR / "site.js",
+            "/assets/avatar.jpg": BASE_DIR / "頭貼.jpg",
+            "/assets/mos-meal.jpg": BASE_DIR / "摩斯套餐.jpg",
+            "/assets/video-poster.png": BASE_DIR / "output/video/slide-01.png",
+            "/assets/qbee-character.png": BASE_DIR / "assets/qbee-character.png",
+            "/assets/qbee-promo.mp4": BASE_DIR / "output/video/台大感管LINE起來_Qbee宣傳影片_送審版.mp4",
+            "/assets/台大感管line起來_暫_web.mp4": BASE_DIR / "assets/台大感管line起來_暫_web.mp4",
+            "/assets/qbee_promo_comic_temp.jpg": BASE_DIR / "assets/qbee_promo_comic_temp.jpg",
+            "/assets/event-rules.pdf": BASE_DIR / "台大感管 LINE 官方帳號體驗問卷抽獎推廣活動辦法_0901活動版.pdf",
+        }
+        if parsed.path in public_files:
+            self.send_file(public_files[parsed.path])
+            return
         if parsed.path == "/health":
             self.send_json(
                 200,

@@ -1,0 +1,788 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/0dtzn7",
+    "id": "0dtzn7",
+    "slide": 2,
+    "layoutId": "19eff480-34bc-4c9f-9a26-cb35ca1e9a29",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "19eff480-34bc-4c9f-9a26-cb35ca1e9a29",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/l87ed8ba",
+      "id": "1",
+      "bbox": [
+        72,
+        42,
+        600,
+        28
+      ],
+      "geometry": "rect",
+      "text": "9 月 1 日起",
+      "textPreview": "9 月 1 日起",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#006B4F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "9 月 1 日起"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "9 月 1 日起",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#006B4F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "9 月 1 日起",
+              "fontSize": 17,
+              "color": "#006B4F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ahoza1gv",
+      "id": "2",
+      "bbox": [
+        72,
+        74,
+        1136,
+        70
+      ],
+      "geometry": "rect",
+      "text": "加入官方帳號，就能直接問",
+      "textPreview": "加入官方帳號，就能直接問",
+      "resolvedFontSize": 40,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 40,
+        "typeface": "+mn-lt",
+        "color": "#17362F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "加入官方帳號，就能直接問"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "加入官方帳號，就能直接問",
+          "resolvedTextStyle": {
+            "fontSize": 40,
+            "color": "#17362F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "加入官方帳號，就能直接問",
+              "fontSize": 40,
+              "color": "#17362F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/32lszqtc",
+      "id": "3",
+      "bbox": [
+        72,
+        176,
+        1136,
+        416
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F2F8F4",
+      "lineColor": "#D6E8DE",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/pg3ex0nu",
+      "id": "4",
+      "bbox": [
+        118,
+        224,
+        250,
+        250
+      ],
+      "geometry": "roundRect",
+      "alt": "image",
+      "contentType": "image/jpeg",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 4800"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "579da8ea-6b8f-4198-be81-0c1e59679be7",
+        "contentType": "image/jpeg",
+        "byteLength": 139966
+      }
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lkjm1cfa",
+      "id": "5",
+      "bbox": [
+        424,
+        220,
+        650,
+        58
+      ],
+      "geometry": "rect",
+      "text": "台大感管 LINE 起來",
+      "textPreview": "台大感管 LINE 起來",
+      "resolvedFontSize": 37,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 37,
+        "typeface": "+mn-lt",
+        "color": "#17362F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "台大感管 LINE 起來"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "台大感管 LINE 起來",
+          "resolvedTextStyle": {
+            "fontSize": 37,
+            "color": "#17362F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "台大感管 LINE 起來",
+              "fontSize": 37,
+              "color": "#17362F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/at47y1kr",
+      "id": "6",
+      "bbox": [
+        424,
+        306,
+        190,
+        30
+      ],
+      "geometry": "rect",
+      "text": "官方專屬 ID",
+      "textPreview": "官方專屬 ID",
+      "resolvedFontSize": 18,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 18,
+        "typeface": "+mn-lt",
+        "color": "#688078",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "官方專屬 ID"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "官方專屬 ID",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "color": "#688078",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "官方專屬 ID",
+              "fontSize": 18,
+              "color": "#688078",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3ex0nuxc",
+      "id": "7",
+      "bbox": [
+        424,
+        342,
+        430,
+        78
+      ],
+      "geometry": "rect",
+      "text": "@ntuhic",
+      "textPreview": "@ntuhic",
+      "resolvedFontSize": 50,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 50,
+        "typeface": "+mn-lt",
+        "color": "#006B4F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "@ntuhic"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "@ntuhic",
+          "resolvedTextStyle": {
+            "fontSize": 50,
+            "color": "#006B4F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "@ntuhic",
+              "fontSize": 50,
+              "color": "#006B4F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/w3m94fu1",
+      "id": "8",
+      "bbox": [
+        424,
+        458,
+        150,
+        48
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#16233F",
+      "lineColor": "#16233F",
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/loj2t83i",
+      "id": "9",
+      "bbox": [
+        424,
+        458,
+        150,
+        48
+      ],
+      "geometry": "rect",
+      "text": "臨床照護",
+      "textPreview": "臨床照護",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "臨床照護"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "臨床照護",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "臨床照護",
+              "fontSize": 20,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9knih4by",
+      "id": "10",
+      "bbox": [
+        592,
+        458,
+        150,
+        48
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#006B4F",
+      "lineColor": "#006B4F",
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kzupwb2h",
+      "id": "11",
+      "bbox": [
+        592,
+        458,
+        150,
+        48
+      ],
+      "geometry": "rect",
+      "text": "評鑑查核",
+      "textPreview": "評鑑查核",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "評鑑查核"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "評鑑查核",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "評鑑查核",
+              "fontSize": 20,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/re1w7mp0",
+      "id": "12",
+      "bbox": [
+        424,
+        526,
+        650,
+        36
+      ],
+      "geometry": "rect",
+      "text": "不需背關鍵字，直接描述你遇到的問題。",
+      "textPreview": "不需背關鍵字，直接描述你遇到的問題。",
+      "resolvedFontSize": 22,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 22,
+        "typeface": "+mn-lt",
+        "color": "#526C64",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "不需背關鍵字，直接描述你遇到的問題。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "不需背關鍵字，直接描述你遇到的問題。",
+          "resolvedTextStyle": {
+            "fontSize": 22,
+            "color": "#526C64",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "不需背關鍵字，直接描述你遇到的問題。",
+              "fontSize": 22,
+              "color": "#526C64",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2t83itgf",
+      "id": "13",
+      "bbox": [
+        72,
+        674,
+        400,
+        22
+      ],
+      "geometry": "rect",
+      "text": "台大醫院感染管制中心",
+      "textPreview": "台大醫院感染管制中心",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#6C827B",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "台大醫院感染管制中心"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "台大醫院感染管制中心",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#6C827B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "台大醫院感染管制中心",
+              "fontSize": 14,
+              "color": "#6C827B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9w3m94fu",
+      "id": "14",
+      "bbox": [
+        690,
+        674,
+        518,
+        22
+      ],
+      "geometry": "rect",
+      "text": "請勿輸入病人姓名、病歷號、床號等個資",
+      "textPreview": "請勿輸入病人姓名、病歷號、床號等個資",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#6C827B",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "請勿輸入病人姓名、病歷號、床號等個資"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "請勿輸入病人姓名、病歷號、床號等個資",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#6C827B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "請勿輸入病人姓名、病歷號、床號等個資",
+              "fontSize": 14,
+              "color": "#6C827B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

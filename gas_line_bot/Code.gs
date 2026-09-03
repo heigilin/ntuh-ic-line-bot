@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-stale-quick-guard-10',
+  BOT_VERSION: '2026-08-26-fast-state-cache-12',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -16,6 +16,7 @@ const CONFIG = {
 let KB_RUNTIME_CACHE_ = null;
 let AUDIT_RUNTIME_CACHE_ = null;
 let CLEARANCE_RUNTIME_CACHE_ = null;
+let USER_REQUEST_CACHE_ = {};
 
 function doGet(e) {
   return ContentService
@@ -70,6 +71,9 @@ function doPost(e) {
 }
 
 function answerQuestion_(question, event) {
+  // GAS property reads are remote service calls. Keep user mode/state in memory
+  // only for this one question, then discard it before the next message.
+  USER_REQUEST_CACHE_ = {};
   const originalQuestion = convertFullWidthToHalfWidth_(String(question || '')).trim();
   question = originalQuestion;
 
@@ -110,6 +114,28 @@ function answerQuestion_(question, event) {
 
   const suggestionReply = suggestionBoxReply_(question, event);
   if (suggestionReply) return finalizeAnswer_({ text: suggestionReply, diseaseName: '閒聊' }, event, originalQuestion, question, { skipCount: true });
+
+  // Operational needlestick buttons must resolve to their own instructions,
+  // before the broad 5.2 audit-clause matcher turns them back into a menu.
+  const needlestickActionReply = needlestickActionPriorityReply_(question, event);
+  if (needlestickActionReply) {
+    return finalizeAnswer_({
+      text: needlestickActionReply.text,
+      diseaseName: '針扎與體液暴露',
+      subtopic: needlestickActionReply.subtopic
+    }, event, originalQuestion, question);
+  }
+
+  // Disease audit action buttons carry a specific intent. Answer that intent
+  // directly instead of allowing ordinary definition/KB search to consume it.
+  const diseaseAuditActionReply = diseaseAuditActionPriorityReply_(question, event);
+  if (diseaseAuditActionReply) {
+    return finalizeAnswer_({
+      text: diseaseAuditActionReply.text,
+      diseaseName: diseaseAuditActionReply.diseaseName,
+      subtopic: 'definition'
+    }, event, originalQuestion, question);
+  }
 
   const auditGeneralReply = auditGeneralTopicReply_(question, event);
   if (auditGeneralReply) {
@@ -392,6 +418,14 @@ function answerQuestion_(question, event) {
 function cjdOperationalPriorityReply_(question) {
   const q = normalizeIntentText_(question);
   if (!/(cjd|庫賈氏病|庫賈氏症)/i.test(q)) return '';
+
+  if (/KM佐證/i.test(q)) {
+    return 'CJD 查核 KM 佐證：\n' +
+      '- KM：50300-3-000013「庫賈氏病感染管制措施」。\n' +
+      '- 院內系統：CJD 勾稽歷程、手術或檢查排程及列管狀態。\n' +
+      '- 跨單位紀錄：手術室、供應室與感染管制中心通知紀錄。\n' +
+      '- 器械紀錄：接觸組織風險分類、器械分流及去活化／封存／報廢處理紀錄。';
+  }
 
   if (/手動勾稽/.test(q)) {
     return 'CJD 疾管署手動勾稽：\n' +
@@ -779,6 +813,14 @@ function isAliasOnlyDiseaseQuestion_(question, diseaseName) {
 
 function diseaseClarificationReply_(diseaseName) {
   const d = String(diseaseName || '這個疾病').trim();
+  if (d === '疥瘡') {
+    return '疥瘡請先選擇情境：\n' +
+      '- 同住家人感染：員工健康流程、用藥與辦公室注意事項。\n' +
+      '- 同仁本人有症狀：就醫、上班與接觸者處理。\n' +
+      '- 辦公室接觸：環境與物品處理、同事健康監測。\n' +
+      '- 病人照護：隔離、安置、PPE、清消與解隔。\n\n' +
+      '請點選下方快捷鈕。';
+  }
   return d + '可以查的範圍很多，我先幫您釐清方向，避免一次回答太散。\n\n' +
     '請點下方快捷鈕，或直接輸入：\n' +
     '- ' + d + '通報定義\n' +
@@ -1250,7 +1292,7 @@ function getUserMode_(event) {
   const userId = getLineUserId_(event);
   if (!userId) return 'clinical';
   try {
-    const raw = PropertiesService.getScriptProperties().getProperty(userModeKey_(userId));
+    const raw = getUserModeProperty_(userId);
     return raw === 'audit' ? 'audit' : 'clinical';
   } catch (err) {
     console.error('getUserMode_ skipped: ' + err.toString());
@@ -1262,18 +1304,29 @@ function hasExplicitUserMode_(event) {
   const userId = getLineUserId_(event);
   if (!userId) return false;
   try {
-    const raw = PropertiesService.getScriptProperties().getProperty(userModeKey_(userId));
+    const raw = getUserModeProperty_(userId);
     return raw === 'audit' || raw === 'clinical';
   } catch (err) {
     return false;
   }
 }
 
+function getUserModeProperty_(userId) {
+  const key = userModeKey_(userId);
+  if (Object.prototype.hasOwnProperty.call(USER_REQUEST_CACHE_, key)) return USER_REQUEST_CACHE_[key];
+  const raw = PropertiesService.getScriptProperties().getProperty(key);
+  USER_REQUEST_CACHE_[key] = raw || '';
+  return USER_REQUEST_CACHE_[key];
+}
+
 function saveUserMode_(event, mode) {
   const userId = getLineUserId_(event);
   if (!userId) return;
   try {
-    PropertiesService.getScriptProperties().setProperty(userModeKey_(userId), mode === 'audit' ? 'audit' : 'clinical');
+    const key = userModeKey_(userId);
+    const savedMode = mode === 'audit' ? 'audit' : 'clinical';
+    PropertiesService.getScriptProperties().setProperty(key, savedMode);
+    USER_REQUEST_CACHE_[key] = savedMode;
   } catch (err) {
     console.error('saveUserMode_ skipped: ' + err.toString());
   }
@@ -1282,16 +1335,8 @@ function saveUserMode_(event, mode) {
 function getUserIdentity_(event) {
   const userId = getLineUserId_(event);
   if (!userId) return '';
-  try {
-    const props = PropertiesService.getScriptProperties();
-    const raw = props.getProperty(userStateKey_(userId)) || props.getProperty('state_' + userId) || '';
-    if (!raw) return '';
-    const state = JSON.parse(raw);
-    return state && (state.identity === 'staff' || state.identity === 'public') ? state.identity : '';
-  } catch (err) {
-    console.error('getUserIdentity_ skipped: ' + err.toString());
-    return '';
-  }
+  const state = getUserState_(userId);
+  return state && (state.identity === 'staff' || state.identity === 'public') ? state.identity : '';
 }
 
 function userStateKey_(userId) {
@@ -1301,11 +1346,17 @@ function userStateKey_(userId) {
 function getUserState_(userId) {
   if (!userId) return {};
   try {
+    const cacheKey = userStateKey_(userId);
+    if (Object.prototype.hasOwnProperty.call(USER_REQUEST_CACHE_, cacheKey)) return USER_REQUEST_CACHE_[cacheKey];
     const props = PropertiesService.getScriptProperties();
-    const raw = props.getProperty(userStateKey_(userId)) || props.getProperty('state_' + userId) || '';
-    if (!raw) return {};
+    const raw = props.getProperty(cacheKey) || props.getProperty('state_' + userId) || '';
+    if (!raw) {
+      USER_REQUEST_CACHE_[cacheKey] = {};
+      return USER_REQUEST_CACHE_[cacheKey];
+    }
     const state = JSON.parse(raw);
-    return state && typeof state === 'object' ? state : {};
+    USER_REQUEST_CACHE_[cacheKey] = state && typeof state === 'object' ? state : {};
+    return USER_REQUEST_CACHE_[cacheKey];
   } catch (err) {
     console.error('getUserState_ skipped: ' + err.toString());
     return {};
@@ -1315,7 +1366,10 @@ function getUserState_(userId) {
 function saveUserState_(userId, state) {
   if (!userId) return;
   try {
-    PropertiesService.getScriptProperties().setProperty(userStateKey_(userId), JSON.stringify(state || {}));
+    const cacheKey = userStateKey_(userId);
+    const savedState = state || {};
+    PropertiesService.getScriptProperties().setProperty(cacheKey, JSON.stringify(savedState));
+    USER_REQUEST_CACHE_[cacheKey] = savedState;
   } catch (err) {
     console.error('saveUserState_ skipped: ' + err.toString());
   }
@@ -2349,6 +2403,56 @@ function auditDiseaseEvidenceReply_(diseaseName, profile) {
   }
   lines.push('- 委員勾稽方式：從一筆實際紀錄確認「辨識／檢驗 → 通報 → 隔離安置 → 防護清消 → 解除或追蹤」均有時間與完成紀錄。');
   return lines.join('\n');
+}
+
+function diseaseAuditActionPriorityReply_(question, event) {
+  if (getUserMode_(event) !== 'audit') return null;
+  const q = normalizeIntentText_(question);
+  if (!/通報(?:委員提問|km佐證)$/i.test(q.replace(/\s+/g, ''))) return null;
+  const disease = detectDisease_(q);
+  if (!disease) return null;
+  const profile = diseaseInfectionControlProfile_(disease.name);
+  return {
+    diseaseName: disease.name,
+    text: /(?:委員提問)$/i.test(q.replace(/\s+/g, ''))
+      ? auditDiseaseQuestionsReply_(disease.name, profile)
+      : auditDiseaseEvidenceReply_(disease.name, profile)
+  };
+}
+
+function needlestickActionPriorityReply_(question, event) {
+  if (getUserMode_(event) !== 'audit') return null;
+  const q = normalizeIntentText_(question).replace(/\s+/g, '');
+  if (/^針扎暴露後立即處理$/.test(q)) {
+    return {
+      subtopic: 'needle-immediate',
+      text: '針扎／血液體液暴露後立即處理：\n' +
+        '- 皮膚或傷口：立即以流動清水和肥皂清洗；不用漂白水、不刷洗或擠壓傷口。\n' +
+        '- 眼睛或黏膜：立即以大量清水或生理食鹽水沖洗。\n' +
+        '- 立即通知單位主管並依院內流程完成暴露通報、風險評估及感染源／暴露者檢驗。\n' +
+        '- 若可能需要 HIV PEP，應立即轉介評估，不要等待全部檢驗結果才處理。'
+    };
+  }
+  if (/^針扎(?:hiv)?pep$/i.test(q)) {
+    return {
+      subtopic: 'needle-pep',
+      text: '針扎暴露後 HIV PEP 重點：\n' +
+        '- 先評估暴露途徑、傷口深度、污染量及感染源 HIV 狀態。\n' +
+        '- 符合適應症時應盡快啟動；即使感染源檢驗尚未完成，也先由負責醫師依風險決定是否用藥。\n' +
+        '- 同步留存基礎檢驗、用藥評估、處方、衛教及後續追蹤紀錄。\n' +
+        '- 實際藥物組合、時限與療程依院內現行暴露後處置流程辦理。'
+    };
+  }
+  if (/^針扎檢驗與追蹤$/.test(q)) {
+    return {
+      subtopic: 'needle-followup',
+      text: '針扎暴露後檢驗與追蹤：\n' +
+        '- 留存感染源與暴露者的基礎檢驗，依暴露類型評估 HIV、HBV 及 HCV 風險。\n' +
+        '- 依院內時程完成後續抽血、結果通知與健康追蹤；若使用 PEP，並追蹤服藥與不良反應。\n' +
+        '- 可供查核的紀錄包括：暴露通報、風險評估、基礎與追蹤檢驗、PEP 評估／處方及結案紀錄。'
+    };
+  }
+  return null;
 }
 
 function auditGeneralTopicReply_(question, event) {
@@ -3418,6 +3522,24 @@ function buildQuickReplyForDisease_(diseaseName, answerObj) {
     ]);
     return { items: appendGlobalQuickReplies_(items, answerObj) };
   }
+  // Keep the scabies situation switcher available after entering any branch.
+  // Users commonly move from inpatient isolation to office/employee exposure.
+  if (d === '疥瘡' && (!answerObj || answerObj.mode !== 'audit')) {
+    const scabiesText = String(answerObj && answerObj.text || '');
+    const scabiesCurrent = String(answerObj && answerObj.subtopic || '');
+    const scabiesOptions = [
+      { key: 'household', active: /^同事的同住家人感染疥瘡時/.test(scabiesText), item: quickReplyMessage_('同住家人感染', '同事同住家人感染疥瘡，要通報嗎？那辦公室接觸等有什麼需要注意的？') },
+      { key: 'symptomatic', active: /^同事本人已有症狀或確診疥瘡時/.test(scabiesText), item: quickReplyMessage_('同仁本人有症狀', '同事本人有症狀，是疥瘡感染者，辦公室和上班怎麼處理？') },
+      { key: 'office', active: /^疥瘡辦公室接觸注意/.test(scabiesText), item: quickReplyMessage_('辦公室接觸', '疥瘡感染者在辦公室，附近同事和開會接觸要注意什麼？') },
+      { key: 'isolation', active: scabiesCurrent === 'isolation', item: quickReplyMessage_('病人隔離', '疥瘡隔離醫囑') },
+      { key: 'placement', active: scabiesCurrent === 'placement', item: quickReplyMessage_('病人安置', '疥瘡病人安置') },
+      { key: 'care', active: scabiesCurrent === 'care', item: quickReplyMessage_('PPE防護', '疥瘡PPE') },
+      { key: 'sanitization', active: scabiesCurrent === 'sanitization', item: quickReplyMessage_('清消', '疥瘡清消') },
+      { key: 'clearance', active: scabiesCurrent === 'clearance', item: quickReplyMessage_('解隔標準', '疥瘡解隔標準') }
+    ];
+    items = scabiesOptions.filter(function(row) { return !row.active; }).map(function(row) { return row.item; });
+    return { items: appendGlobalQuickReplies_(items, answerObj) };
+  }
   const contextualItems = contextualQuickReplyItems_(answerObj);
   if (contextualItems.length) {
     return { items: appendGlobalQuickReplies_(contextualItems, answerObj) };
@@ -3546,13 +3668,14 @@ function contextualQuickReplyItems_(answerObj) {
     /針扎|針刺|尖銳物|血液體液暴露|職業暴露|HIV\s*PEP/i.test(q)
   );
   if (isNeedlestickAudit) {
-    return [
-      quickReplyMessage_('立即處理', '針扎暴露後立即處理'),
-      quickReplyMessage_('HIV PEP', '針扎 HIV PEP'),
-      quickReplyMessage_('檢驗追蹤', '針扎檢驗與追蹤'),
-      quickReplyMessage_('委員提問', '查核條文 5.2 委員提問'),
-      quickReplyMessage_('KM佐證', '查核條文 5.2 KM佐證')
+    const needlestickItems = [
+      { pattern: /暴露後立即處理/i, item: quickReplyMessage_('立即處理', '針扎暴露後立即處理') },
+      { pattern: /HIV\s*PEP/i, item: quickReplyMessage_('HIV PEP', '針扎 HIV PEP') },
+      { pattern: /檢驗與追蹤/i, item: quickReplyMessage_('檢驗追蹤', '針扎檢驗與追蹤') },
+      { pattern: /委員.*(?:問|提問)|可能提問/i, item: quickReplyMessage_('委員提問', '查核條文 5.2 委員提問') },
+      { pattern: /(?:km|佐證|資料位置)/i, item: quickReplyMessage_('KM佐證', '查核條文 5.2 KM佐證') }
     ];
+    return needlestickItems.filter(function(row) { return !row.pattern.test(q); }).map(function(row) { return row.item; });
   }
   if (answerObj && answerObj.auditClauseId) {
     const clauseId = String(answerObj.auditClauseId);
@@ -3568,7 +3691,7 @@ function contextualQuickReplyItems_(answerObj) {
   }
   if (answerObj && answerObj.mode === 'audit' && /內視鏡/i.test(q)) {
     const endoscopeAuditItems = [
-      { pattern: /再處理流程/i, item: quickReplyMessage_('再處理流程', '內視鏡再處理流程') },
+      { pattern: /再處理流程|^內視鏡$/i, item: quickReplyMessage_('再處理流程', '內視鏡再處理流程') },
       { pattern: /委員提問/i, item: quickReplyMessage_('委員提問', '內視鏡委員提問') },
       { pattern: /執行紀錄|可出示紀錄/i, item: quickReplyMessage_('執行紀錄', '內視鏡執行紀錄') },
       { pattern: /KM佐證/i, item: quickReplyMessage_('KM佐證', '內視鏡KM佐證') },
@@ -3580,20 +3703,22 @@ function contextualQuickReplyItems_(answerObj) {
     const topic = String(answerObj.diseaseName);
     const subtopic = String(answerObj.subtopic || '');
     if (topic === '透析室') {
-      return [
-        quickReplyMessage_('清消標準', '透析室消毒濃度'),
-        quickReplyMessage_('委員提問', '透析室清消委員提問'),
-        quickReplyMessage_('執行紀錄', '透析室清消可出示紀錄'),
-        quickReplyMessage_('KM佐證', '透析室清消KM佐證')
+      const dialysisItems = [
+        { pattern: /消毒濃度/i, item: quickReplyMessage_('清消標準', '透析室消毒濃度') },
+        { pattern: /委員提問/i, item: quickReplyMessage_('委員提問', '透析室清消委員提問') },
+        { pattern: /可出示紀錄/i, item: quickReplyMessage_('執行紀錄', '透析室清消可出示紀錄') },
+        { pattern: /KM佐證/i, item: quickReplyMessage_('KM佐證', '透析室清消KM佐證') }
       ];
+      return dialysisItems.filter(function(row) { return !row.pattern.test(q); }).map(function(row) { return row.item; });
     }
     if (subtopic === 'definition') {
-      return [
-        quickReplyMessage_('通報重點', topic + '通報定義'),
-        quickReplyMessage_('採檢佐證', topic + '採檢送驗'),
-        quickReplyMessage_('委員提問', topic + '通報委員提問'),
-        quickReplyMessage_('KM佐證', topic + '通報KM佐證')
+      const definitionItems = [
+        { pattern: /通報定義/i, item: quickReplyMessage_('通報重點', topic + '通報定義') },
+        { pattern: /採檢送驗/i, item: quickReplyMessage_('採檢佐證', topic + '採檢送驗') },
+        { pattern: /委員提問/i, item: quickReplyMessage_('委員提問', topic + '通報委員提問') },
+        { pattern: /KM佐證/i, item: quickReplyMessage_('KM佐證', topic + '通報KM佐證') }
       ];
+      return definitionItems.filter(function(row) { return !row.pattern.test(q); }).map(function(row) { return row.item; });
     }
     if (subtopic !== 'audit' && subtopic.indexOf('audit-') !== 0) {
       return [

@@ -1,0 +1,691 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/crwpgd",
+    "id": "crwpgd",
+    "slide": 6,
+    "layoutId": "19eff480-34bc-4c9f-9a26-cb35ca1e9a29",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "19eff480-34bc-4c9f-9a26-cb35ca1e9a29",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d0z61032",
+      "id": "1",
+      "bbox": [
+        72,
+        42,
+        600,
+        28
+      ],
+      "geometry": "rect",
+      "text": "一百份好禮即享券",
+      "textPreview": "一百份好禮即享券",
+      "resolvedFontSize": 17,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 17,
+        "typeface": "+mn-lt",
+        "color": "#006B4F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "一百份好禮即享券"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "一百份好禮即享券",
+          "resolvedTextStyle": {
+            "fontSize": 17,
+            "color": "#006B4F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "一百份好禮即享券",
+              "fontSize": 17,
+              "color": "#006B4F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/29gr2p8n",
+      "id": "2",
+      "bbox": [
+        72,
+        74,
+        1136,
+        70
+      ],
+      "geometry": "rect",
+      "text": "完成體驗，還有機會把午餐帶走",
+      "textPreview": "完成體驗，還有機會把午餐帶走",
+      "resolvedFontSize": 40,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 40,
+        "typeface": "+mn-lt",
+        "color": "#17362F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "完成體驗，還有機會把午餐帶走"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "完成體驗，還有機會把午餐帶走",
+          "resolvedTextStyle": {
+            "fontSize": 40,
+            "color": "#17362F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "完成體驗，還有機會把午餐帶走",
+              "fontSize": 40,
+              "color": "#17362F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/vu9knih4",
+      "id": "3",
+      "bbox": [
+        72,
+        184,
+        1136,
+        400
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFF8ED",
+      "lineColor": "#F4DFC1",
+      "lineWidth": 1
+    },
+    {
+      "order": 4,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/1kre1w7m",
+      "id": "4",
+      "bbox": [
+        112,
+        226,
+        410,
+        306
+      ],
+      "geometry": "roundRect",
+      "alt": "image",
+      "contentType": "image/jpeg",
+      "imageFit": "cover",
+      "imageMask": {
+        "geometry": "roundRect",
+        "adjustmentList": [
+          {
+            "name": "adj",
+            "formula": "val 3922"
+          }
+        ]
+      },
+      "asset": {
+        "assetId": "21a9e4eb-4b27-4e9f-96ba-4210a9ba92e3",
+        "contentType": "image/jpeg",
+        "byteLength": 64531
+      }
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/d8bat47y",
+      "id": "5",
+      "bbox": [
+        586,
+        224,
+        520,
+        52
+      ],
+      "geometry": "rect",
+      "text": "摩斯漢堡 C153",
+      "textPreview": "摩斯漢堡 C153",
+      "resolvedFontSize": 38,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 38,
+        "typeface": "+mn-lt",
+        "color": "#A64A22",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "摩斯漢堡 C153"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "摩斯漢堡 C153",
+          "resolvedTextStyle": {
+            "fontSize": 38,
+            "color": "#A64A22",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "摩斯漢堡 C153",
+              "fontSize": 38,
+              "color": "#A64A22",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2lszqtcj",
+      "id": "6",
+      "bbox": [
+        586,
+        292,
+        520,
+        150
+      ],
+      "geometry": "rect",
+      "text": "蜜汁烤雞堡\n＋ 方塊薯餅 3 個\n＋ 冰紅茶 L",
+      "textPreview": "蜜汁烤雞堡 | ＋ 方塊薯餅 3 個 | ＋ 冰紅茶 L",
+      "resolvedFontSize": 27,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 27,
+        "typeface": "+mn-lt",
+        "color": "#17362F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 3,
+        "lines": [
+          {
+            "index": 1,
+            "text": "蜜汁烤雞堡"
+          },
+          {
+            "index": 2,
+            "text": "＋ 方塊薯餅 3 個"
+          },
+          {
+            "index": 3,
+            "text": "＋ 冰紅茶 L"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "蜜汁烤雞堡",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "color": "#17362F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "蜜汁烤雞堡",
+              "fontSize": 27,
+              "color": "#17362F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "＋ 方塊薯餅 3 個",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "color": "#17362F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "＋ 方塊薯餅 3 個",
+              "fontSize": 27,
+              "color": "#17362F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 3,
+          "text": "＋ 冰紅茶 L",
+          "resolvedTextStyle": {
+            "fontSize": 27,
+            "color": "#17362F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "＋ 冰紅茶 L",
+              "fontSize": 27,
+              "color": "#17362F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v6psfil0",
+      "id": "7",
+      "bbox": [
+        586,
+        470,
+        180,
+        48
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#F49B32",
+      "lineColor": "#F49B32",
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/kre1w7mp",
+      "id": "8",
+      "bbox": [
+        586,
+        470,
+        180,
+        48
+      ],
+      "geometry": "rect",
+      "text": "共 100 份",
+      "textPreview": "共 100 份",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "共 100 份"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "共 100 份",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "共 100 份",
+              "fontSize": 20,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/dcbulwva",
+      "id": "9",
+      "bbox": [
+        786,
+        470,
+        330,
+        50
+      ],
+      "geometry": "rect",
+      "text": "中獎後由官方帳號傳送至 LINE 對話。",
+      "textPreview": "中獎後由官方帳號傳送至 LINE 對話。",
+      "resolvedFontSize": 19,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 19,
+        "typeface": "+mn-lt",
+        "color": "#6D645A",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "中獎後由官方帳號傳送至 LINE 對話。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "中獎後由官方帳號傳送至 LINE 對話。",
+          "resolvedTextStyle": {
+            "fontSize": 19,
+            "color": "#6D645A",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "中獎後由官方帳號傳送至 LINE 對話。",
+              "fontSize": 19,
+              "color": "#6D645A",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lszqtcj6",
+      "id": "10",
+      "bbox": [
+        72,
+        674,
+        400,
+        22
+      ],
+      "geometry": "rect",
+      "text": "台大醫院感染管制中心",
+      "textPreview": "台大醫院感染管制中心",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#6C827B",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "台大醫院感染管制中心"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "台大醫院感染管制中心",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#6C827B",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "台大醫院感染管制中心",
+              "fontSize": 14,
+              "color": "#6C827B",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/s72x4nap",
+      "id": "11",
+      "bbox": [
+        690,
+        674,
+        518,
+        22
+      ],
+      "geometry": "rect",
+      "text": "請勿輸入病人姓名、病歷號、床號等個資",
+      "textPreview": "請勿輸入病人姓名、病歷號、床號等個資",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#6C827B",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "請勿輸入病人姓名、病歷號、床號等個資"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "請勿輸入病人姓名、病歷號、床號等個資",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#6C827B",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "請勿輸入病人姓名、病歷號、床號等個資",
+              "fontSize": 14,
+              "color": "#6C827B",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

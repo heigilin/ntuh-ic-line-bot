@@ -1,0 +1,567 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/xyoevz",
+    "id": "xyoevz",
+    "slide": 1,
+    "layoutId": "19eff480-34bc-4c9f-9a26-cb35ca1e9a29",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F2F8F4",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "19eff480-34bc-4c9f-9a26-cb35ca1e9a29",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "75beed10-f3b9-4ef6-9f1e-657595c8579e",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jm1cfa9w",
+      "id": "1",
+      "bbox": [
+        0,
+        0,
+        1280,
+        720
+      ],
+      "geometry": "rect",
+      "fillColor": "#F2F8F4",
+      "lineColor": "#F2F8F4",
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/c7u54zid",
+      "id": "2",
+      "bbox": [
+        810,
+        -90,
+        590,
+        590
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#DDF2D6",
+      "lineColor": "#DDF2D6",
+      "lineWidth": 0
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1orytsvu",
+      "id": "3",
+      "bbox": [
+        72,
+        76,
+        600,
+        52
+      ],
+      "geometry": "rect",
+      "text": "臨床忙碌時",
+      "textPreview": "臨床忙碌時",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "color": "#006B4F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "臨床忙碌時"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "臨床忙碌時",
+          "resolvedTextStyle": {
+            "fontSize": 24,
+            "color": "#006B4F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "臨床忙碌時",
+              "fontSize": 24,
+              "color": "#006B4F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/u9knih4b",
+      "id": "4",
+      "bbox": [
+        72,
+        132,
+        680,
+        180
+      ],
+      "geometry": "rect",
+      "text": "感管問題，\n不用再翻找不同文件",
+      "textPreview": "感管問題， | 不用再翻找不同文件",
+      "resolvedFontSize": 52,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 52,
+        "typeface": "+mn-lt",
+        "color": "#17362F",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "感管問題，"
+          },
+          {
+            "index": 2,
+            "text": "不用再翻找不同文件"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "感管問題，",
+          "resolvedTextStyle": {
+            "fontSize": 52,
+            "color": "#17362F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "感管問題，",
+              "fontSize": 52,
+              "color": "#17362F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        },
+        {
+          "index": 2,
+          "text": "不用再翻找不同文件",
+          "resolvedTextStyle": {
+            "fontSize": 52,
+            "color": "#17362F",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "不用再翻找不同文件",
+              "fontSize": 52,
+              "color": "#17362F",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/judg7ads",
+      "id": "5",
+      "bbox": [
+        76,
+        330,
+        620,
+        56
+      ],
+      "geometry": "rect",
+      "text": "直接用日常語句提問，快速找到處置重點。",
+      "textPreview": "直接用日常語句提問，快速找到處置重點。",
+      "resolvedFontSize": 26,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 26,
+        "typeface": "+mn-lt",
+        "color": "#526C64",
+        "alignment": "left",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "直接用日常語句提問，快速找到處置重點。"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "直接用日常語句提問，快速找到處置重點。",
+          "resolvedTextStyle": {
+            "fontSize": 26,
+            "color": "#526C64",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "直接用日常語句提問，快速找到處置重點。",
+              "fontSize": 26,
+              "color": "#526C64",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cfa9w3m9",
+      "id": "6",
+      "bbox": [
+        76,
+        424,
+        292,
+        48
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#006B4F",
+      "lineColor": "#006B4F",
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/1032lszq",
+      "id": "7",
+      "bbox": [
+        76,
+        424,
+        292,
+        48
+      ],
+      "geometry": "rect",
+      "text": "台大感管 LINE 起來",
+      "textPreview": "台大感管 LINE 起來",
+      "resolvedFontSize": 20,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 20,
+        "typeface": "+mn-lt",
+        "color": "#FFFFFF",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "台大感管 LINE 起來"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "台大感管 LINE 起來",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "color": "#FFFFFF",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "台大感管 LINE 起來",
+              "fontSize": 20,
+              "color": "#FFFFFF",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/udg7adsj",
+      "id": "8",
+      "bbox": [
+        865,
+        82,
+        260,
+        470
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#FFFFFF",
+      "lineColor": "#CFE2D7",
+      "lineWidth": 1
+    },
+    {
+      "order": 9,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/uxc3ylc7",
+      "id": "9",
+      "bbox": [
+        912,
+        105,
+        166,
+        285
+      ],
+      "geometry": "rect",
+      "alt": "image",
+      "contentType": "image/png",
+      "imageFit": "contain",
+      "imageMask": {
+        "geometry": "rect"
+      },
+      "asset": {
+        "assetId": "7bc73e92-0965-4166-9ed1-4ec141f37a57",
+        "contentType": "image/png",
+        "byteLength": 56799
+      }
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/v6psfil0",
+      "id": "10",
+      "bbox": [
+        882,
+        420,
+        226,
+        56
+      ],
+      "geometry": "rect",
+      "text": "Qbee 陪你隨手查",
+      "textPreview": "Qbee 陪你隨手查",
+      "resolvedFontSize": 25,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 25,
+        "typeface": "+mn-lt",
+        "color": "#006B4F",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Qbee 陪你隨手查"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Qbee 陪你隨手查",
+          "resolvedTextStyle": {
+            "fontSize": 25,
+            "color": "#006B4F",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Qbee 陪你隨手查",
+              "fontSize": 25,
+              "color": "#006B4F",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/2lszqtcj",
+      "id": "11",
+      "bbox": [
+        1046,
+        652,
+        160,
+        24
+      ],
+      "geometry": "rect",
+      "text": "院內送審版",
+      "textPreview": "院內送審版",
+      "resolvedFontSize": 14,
+      "resolvedTextStyle": {
+        "anchor": 2,
+        "fontSize": 14,
+        "typeface": "+mn-lt",
+        "color": "#7C918A",
+        "alignment": "right",
+        "verticalAlignment": "middle",
+        "insets": {
+          "top": 4.8,
+          "right": 9.6,
+          "bottom": 4.8,
+          "left": 9.6
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "院內送審版"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "院內送審版",
+          "resolvedTextStyle": {
+            "fontSize": 14,
+            "color": "#7C918A",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "院內送審版",
+              "fontSize": 14,
+              "color": "#7C918A",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

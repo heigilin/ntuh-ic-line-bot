@@ -141,6 +141,10 @@ function ask(userId, question) {
   const answer = ctx.answerQuestion_(question, event);
   const qr = ctx.buildQuickReplyForDisease_(answer.diseaseName, answer);
   const labels = qr && qr.items ? qr.items.map((item) => item.action && item.action.label).filter(Boolean) : [];
+  const actions = qr && qr.items ? qr.items.map((item) => ({
+    label: item.action && item.action.label || '',
+    text: item.action && item.action.text || '',
+  })).filter((item) => item.label && item.text) : [];
   const text = String(answer.text || '');
   const sentText = String(ctx.sanitizeLineText_(ctx.normalizeTravelLevelText_(text)) || '');
   return {
@@ -149,6 +153,7 @@ function ask(userId, question) {
     text,
     sentText,
     quickReplyLabels: labels,
+    quickReplyActions: actions,
     state: props['user_state_' + userId] || '',
   };
 }
@@ -206,7 +211,8 @@ const cases = [
     sequence: ['評鑑查核', '透析室消毒濃度'],
     expect: ['透析室清潔消毒濃度', '1,000 ppm', '評鑑查核可出示', 'KM：50300-3-000011', '漂白水泡製／濃度與日期標示', '透析機維護', '教育訓練紀錄'],
     forbid: ['回答重點', '不要只回答', '感染管制處置與規範重點整理', 'Y:\\'],
-    quick: ['清消標準', '委員提問', '執行紀錄', 'KM佐證', '臨床照護'],
+    quick: ['委員提問', '執行紀錄', 'KM佐證', '臨床照護'],
+    quickNot: ['清消標準'],
     quickNot: ['通報定義', '隔離醫囑', '病人安置', '採檢送驗', '評鑑查核'],
   },
   {
@@ -330,7 +336,8 @@ const cases = [
     sequence: ['評鑑查核', '瘧疾通報定義'],
     expect: ['瘧疾通報定義查詢重點', '24小時', 'CDCN0119'],
     forbid: ['詳細臨床條件請以疾管署連結為準', '院內端同步確認', '查核視角提醒'],
-    quick: ['通報重點', '採檢佐證', '委員提問', 'KM佐證'],
+    quick: ['採檢佐證', '委員提問', 'KM佐證'],
+    quickNot: ['通報重點'],
     quickNot: ['隔離醫囑', '病人安置', 'PPE防護', '清消', '解隔標準'],
   },
   {
@@ -716,8 +723,8 @@ const cases = [
     user: 'audit-endoscope-quick',
     sequence: ['評鑑查核', '內視鏡'],
     expect: ['內視鏡再處理流程重點', '前置清洗', '測漏', '高層次消毒'],
-    quick: ['再處理流程', '委員提問', '執行紀錄', 'KM佐證', '異常監測'],
-    quickNot: ['條文重點'],
+    quick: ['委員提問', '執行紀錄', 'KM佐證', '異常監測'],
+    quickNot: ['再處理流程', '條文重點'],
   },
   {
     id: 'audit-endoscope-execution-records',
@@ -863,6 +870,44 @@ const cases = [
     q: '流感解隔標準',
     expect: ['流感解除隔離重點', '不建議只用固定天數', '不要求一律驗到陰性', '是否退燒', '呼吸道分泌物', '氣膠處置', '免疫功能低下', 'ANN10039', 'ANN00039'],
     forbid: ['流感解隔標準需依疾病別規範判斷', '若要精準判斷', '請改問'],
+  },
+  {
+    id: 'scabies-household-coworker-office',
+    user: 'scabies-household-coworker',
+    q: '同事同住家人感染疥瘡，要通報嗎？那辦公室接觸等有什麼需要注意的？',
+    expect: ['疥瘡不是法定傳染病', '院內員工健康流程', '保留8至14小時', '隔天即可恢復上班', '稀釋100倍漂白水', '密封72小時以上', '健康監測6週'],
+    forbid: ['採接觸隔離並優先單人安置', '目前未檢索到完全相符的規範', '透析室、血液透析室或洗腎室']
+  },
+  {
+    id: 'scabies-symptomatic-coworker-office',
+    user: 'scabies-symptomatic-coworker',
+    q: '同事本人有症狀，是疥瘡感染者，辦公室和上班怎麼處理？',
+    expect: ['本人已有症狀或確診疥瘡', '就醫治療', '保留8至14小時', '完成第一次治療後', '隔天可恢復上班', '健康監測6週', '結痂型疥瘡'],
+    forbid: ['同事的同住家人感染疥瘡時', '採接觸隔離並優先單人安置', '目前未檢索到完全相符的規範']
+  },
+  {
+    id: 'scabies-disease-only-context-menu',
+    user: 'scabies-menu',
+    q: '疥瘡',
+    expect: ['疥瘡請先選擇情境', '同住家人感染', '同仁本人有症狀', '辦公室接觸', '病人照護'],
+    forbid: ['疥瘡通報定義', '疥瘡採檢送驗', '避免一次回答太散'],
+    quick: ['同住家人感染', '同仁本人有症狀', '辦公室接觸', '病人隔離', '清消', '解隔標準'],
+    quickNot: ['通報定義', '採檢送驗']
+  },
+  {
+    id: 'scabies-office-contact-direct',
+    user: 'scabies-office-contact',
+    q: '疥瘡感染者在辦公室，附近同事和開會接觸要注意什麼？',
+    expect: ['疥瘡辦公室接觸注意', '通常不需預防性用藥', '稀釋100倍漂白水', '密封72小時以上', '健康監測6週'],
+    forbid: ['同事的同住家人感染疥瘡時', '目前未檢索到完全相符的規範']
+  },
+  {
+    id: 'scabies-isolation-keeps-situation-switcher',
+    user: 'scabies-isolation-switcher',
+    q: '疥瘡隔離醫囑',
+    expect: ['疥瘡'],
+    quick: ['同住家人感染', '同仁本人有症狀', '辦公室接觸', '病人安置', 'PPE防護', '清消', '解隔標準'],
+    quickNot: ['通報定義', '採檢送驗']
   },
   {
     id: 'influenza-clearance-suggested-phrases-pasted-together',
@@ -1049,7 +1094,7 @@ officialAuditClauses.forEach((clause, index) => {
       expect: defaultClauseExpect,
       forbid: ['關鍵字檢索命中度較低', '可能相關主題'],
       quick: clause.id === '5.2' && /針扎|尖銳物|血液體液暴露|職業暴露|HIV\s*PEP/i.test(alias)
-        ? ['立即處理', 'HIV PEP', '檢驗追蹤', '委員提問', 'KM佐證']
+        ? ['立即處理', '檢驗追蹤', '委員提問', 'KM佐證'].concat(/HIV\s*PEP/i.test(alias) ? [] : ['HIV PEP'])
         : clauseMenuQuickReplies,
     });
   });
@@ -1073,6 +1118,7 @@ for (const testCase of cases) {
       diseaseName: answer.diseaseName || '',
       sentText: String(ctx.sanitizeLineText_(answer.text) || ''),
       quickReplyLabels: qr && qr.items ? qr.items.map((item) => item.action && item.action.label).filter(Boolean) : [],
+      quickReplyActions: qr && qr.items ? qr.items.map((item) => ({ label: item.action.label, text: item.action.text })).filter((item) => item.label && item.text) : [],
     };
   } else if (testCase.sequence) {
     for (const q of testCase.sequence) result = ask(testCase.user, q);
@@ -1102,9 +1148,71 @@ for (const testCase of cases) {
     forbiddenQuick,
     wrongQuickTail,
     quickReplyLabels: result.quickReplyLabels,
+    quickReplyActions: result.quickReplyActions || [],
     preview: result.sentText.replace(/\n/g, ' ').slice(0, 260),
   });
 }
+
+const globalQuickLabels = new Set(['疫情訊息', '評鑑查核', '臨床照護', '滿意度', '🔒滿意度', '感管意見箱']);
+const routeCandidates = new Map();
+outputs.forEach((item) => {
+  const isAudit = String(item.question || '').startsWith('評鑑查核 ->');
+  (item.quickReplyActions || []).forEach((action) => {
+    if (!isAudit || globalQuickLabels.has(action.label)) return;
+    const key = action.label + '|' + action.text;
+    if (!routeCandidates.has(key)) routeCandidates.set(key, { action, source: item.id });
+  });
+});
+const routeViolations = [];
+let routeIndex = 0;
+routeCandidates.forEach((entry) => {
+  const user = 'quick-route-crawl-' + routeIndex++;
+  resetUser(user, 'staff');
+  ask(user, '評鑑查核');
+  const routed = ask(user, entry.action.text);
+  const badPayload = /^(熱門感控|閒聊|評鑑查核)(?:KM佐證|可出示執行紀錄|評鑑委員可能提問|感染管制處置重點)$/i.test(entry.action.text);
+  const semanticMismatch =
+    (entry.action.label === '委員提問' && !/委員.*(?:問|提問)|問：/.test(routed.sentText)) ||
+    (entry.action.label === 'KM佐證' && !/KM/i.test(routed.sentText)) ||
+    (/(執行|相關)紀錄/.test(entry.action.label) && !/紀錄/.test(routed.sentText)) ||
+    (entry.action.label === '立即處理' && !/立即.*(?:清洗|沖洗|處理)/.test(routed.sentText)) ||
+    (entry.action.label === 'HIV PEP' && !/HIV PEP/i.test(routed.sentText)) ||
+    (entry.action.label === '檢驗追蹤' && !/基礎檢驗|後續抽血|健康追蹤/.test(routed.sentText));
+  const badReply = /關鍵字檢索命中度較低|目前未檢索到完全相符的規範|可能相關主題：|可以查的範圍很多/.test(routed.sentText) || semanticMismatch;
+  const selectedRepeats = routed.quickReplyLabels.includes(entry.action.label);
+  if (badPayload || badReply || selectedRepeats) {
+    routeViolations.push({
+      source: entry.source,
+      label: entry.action.label,
+      actionText: entry.action.text,
+      badPayload,
+      badReply,
+      semanticMismatch,
+      selectedRepeats,
+      reply: routed.sentText.slice(0, 180),
+    });
+  }
+});
+const quickRouteCrawlOk = routeViolations.length === 0;
+if (!quickRouteCrawlOk) failures += 1;
+outputs.push({
+  id: 'all-audit-quick-action-routes-resolve',
+  ok: quickRouteCrawlOk,
+  question: '[crawl every audit quick action payload]',
+  diseaseName: '評鑑查核',
+  missing: [],
+  forbidden: routeViolations,
+  missingQuick: [],
+  forbiddenQuick: [],
+  wrongQuickTail: null,
+  quickReplyLabels: [],
+  quickReplyActions: [],
+  preview: quickRouteCrawlOk ? 'All ' + routeCandidates.size + ' unique audit quick actions resolve.' : JSON.stringify(routeViolations.slice(0, 6)),
+});
+
+// Keep the normal regression report readable; action details are only needed
+// while constructing the crawler above.
+outputs.forEach((item) => { delete item.quickReplyActions; });
 
 const genericClinicalAuditLabels = ['通報定義', '隔離醫囑', '清消', '解隔標準'];
 const auditQuickReplyViolations = outputs.filter((item) => {
