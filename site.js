@@ -24,14 +24,31 @@ let autoReadingEnabled = true;
 const readingPages = [...document.querySelectorAll('main > section')];
 
 if (video) {
-  video.muted = false;
+  video.muted = true;
   video.volume = 1;
 }
 if (introVideo) introVideo.muted = false;
 
+function playHeroVideo() {
+  if (!video) return;
+  video.playsInline = true;
+  video.autoplay = true;
+  video.volume = 1;
+  video.play()
+    .then(() => {
+      setTimeout(() => {
+        video.muted = false;
+      }, 250);
+    })
+    .catch(() => {
+      video.muted = true;
+      video.play().catch(() => {});
+    });
+}
+
 if (!document.body.classList.contains('intro-playing')) {
   hero?.classList.add('hero-ready', 'intro-done');
-  video?.play().catch(() => {});
+  playHeroVideo();
 }
 
 function enterWebsite() {
@@ -39,7 +56,7 @@ function enterWebsite() {
   document.body.classList.remove('intro-playing');
   videoIntro?.classList.add('finished');
   introVideo?.pause();
-  video?.play().catch(() => {});
+  playHeroVideo();
 
   if (reduceMotion.matches) {
     hero?.classList.add('hero-ready', 'intro-done');
@@ -54,6 +71,8 @@ function startReadingAfterHeroVideo() {
 }
 
 if (document.body.classList.contains('intro-playing')) video?.pause();
+video?.addEventListener('loadedmetadata', playHeroVideo, { once: true });
+video?.addEventListener('canplay', playHeroVideo, { once: true });
 video?.addEventListener('ended', startReadingAfterHeroVideo);
 introVideo?.addEventListener('ended', enterWebsite);
 introVideo?.addEventListener('error', enterWebsite);
