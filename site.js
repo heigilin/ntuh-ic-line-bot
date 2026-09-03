@@ -22,7 +22,7 @@ const readingSpeed = 26;
 let readingPageIndex = 0;
 const readingPages = [...document.querySelectorAll('main > section')];
 
-if (video) video.muted = true;
+if (video) video.muted = false;
 if (introVideo) introVideo.muted = false;
 
 if (!document.body.classList.contains('intro-playing')) {
