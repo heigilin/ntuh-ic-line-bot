@@ -168,5 +168,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .petal-field, .wave-field, .page-turn, .hero-pet { display: none; }
+  .petal-field, .wave-field, .page-turn, .hero-pet, .section-pet { display: none; }
 }
