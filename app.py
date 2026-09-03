@@ -638,6 +638,7 @@ class Handler(BaseHTTPRequestHandler):
             "/assets/qbee-promo.mp4": BASE_DIR / "output/video/台大感管LINE起來_Qbee宣傳影片_送審版.mp4",
             "/assets/台大感管line起來_暫_web.mp4": BASE_DIR / "assets/台大感管line起來_暫_web.mp4",
             "/assets/qbee_promo_comic_temp.jpg": BASE_DIR / "assets/qbee_promo_comic_temp.jpg",
+            "/assets/qbee_promo_comic_20260903.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903.jpg",
             "/assets/event-rules.pdf": BASE_DIR / "台大感管 LINE 官方帳號體驗問卷抽獎推廣活動辦法_0901活動版.pdf",
         }
         if parsed.path in public_files:
