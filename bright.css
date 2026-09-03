@@ -70,7 +70,7 @@ body { background: #fbfdf9; color: var(--ink); }
 .final-mascot-title .inline-mascot { width: 92px; height: 110px; }
 .nav.scrolled { background: #ffffffee; }
 
-.hero .petal-field { display: none; }
+.hero .petal-field { opacity: .55; }
 .hero-video { filter: saturate(.68) brightness(1.05) contrast(.82); }
 .hero-shade {
   background: linear-gradient(90deg, #315f54d9 0%, #5d7c73b5 48%, #f8f8ef66 100%);

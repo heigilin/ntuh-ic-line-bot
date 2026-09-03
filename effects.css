@@ -1,7 +1,7 @@
 .petal-field {
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 3;
   overflow: hidden;
   pointer-events: none;
 }
@@ -18,7 +18,7 @@
   width: var(--size);
   height: calc(var(--size) * 1.55);
   border-radius: 70% 25% 65% 30%;
-  opacity: .55;
+  opacity: .42;
   animation: wind-fall var(--duration) var(--delay) linear infinite;
   will-change: transform;
 }
@@ -41,35 +41,81 @@
 
 .wave-field {
   position: absolute;
-  z-index: 2;
+  z-index: 4;
   left: 0;
   right: 0;
   bottom: -1px;
-  height: 64px;
+  height: 126px;
   overflow: hidden;
   pointer-events: none;
 }
 
 .wave-field i {
   position: absolute;
-  left: -12%;
-  bottom: -42px;
-  width: 125%;
-  height: 82px;
-  border-radius: 48% 52% 0 0 / 48% 56% 0 0;
-  background: #f4f0ea;
-  opacity: .92;
-  animation: soft-wave 8s ease-in-out infinite alternate;
+  left: -14%;
+  bottom: -62px;
+  width: 130%;
+  height: 140px;
+  border-radius: 45% 55% 0 0 / 58% 52% 0 0;
+  background: linear-gradient(180deg, #fffdf9 0%, #eef7ef 100%);
+  opacity: .98;
+  animation: soft-wave 6s ease-in-out infinite alternate;
   transform-origin: 50% 100%;
 }
 
 .wave-field i:nth-child(2) {
-  bottom: -54px;
-  background: #aebdb5;
-  opacity: .38;
-  animation-duration: 11s;
+  bottom: -80px;
+  background: #90afa5;
+  opacity: .52;
+  animation-duration: 8.5s;
   animation-direction: alternate-reverse;
 }
+
+.hero-pet {
+  position: absolute;
+  right: clamp(24px, 5vw, 78px);
+  bottom: clamp(76px, 9vw, 132px);
+  z-index: 5;
+  width: clamp(76px, 8vw, 118px);
+  height: clamp(96px, 10vw, 148px);
+  pointer-events: none;
+  animation: pet-chase 7.5s ease-in-out infinite;
+  filter: drop-shadow(0 14px 18px #254f4438);
+}
+
+.hero-pet img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: pet-turn 7.5s ease-in-out infinite;
+}
+
+.butterfly {
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 18px;
+  height: 14px;
+  transform-origin: 46px 52px;
+  animation: butterfly-loop 3.8s ease-in-out infinite;
+}
+
+.butterfly:before,
+.butterfly:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 14px;
+  border-radius: 10px 10px 4px 10px;
+  background: #f0df82;
+  box-shadow: 0 0 0 1px #ffffff99 inset;
+  animation: wing-flap .34s ease-in-out infinite alternate;
+}
+
+.butterfly:before { left: 0; transform-origin: 100% 80%; }
+.butterfly:after { right: 0; transform: scaleX(-1); transform-origin: 0 80%; }
 
 .page-turn {
   position: fixed;
@@ -84,8 +130,8 @@
 .page-turn.active { animation: page-breeze .8s ease-in-out; }
 
 @keyframes soft-wave {
-  from { transform: translateX(-2%) rotate(-1deg) scaleY(.82); }
-  to { transform: translateX(2%) rotate(1deg) scaleY(1.08); }
+  from { transform: translateX(-3%) rotate(-1.2deg) scaleY(.86); }
+  to { transform: translateX(3%) rotate(1deg) scaleY(1.16); }
 }
 
 @keyframes page-breeze {
@@ -94,6 +140,33 @@
   100% { transform: translateX(115%); opacity: 0; }
 }
 
+@keyframes pet-chase {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  20% { transform: translate3d(-18px, -10px, 0); }
+  42% { transform: translate3d(12px, -18px, 0); }
+  58% { transform: translate3d(-2px, -7px, 0); }
+  76% { transform: translate3d(18px, -14px, 0); }
+}
+
+@keyframes pet-turn {
+  0%, 38%, 100% { transform: rotate(0deg) scaleX(1); }
+  48% { transform: rotate(8deg) scaleX(1); }
+  60% { transform: rotate(360deg) scaleX(1); }
+  76% { transform: rotate(0deg) scaleX(-1); }
+}
+
+@keyframes butterfly-loop {
+  0% { transform: translate3d(4px, 22px, 0) rotate(12deg); }
+  30% { transform: translate3d(-34px, -4px, 0) rotate(-18deg); }
+  58% { transform: translate3d(20px, -28px, 0) rotate(22deg); }
+  100% { transform: translate3d(4px, 22px, 0) rotate(12deg); }
+}
+
+@keyframes wing-flap {
+  from { transform: rotate(-22deg) scaleY(.92); }
+  to { transform: rotate(20deg) scaleY(1.06); }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .petal-field, .wave-field, .page-turn { display: none; }
+  .petal-field, .wave-field, .page-turn, .hero-pet { display: none; }
 }
