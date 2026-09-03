@@ -634,6 +634,7 @@ class Handler(BaseHTTPRequestHandler):
             "/assets/qbee-character.png": BASE_DIR / "assets/qbee-character.png",
             "/assets/children-hospital.jpg": BASE_DIR / "assets/children-hospital.jpg",
             "/assets/nursing-cart-crop.jpg": BASE_DIR / "assets/nursing-cart-crop.jpg",
+            "/assets/nursing-cart-cutout.png": BASE_DIR / "assets/nursing-cart-cutout.png",
             "/assets/system-demo.png": BASE_DIR / "assets/system-demo.png",
             "/assets/qbee-promo.mp4": BASE_DIR / "output/video/台大感管LINE起來_Qbee宣傳影片_送審版.mp4",
             "/assets/台大感管line起來_暫_web.mp4": BASE_DIR / "assets/台大感管line起來_暫_web.mp4",
