@@ -23,7 +23,10 @@ let readingPageIndex = 0;
 let autoReadingEnabled = true;
 const readingPages = [...document.querySelectorAll('main > section')];
 
-if (video) video.muted = true;
+if (video) {
+  video.muted = false;
+  video.volume = 1;
+}
 if (introVideo) introVideo.muted = false;
 
 if (!document.body.classList.contains('intro-playing')) {
