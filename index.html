@@ -9,53 +9,47 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="site.css?v=6">
+  <link rel="stylesheet" href="site.css?v=7">
   <link rel="stylesheet" href="reading.css?v=2">
   <link rel="stylesheet" href="effects.css?v=2">
   <link rel="stylesheet" href="bright.css?v=3">
-  <link rel="stylesheet" href="video-intro.css?v=1">
 </head>
-<body class="intro-playing">
-  <section class="video-intro" id="video-intro" aria-label="台大感管宣傳影片">
-    <video id="intro-video" autoplay playsinline preload="auto" poster="assets/video-poster.png">
-      <source src="assets/台大感管line起來_暫_web.mp4" type="video/mp4">
-    </video>
-    <div class="intro-video-controls">
-      <button id="intro-sound" type="button" aria-pressed="true">關閉聲音</button>
-      <button id="intro-skip" type="button">略過影片</button>
-    </div>
-    <div class="intro-progress" aria-hidden="true"><i id="intro-progress-bar"></i></div>
-  </section>
+<body>
   <header class="nav" id="top">
     <a class="brand" href="#top" aria-label="回到頁首">
       <img src="assets/avatar.jpg" alt="台大感管官方帳號頭像">
       <span>台大感管 <strong>LINE 起來</strong></span>
     </a>
     <nav aria-label="主要導覽">
-      <a href="#features">服務亮點</a><a href="#event">活動辦法</a>
+      <a href="#features">服務亮點</a><a href="#promo-video">影片漫畫</a><a href="#event">活動辦法</a>
       <a class="nav-cta" href="https://line.me/R/ti/p/@ntuhic" target="_blank" rel="noopener">加入 LINE</a>
     </nav>
   </header>
 
   <main>
     <section class="hero" aria-labelledby="hero-title">
-      <video class="hero-video" autoplay loop playsinline poster="assets/video-poster.png">
-        <source src="assets/台大感管line起來_暫_web.mp4" type="video/mp4">
-      </video>
+      <img class="hero-bg" src="assets/children-hospital.jpg" alt="">
       <div class="hero-shade"></div>
       <div class="petal-field" id="petal-field" aria-hidden="true"></div>
       <div class="wave-field" aria-hidden="true"><i></i><i></i></div>
       <div class="intro-wave" id="intro-wave" aria-hidden="true"><i></i><i></i></div>
       <div class="hero-content">
-        <p class="eyebrow">NTUH INFECTION CONTROL</p>
-        <h1 id="hero-title">台大感管<br><span>LINE 起來</span></h1>
-        <p class="lead">需要的感管資訊，不必翻找、不再苦等。<br>陪你把複雜問題，問得簡單一點。</p>
-        <div class="hero-actions">
-          <a class="button line-button" href="https://line.me/R/ti/p/@ntuhic" target="_blank" rel="noopener">立即加入 @ntuhic <span aria-hidden="true">↗</span></a>
-          <button class="button ghost-button" id="sound-toggle" type="button" aria-pressed="true">關閉影片聲音</button>
-          <button class="button ghost-button" id="auto-scroll-start" type="button">自動閱讀</button>
+        <div class="hero-copy">
+          <p class="eyebrow">NTUH INFECTION CONTROL</p>
+          <h1 id="hero-title">台大感管<br><span>LINE 起來</span></h1>
+          <p class="lead">需要的感管資訊，不必翻找、不再苦等。<br>陪你把複雜問題，問得簡單一點。</p>
+          <div class="hero-actions">
+            <a class="button line-button" href="https://line.me/R/ti/p/@ntuhic" target="_blank" rel="noopener">立即加入 @ntuhic <span aria-hidden="true">↗</span></a>
+            <a class="button ghost-button" href="#promo-video">觀看影片</a>
+            <button class="button ghost-button" id="auto-scroll-start" type="button">自動閱讀</button>
+          </div>
+          <p class="privacy-note">免安裝新 App · 活動起日與官方 QR code 以後續公告為準 · 請勿輸入病人姓名、病歷號、床號等個資</p>
         </div>
-        <p class="privacy-note">免安裝新 App · 活動起日與官方 QR code 以後續公告為準 · 請勿輸入病人姓名、病歷號、床號等個資</p>
+        <div class="hero-showcase" aria-label="台大感管 LINE 起來暫版影片">
+          <video class="hero-video" autoplay muted loop playsinline controls preload="metadata" poster="assets/video-poster.png">
+            <source src="assets/台大感管line起來_暫_web.mp4" type="video/mp4">
+          </video>
+        </div>
       </div>
       <a class="scroll-cue" href="#features"><span>往下探索</span><i aria-hidden="true"></i></a>
     </section>
@@ -67,9 +61,9 @@
         <p>從臨床流程到日常衛教，把正確資訊送到每一個需要的時刻。</p>
       </div>
       <div class="feature-grid">
-        <article class="feature reveal"><b>01</b><img class="feature-mascot pose-one" src="assets/qbee-character.png" alt=""><h3>臨床照護</h3><p>快速查詢通報、隔離、解隔、採檢與清消流程，掌握現場執行重點。</p></article>
-        <article class="feature reveal"><b>02</b><img class="feature-mascot pose-two" src="assets/qbee-character.png" alt=""><h3>評鑑查核</h3><p>整理常見提問與佐證方向，讓新進與輪調同仁也能迅速找到答案。</p></article>
-        <article class="feature reveal"><b>03</b><img class="feature-mascot pose-three" src="assets/qbee-character.png" alt=""><h3>旅遊與衛教</h3><p>提供國內外疫情、旅遊健康提醒與白話感染預防資訊。</p></article>
+        <article class="feature reveal"><b>01</b><img class="feature-media" src="assets/nursing-cart-crop.jpg" alt="護理工作車"><h3>臨床照護</h3><p>快速查詢通報、隔離、解隔、採檢與清消流程，掌握現場執行重點。</p></article>
+        <article class="feature reveal"><b>02</b><img class="feature-media" src="assets/system-demo.png" alt="臨床照護與評鑑查核示意"><h3>評鑑查核</h3><p>整理常見提問與佐證方向，讓新進與輪調同仁也能迅速找到答案。</p></article>
+        <article class="feature reveal"><b>03</b><img class="feature-media" src="assets/children-hospital.jpg" alt="兒童醫院素材"><h3>旅遊與衛教</h3><p>提供國內外疫情、旅遊健康提醒與白話感染預防資訊。</p></article>
       </div>
     </section>
 
@@ -162,6 +156,6 @@
     <span class="reading-icon" aria-hidden="true">Ⅱ</span><span class="reading-label">暫停閱讀</span>
   </button>
   <div class="page-turn" id="page-turn" aria-hidden="true"></div>
-  <script src="site.js?v=11"></script>
+  <script src="site.js?v=12"></script>
 </body>
 </html>

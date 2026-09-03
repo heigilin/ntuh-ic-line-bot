@@ -22,8 +22,13 @@ const readingSpeed = 26;
 let readingPageIndex = 0;
 const readingPages = [...document.querySelectorAll('main > section')];
 
-if (video) video.muted = false;
+if (video) video.muted = true;
 if (introVideo) introVideo.muted = false;
+
+if (!document.body.classList.contains('intro-playing')) {
+  hero?.classList.add('hero-ready', 'intro-done');
+  video?.play().catch(() => {});
+}
 
 function enterWebsite() {
   if (!document.body.classList.contains('intro-playing')) return;
@@ -37,13 +42,10 @@ function enterWebsite() {
   } else {
     setTimeout(() => hero?.classList.add('hero-ready'), 900);
     setTimeout(() => hero?.classList.add('intro-done'), 1900);
-    setTimeout(() => {
-      if (scrollY < 80 && !autoReading) startAutoReading();
-    }, 5000);
   }
 }
 
-video?.pause();
+if (document.body.classList.contains('intro-playing')) video?.pause();
 introVideo?.addEventListener('ended', enterWebsite);
 introVideo?.addEventListener('error', enterWebsite);
 introSkip?.addEventListener('click', enterWebsite);
