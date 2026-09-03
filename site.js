@@ -28,6 +28,11 @@ if (introVideo) introVideo.muted = false;
 if (!document.body.classList.contains('intro-playing')) {
   hero?.classList.add('hero-ready', 'intro-done');
   video?.play().catch(() => {});
+  if (!reduceMotion.matches) {
+    setTimeout(() => {
+      if (scrollY < 80 && !autoReading) startAutoReading();
+    }, 4500);
+  }
 }
 
 function enterWebsite() {
@@ -42,6 +47,9 @@ function enterWebsite() {
   } else {
     setTimeout(() => hero?.classList.add('hero-ready'), 900);
     setTimeout(() => hero?.classList.add('intro-done'), 1900);
+    setTimeout(() => {
+      if (scrollY < 80 && !autoReading) startAutoReading();
+    }, 5000);
   }
 }
 

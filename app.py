@@ -641,6 +641,7 @@ class Handler(BaseHTTPRequestHandler):
             "/assets/qbee_promo_comic_20260903.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903.jpg",
             "/assets/qbee_promo_comic_20260903b.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903b.jpg",
             "/assets/qbee_promo_comic_20260903c.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903c.jpg",
+            "/assets/qbee_promo_comic_20260903d.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903d.jpg",
             "/assets/event-rules.pdf": BASE_DIR / "台大感管 LINE 官方帳號體驗問卷抽獎推廣活動辦法_0901活動版.pdf",
         }
         if parsed.path in public_files:
