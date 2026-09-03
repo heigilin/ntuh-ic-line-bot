@@ -10,7 +10,7 @@ import mimetypes
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 from urllib.request import Request, urlopen
 
 from knowledge_search import MarkdownKnowledgeBase, format_context
@@ -621,6 +621,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
+        request_path = unquote(parsed.path)
         public_files = {
             "/": BASE_DIR / "index.html",
             "/site.css": BASE_DIR / "site.css",
@@ -638,18 +639,19 @@ class Handler(BaseHTTPRequestHandler):
             "/assets/monkey-pet.png": BASE_DIR / "assets/monkey-pet.png",
             "/assets/system-demo.png": BASE_DIR / "assets/system-demo.png",
             "/assets/qbee-promo.mp4": BASE_DIR / "output/video/台大感管LINE起來_Qbee宣傳影片_送審版.mp4",
-            "/assets/台大感管line起來_暫_web.mp4": BASE_DIR / "assets/台大感管line起來_暫_web.mp4",
+            "/assets/台大感管line起來_web.mp4": BASE_DIR / "assets/台大感管line起來_web.mp4",
             "/assets/qbee_promo_comic_temp.jpg": BASE_DIR / "assets/qbee_promo_comic_temp.jpg",
             "/assets/qbee_promo_comic_20260903.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903.jpg",
             "/assets/qbee_promo_comic_20260903b.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903b.jpg",
             "/assets/qbee_promo_comic_20260903c.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903c.jpg",
             "/assets/qbee_promo_comic_20260903d.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903d.jpg",
+            "/assets/qbee_promo_comic_20260903e.jpg": BASE_DIR / "assets/qbee_promo_comic_20260903e.jpg",
             "/assets/event-rules.pdf": BASE_DIR / "台大感管 LINE 官方帳號體驗問卷抽獎推廣活動辦法_0901活動版.pdf",
         }
-        if parsed.path in public_files:
-            self.send_file(public_files[parsed.path])
+        if request_path in public_files:
+            self.send_file(public_files[request_path])
             return
-        if parsed.path == "/health":
+        if request_path == "/health":
             self.send_json(
                 200,
                 {

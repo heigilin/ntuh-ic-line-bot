@@ -20,9 +20,10 @@ let previousTime = 0;
 let readingPosition = 0;
 const readingSpeed = 26;
 let readingPageIndex = 0;
+let autoReadingEnabled = true;
 const readingPages = [...document.querySelectorAll('main > section')];
 
-if (video) video.muted = false;
+if (video) video.muted = true;
 if (introVideo) introVideo.muted = false;
 
 if (!document.body.classList.contains('intro-playing')) {
@@ -46,7 +47,7 @@ function enterWebsite() {
 }
 
 function startReadingAfterHeroVideo() {
-  if (!reduceMotion.matches && scrollY < 120 && !autoReading) startAutoReading();
+  if (autoReadingEnabled && !reduceMotion.matches && scrollY < 120 && !autoReading) startAutoReading();
 }
 
 if (document.body.classList.contains('intro-playing')) video?.pause();
@@ -167,7 +168,13 @@ function scheduleNextPage(delay) {
   }, delay);
 }
 
-autoScrollStart?.addEventListener('click', startAutoReading);
+autoScrollStart?.addEventListener('click', () => {
+  autoReadingEnabled = !autoReadingEnabled;
+  autoScrollStart.setAttribute('aria-pressed', String(autoReadingEnabled));
+  autoScrollStart.textContent = autoReadingEnabled ? '取消自動閱讀' : '開啟自動閱讀';
+  if (!autoReadingEnabled && autoReading) stopAutoReading();
+  if (autoReadingEnabled && video?.ended) startReadingAfterHeroVideo();
+});
 readingControl?.addEventListener('click', () => autoReading ? stopAutoReading() : startAutoReading());
 ['wheel', 'touchstart', 'pointerdown'].forEach((eventName) => {
   addEventListener(eventName, (event) => {
