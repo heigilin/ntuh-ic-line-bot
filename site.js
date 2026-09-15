@@ -27,7 +27,7 @@ if (video) {
   video.pause();
   while (video.firstChild) video.removeChild(video.firstChild);
   const source = document.createElement('source');
-  source.src = `ntuhic-line-promo-final.mp4?v=202609151515`;
+  source.src = `assets/ntuhic-line-promo-final-h264.mp4?v=202609151535`;
   source.type = 'video/mp4';
   video.appendChild(source);
   video.muted = true;

@@ -714,15 +714,56 @@ class Handler(BaseHTTPRequestHandler):
         if not path.is_file():
             self.send_text(404, "Not found")
             return
-        body = path.read_bytes()
+        
+        file_size = path.stat().st_size
         content_type = mimetypes.guess_type(path.name)[0] or "application/octet-stream"
+        cache_policy = "no-cache" if path.suffix in {".html", ".css", ".js"} else "public, max-age=3600"
+        range_header = self.headers.get("Range")
+
+        if range_header and range_header.startswith("bytes="):
+            try:
+                byte_range = range_header[6:].split("-")
+                start = int(byte_range[0]) if byte_range[0] else 0
+                end = int(byte_range[1]) if len(byte_range) > 1 and byte_range[1] else file_size - 1
+                if start >= file_size or end >= file_size or start > end:
+                    self.send_response(416)
+                    self.send_header("Content-Range", f"bytes */{file_size}")
+                    self.end_headers()
+                    return
+
+                length = end - start + 1
+                self.send_response(206)
+                self.send_header("Content-Type", content_type)
+                self.send_header("Content-Range", f"bytes {start}-{end}/{file_size}")
+                self.send_header("Content-Length", str(length))
+                self.send_header("Accept-Ranges", "bytes")
+                self.send_header("Cache-Control", cache_policy)
+                self.end_headers()
+
+                with open(path, "rb") as f:
+                    f.seek(start)
+                    remaining = length
+                    while remaining > 0:
+                        chunk_size = min(remaining, 64 * 1024)
+                        chunk = f.read(chunk_size)
+                        if not chunk:
+                            break
+                        self.wfile.write(chunk)
+                        remaining -= len(chunk)
+                return
+            except Exception:
+                pass
+
         self.send_response(200)
         self.send_header("Content-Type", content_type)
-        self.send_header("Content-Length", str(len(body)))
-        cache_policy = "no-cache" if path.suffix in {".html", ".css", ".js"} else "public, max-age=3600"
+        self.send_header("Content-Length", str(file_size))
+        self.send_header("Accept-Ranges", "bytes")
         self.send_header("Cache-Control", cache_policy)
         self.end_headers()
-        self.wfile.write(body)
+
+        with open(path, "rb") as f:
+            while chunk := f.read(64 * 1024):
+                self.wfile.write(chunk)
 
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
@@ -735,10 +776,10 @@ class Handler(BaseHTTPRequestHandler):
             "/bright.css": BASE_DIR / "bright.css",
             "/site.js": BASE_DIR / "site.js",
             "/台大感管line起來.mp4": BASE_DIR / "台大感管line起來.mp4",
-            "/ntuhic-line-promo-final.mp4": BASE_DIR / "ntuhic-line-promo-final.mp4",
+            "/assets/ntuhic-line-promo-final-h264.mp4": BASE_DIR / "assets/ntuhic-line-promo-final-h264.mp4",
             "/assets/avatar.jpg": BASE_DIR / "頭貼.jpg",
             "/assets/mos-meal.jpg": BASE_DIR / "摩斯套餐.jpg",
-            "/assets/video-poster.png": BASE_DIR / "output/video/slide-01.png",
+            "/assets/video-poster.png": BASE_DIR / "assets/video-poster.png",
             "/assets/qbee-character.png": BASE_DIR / "assets/qbee-character.png",
             "/assets/children-hospital.jpg": BASE_DIR / "assets/children-hospital.jpg",
             "/assets/nursing-cart-crop.jpg": BASE_DIR / "assets/nursing-cart-crop.jpg",
