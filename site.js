@@ -24,8 +24,15 @@ let autoReadingEnabled = true;
 const readingPages = [...document.querySelectorAll('main > section')];
 
 if (video) {
+  video.pause();
+  while (video.firstChild) video.removeChild(video.firstChild);
+  const source = document.createElement('source');
+  source.src = `ntuhic-line-promo-final.mp4?v=202609151515`;
+  source.type = 'video/mp4';
+  video.appendChild(source);
   video.muted = true;
   video.volume = 1;
+  video.load();
 }
 if (introVideo) introVideo.muted = false;
 
