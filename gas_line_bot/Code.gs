@@ -1,5 +1,5 @@
 const CONFIG = {
-  BOT_VERSION: '2026-08-26-fast-state-cache-12',
+  BOT_VERSION: '2026-09-14-priority-safety-replies-13',
   KB_FILE_NAME: 'kb_index.json',
   AUDIT_FILE_NAME: 'audit_clauses.json',
   CLEARANCE_FILE_NAME: 'clearance_rules.json',
@@ -116,13 +116,31 @@ function answerQuestion_(question, event) {
   if (suggestionReply) return finalizeAnswer_({ text: suggestionReply, diseaseName: '閒聊' }, event, originalQuestion, question, { skipCount: true });
 
   // Operational needlestick buttons must resolve to their own instructions,
-  // before the broad 5.2 audit-clause matcher turns them back into a menu.
+  // before either urgent free-text routing or the broad 5.2 audit-clause matcher.
   const needlestickActionReply = needlestickActionPriorityReply_(question, event);
   if (needlestickActionReply) {
     return finalizeAnswer_({
       text: needlestickActionReply.text,
       diseaseName: '針扎與體液暴露',
       subtopic: needlestickActionReply.subtopic
+    }, event, originalQuestion, question);
+  }
+
+  const actualNeedlestickReply = actualNeedlestickExposurePriorityReply_(question);
+  if (actualNeedlestickReply) {
+    return finalizeAnswer_({
+      text: actualNeedlestickReply,
+      diseaseName: '針扎與體液暴露',
+      subtopic: 'exposure'
+    }, event, originalQuestion, question);
+  }
+
+  const maskWasteReply = maskWastePriorityReply_(question);
+  if (maskWasteReply) {
+    return finalizeAnswer_({
+      text: maskWasteReply,
+      diseaseName: '感染性廢棄物',
+      subtopic: 'waste'
     }, event, originalQuestion, question);
   }
 
@@ -1560,6 +1578,37 @@ function isPostExposurePepQuery_(question) {
   return /暴露.*(造冊|預防|投藥|PEP|用藥|追蹤|處置)|(造冊原則|預防用藥|預防性投藥|PEP|暴露處置|接觸者造冊|接觸者名單|暴露後)/i.test(q);
 }
 
+function isActualNeedlestickExposureQuery_(question) {
+  const q = normalizeIntentText_(question).replace(/\s+/g, '');
+  const hasNeedlestickTerm = /針[扎紮刺]|針頭.*(?:扎|紮|刺)|尖銳物.*(?:扎傷|紮傷|刺傷)|血液體液暴露|血體液暴露|不明血體液接觸/i.test(q);
+  if (!hasNeedlestickTerm) return false;
+  if (/評鑑|查核|委員|條文|佐證|KM|稽核|統計|改善方案|教育訓練|拒絕針扎運動/i.test(q)) return false;
+  return /我|自己|同仁|員工|護理師|醫師|醫檢師|學生|志工|被|刺到|扎到|紮到|受傷|流血|怎麼辦|怎麼處理|如何處理|處理|通報|就醫|PEP/i.test(q);
+}
+
+function actualNeedlestickExposurePriorityReply_(question) {
+  if (!isActualNeedlestickExposureQuery_(question)) return '';
+  return '針扎／血液體液暴露後請先做立即處置：\n' +
+    '- 皮膚或傷口：立即以流動清水和肥皂清洗；不要用漂白水，不要刷洗或擠壓傷口。\n' +
+    '- 眼睛或黏膜：立即以大量清水或生理食鹽水沖洗。\n' +
+    '- 立即通知單位主管，依院內流程完成暴露通報、風險評估及感染源／暴露者檢驗。\n' +
+    '- 若可能需要 HIV PEP，應立即轉介評估；不要等待全部檢驗結果才處理。\n' +
+    '- 後續依院內針扎／血液體液暴露流程完成追蹤與結案。' +
+    nextSubtopicPrompt_('針扎與體液暴露');
+}
+
+function maskWastePriorityReply_(question) {
+  const q = normalizeIntentText_(question);
+  const hasMask = /n95|口罩|呼吸防護具|防護面罩/i.test(q);
+  const asksDisposal = /丟|垃圾|廢棄|廢棄物|分類|處理|回收/i.test(q);
+  if (!hasMask || !asksDisposal) return '';
+  return 'N95／口罩廢棄處理重點：\n' +
+    '- 臨床照護、隔離區或可能污染血液體液／呼吸道分泌物後使用的 N95 或口罩，勿丟一般生活垃圾，請依院內感染性廢棄物流程丟棄。\n' +
+    '- 脫除時避免碰觸口罩外層，丟棄後立即執行手部衛生。\n' +
+    '- 若為未使用、過期或庫存報廢的口罩／N95，依院內物資、總務或職安管理流程辦理，不要自行混入臨床感染性垃圾。\n' +
+    '- 如單位張貼分類圖示或院內公告有更細規定，以現行公告與單位流程為準。';
+}
+
 function postExposurePepReply_(question) {
   const q = convertFullWidthToHalfWidth_(String(question || ''));
 
@@ -1592,7 +1641,7 @@ function postExposurePepReply_(question) {
 
   return '💉 **針扎與血液體液暴露 (HIV/HBV/HCV) 處置與 PEP**：\n\n' +
     '1. **現場立即處置**：\n' +
-    '   · 傷口：擠出血液並以流動清水與肥皂沖洗洗淨。\n' +
+    '   · 傷口：立即以流動清水與肥皂沖洗洗淨；不要刷洗或擠壓傷口。\n' +
     '   · 黏膜：以大量生理食鹽水沖洗。\n\n' +
     '2. **開單採檢與通報**：\n' +
     '   · 開立 HIS「針扎/血液體液暴露檢驗套單」（含 HIV, Anti-HBs, HBsAg, Anti-HCV, VDRL）。\n' +
@@ -3538,6 +3587,18 @@ function buildQuickReplyForDisease_(diseaseName, answerObj) {
       { key: 'clearance', active: scabiesCurrent === 'clearance', item: quickReplyMessage_('解隔標準', '疥瘡解隔標準') }
     ];
     items = scabiesOptions.filter(function(row) { return !row.active; }).map(function(row) { return row.item; });
+    return { items: appendGlobalQuickReplies_(items, answerObj) };
+  }
+  if (d === '針扎與體液暴露') {
+    const q = String(answerObj && (answerObj.effectiveQuestion || answerObj.originalQuestion || answerObj.text) || '');
+    const needlestickItems = [
+      { pattern: /立即處理|請先做立即處置/i, item: quickReplyMessage_('立即處理', '針扎暴露後立即處理') },
+      { pattern: /HIV\s*PEP/i, item: quickReplyMessage_('HIV PEP', '針扎 HIV PEP') },
+      { pattern: /檢驗與追蹤/i, item: quickReplyMessage_('檢驗追蹤', '針扎檢驗與追蹤') },
+      { pattern: /委員.*(?:問|提問)|可能提問/i, item: quickReplyMessage_('委員提問', '查核條文 5.2 委員提問') },
+      { pattern: /(?:km|佐證|資料位置)/i, item: quickReplyMessage_('KM佐證', '查核條文 5.2 KM佐證') }
+    ];
+    items = needlestickItems.filter(function(row) { return !row.pattern.test(q); }).map(function(row) { return row.item; });
     return { items: appendGlobalQuickReplies_(items, answerObj) };
   }
   const contextualItems = contextualQuickReplyItems_(answerObj);

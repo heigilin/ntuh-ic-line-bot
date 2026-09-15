@@ -43,6 +43,7 @@ HOST = os.getenv("HOST", "127.0.0.1")
 PORT = int(os.getenv("PORT", "8000"))
 
 kb = MarkdownKnowledgeBase(KNOWLEDGE_DIR)
+USER_SESSIONS: dict[str, dict[str, str]] = {}
 
 SYSTEM_PROMPT = """你是台大感管中心的 LINE 臨床問答助手。
 請用繁體中文、專業但親切的語氣回答臨床同仁。
@@ -52,8 +53,14 @@ SYSTEM_PROMPT = """你是台大感管中心的 LINE 臨床問答助手。
 回答末尾簡短提醒：「請勿輸入病人姓名、病歷號、床號等個資。」
 """
 
+MODE_INSTRUCTIONS = {
+    "clinical": "請用臨床照護模式回答：優先整理現場照護、通報、隔離、採檢、用物與病人安置等可執行重點。",
+    "audit": "請用評鑑查核模式回答：優先整理查核委員可能追問的回答重點、可佐證資料、文件紀錄、現場一致性與常見缺口。",
+}
+
 POLICY_NOTICE = "一般流程摘要｜如與正式公告不一致，以正式公告為準。"
 PRIVACY_NOTICE = "請勿輸入病人姓名、病歷號、床號等個資。"
+AUDIT_NOTICE = "查核提醒：請同步確認現場作業、紀錄文件與院內最新公告是否一致。"
 HELP_REPLY = (
     "您好，我是台大感管 LINE 查詢助手。可查感染管制、法定傳染病通報、隔離／解隔、"
     "檢體送驗、疫區、清消濃度、查核重點，也可查週會／月會議題曾在哪些日期出現。\n\n"
@@ -77,9 +84,10 @@ def post_json(url: str, headers: dict[str, str], payload: dict[str, Any], timeou
         return json.loads(body) if body else {}
 
 
-def call_openai(question: str, context: str) -> str | None:
+def call_openai(question: str, context: str, response_mode: str = "clinical") -> str | None:
     if not OPENAI_API_KEY:
         return None
+    mode_instruction = MODE_INSTRUCTIONS.get(response_mode, MODE_INSTRUCTIONS["clinical"])
     data = post_json(
         "https://api.openai.com/v1/chat/completions",
         {
@@ -90,7 +98,7 @@ def call_openai(question: str, context: str) -> str | None:
             "model": OPENAI_MODEL,
             "temperature": 0.2,
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": f"{SYSTEM_PROMPT}\n{mode_instruction}"},
                 {"role": "user", "content": f"使用者問題：{question}\n\n知識庫內容：\n{context}"},
             ],
         },
@@ -192,6 +200,8 @@ def extractive_answer(context: str, style: str = "clinical") -> str:
 
     if style == "travel":
         answer = "依疾管署國際旅遊疫情建議等級整理如下；疫情建議等級會隨疫情變動，出國前請再次確認疾管署最新頁面。\n\n"
+    elif style == "audit":
+        answer = "以下以評鑑查核模式整理，可用於現場回答與佐證準備。\n\n"
     else:
         answer = "我先依知識庫內容整理重點如下。\n\n"
     answer += "\n\n".join(sections)
@@ -199,6 +209,8 @@ def extractive_answer(context: str, style: str = "clinical") -> str:
         answer += "\n\n資料來源：" + "、".join(sources[:3])
     if style == "travel":
         answer += "\n\n提醒：旅遊疫情建議等級為行前參考，返國後如有不適請儘速就醫並告知旅遊史。"
+    elif style == "audit":
+        answer += f"\n\n{AUDIT_NOTICE}\n\n{PRIVACY_NOTICE}"
     else:
         answer += f"\n\n{POLICY_NOTICE}\n\n{PRIVACY_NOTICE}"
     return answer
@@ -382,8 +394,93 @@ def convert_full_width_to_half_width(text: str) -> str:
     return "".join(result)
 
 
-def answer_question(question: str) -> str:
+def detect_mode_switch(text: str) -> str | None:
+    compact = "".join(convert_full_width_to_half_width(text).split()).lower()
+    switch_terms = ("切換", "改成", "換成", "轉成", "用", "以")
+    has_switch_intent = any(term in compact for term in switch_terms) or compact in {
+        "臨床照護",
+        "臨床模式",
+        "照護模式",
+        "評鑑查核",
+        "評鑑模式",
+        "查核模式",
+    }
+    if not has_switch_intent:
+        return None
+    audit_terms = ("評鑑查核", "評鑑", "查核", "稽核", "佐證")
+    clinical_terms = ("臨床照護", "臨床", "照護")
+    if any(term in compact for term in audit_terms):
+        return "audit"
+    if any(term in compact for term in clinical_terms):
+        return "clinical"
+    return None
+
+
+def mode_label(response_mode: str) -> str:
+    return "評鑑查核" if response_mode == "audit" else "臨床照護"
+
+
+def handle_user_text(user_key: str, user_text: str) -> str:
+    session = USER_SESSIONS.setdefault(user_key, {"mode": "clinical"})
+    requested_mode = detect_mode_switch(user_text)
+    if requested_mode:
+        session["mode"] = requested_mode
+        previous_question = session.get("last_question", "").strip()
+        if previous_question:
+            return answer_question(previous_question, response_mode=requested_mode)
+        return (
+            f"已切換為{mode_label(requested_mode)}模式。"
+            "請直接輸入要查詢的問題，我會用這個模式回答。"
+            f"\n\n{PRIVACY_NOTICE}"
+        )
+
+    session["last_question"] = user_text
+    return answer_question(user_text, response_mode=session.get("mode", "clinical"))
+
+
+def priority_safety_reply(question: str) -> str | None:
+    compact = "".join(convert_full_width_to_half_width(question).split()).lower()
+
+    has_needlestick = re.search(
+        r"針[扎紮刺]|針頭.*(?:扎|紮|刺)|尖銳物.*(?:扎傷|紮傷|刺傷)|血液體液暴露|血體液暴露|不明血體液接觸",
+        compact,
+        re.I,
+    )
+    asks_action = re.search(
+        r"我|自己|同仁|員工|學生|被|刺到|扎到|紮到|受傷|流血|怎麼辦|怎麼處理|如何處理|通報|就醫|pep",
+        compact,
+        re.I,
+    )
+    asks_audit = re.search(r"評鑑|查核|委員|條文|佐證|km|稽核|統計|改善方案|教育訓練", compact, re.I)
+    if has_needlestick and asks_action and not asks_audit:
+        return (
+            "針扎／血液體液暴露後請先做立即處置：\n"
+            "- 皮膚或傷口：立即以流動清水和肥皂清洗；不要用漂白水，不要刷洗或擠壓傷口。\n"
+            "- 眼睛或黏膜：立即以大量清水或生理食鹽水沖洗。\n"
+            "- 立即通知單位主管，依院內流程完成暴露通報、風險評估及感染源／暴露者檢驗。\n"
+            "- 若可能需要 HIV PEP，應立即轉介評估；不要等待全部檢驗結果才處理。\n"
+            "- 後續依院內針扎／血液體液暴露流程完成追蹤與結案。\n\n"
+            f"{POLICY_NOTICE}\n\n{PRIVACY_NOTICE}"
+        )
+
+    has_mask = re.search(r"n95|口罩|呼吸防護具|防護面罩", compact, re.I)
+    asks_disposal = re.search(r"丟|垃圾|廢棄|廢棄物|分類|處理|回收", compact, re.I)
+    if has_mask and asks_disposal:
+        return (
+            "N95／口罩廢棄處理重點：\n"
+            "- 臨床照護、隔離區或可能污染血液體液／呼吸道分泌物後使用的 N95 或口罩，勿丟一般生活垃圾，請依院內感染性廢棄物流程丟棄。\n"
+            "- 脫除時避免碰觸口罩外層，丟棄後立即執行手部衛生。\n"
+            "- 若為未使用、過期或庫存報廢的口罩／N95，依院內物資、總務或職安管理流程辦理，不要自行混入臨床感染性垃圾。\n"
+            "- 如單位張貼分類圖示或院內公告有更細規定，以現行公告與單位流程為準。\n\n"
+            f"{POLICY_NOTICE}\n\n{PRIVACY_NOTICE}"
+        )
+
+    return None
+
+
+def answer_question(question: str, response_mode: str = "clinical") -> str:
     question = convert_full_width_to_half_width(question)
+    response_mode = response_mode if response_mode in MODE_INSTRUCTIONS else "clinical"
     compact = "".join(question.split()).lower()
     help_phrases = {
         "可以查什麼", "可以問什麼", "你能做什麼", "你能查什麼", "你能回答什麼", "你能答什麼",
@@ -393,6 +490,9 @@ def answer_question(question: str) -> str:
     }
     if compact in help_phrases:
         return f"{HELP_REPLY}\n\n{PRIVACY_NOTICE}"
+    priority_reply = priority_safety_reply(question)
+    if priority_reply:
+        return priority_reply
     meeting_answer = meeting_date_only_answer(question)
     if meeting_answer is not None:
         return meeting_answer
@@ -477,6 +577,8 @@ def answer_question(question: str) -> str:
         )
     elif query_intent(question) == "general" and len(compact_question) <= 8 and any(term in compact_question for term in disease_terms):
         search_question = f"{question} 重點結論 臨床問答 標準回覆 感染管制 清消 消毒 隔離 通報"
+    if response_mode == "audit":
+        search_question = f"{search_question} 評鑑 查核 稽核 佐證 紀錄 文件 現場回答 常見缺口"
 
     hits = filter_hits_by_intent(question, kb.search(search_question, limit=30))
     if is_report_operation_query:
@@ -561,16 +663,19 @@ def answer_question(question: str) -> str:
             hits = travel_hits[:8] or hits
     hits = hits[:8]
     context = format_context(hits, max_chars=MAX_CONTEXT_CHARS)
-    answer_style = "travel" if is_travel_query and not is_report_operation_query else "clinical"
+    answer_style = "travel" if is_travel_query and not is_report_operation_query else response_mode
     try:
-        answer = call_openai(question, context) or extractive_answer(context, style=answer_style)
+        answer = call_openai(question, context, response_mode=response_mode) or extractive_answer(context, style=answer_style)
     except Exception as exc:
         print(f"AI call failed, using extractive answer: {exc}")
         answer = extractive_answer(context, style=answer_style)
 
-    if answer_style == "clinical":
-        answer = answer.replace(POLICY_NOTICE, "").replace(PRIVACY_NOTICE, "").rstrip()
-        answer += f"\n\n{POLICY_NOTICE}\n\n{PRIVACY_NOTICE}"
+    if answer_style in {"clinical", "audit"}:
+        answer = answer.replace(POLICY_NOTICE, "").replace(AUDIT_NOTICE, "").replace(PRIVACY_NOTICE, "").rstrip()
+        if answer_style == "audit":
+            answer += f"\n\n{AUDIT_NOTICE}\n\n{PRIVACY_NOTICE}"
+        else:
+            answer += f"\n\n{POLICY_NOTICE}\n\n{PRIVACY_NOTICE}"
 
     if len(answer) > MAX_LINE_REPLY_CHARS:
         answer = answer[: MAX_LINE_REPLY_CHARS - 30] + "\n\n（內容較長，已截短）"
@@ -665,11 +770,13 @@ class Handler(BaseHTTPRequestHandler):
             )
             return
         if parsed.path == "/ask":
-            query = parse_qs(parsed.query).get("q", [""])[0].strip()
+            params = parse_qs(parsed.query)
+            query = params.get("q", [""])[0].strip()
+            response_mode = params.get("mode", ["clinical"])[0].strip().lower()
             if not query:
                 self.send_text(400, "Missing q")
                 return
-            self.send_text(200, answer_question(query))
+            self.send_text(200, answer_question(query, response_mode=response_mode))
             return
         self.send_text(404, "Not found")
 
@@ -697,7 +804,14 @@ class Handler(BaseHTTPRequestHandler):
             user_text = message.get("text", "").strip()
             if not reply_token or not user_text:
                 continue
-            reply_to_line(reply_token, answer_question(user_text))
+            source = event.get("source", {})
+            user_key = (
+                source.get("userId")
+                or source.get("groupId")
+                or source.get("roomId")
+                or "line-default"
+            )
+            reply_to_line(reply_token, handle_user_text(user_key, user_text))
 
         self.send_json(200, {"ok": True})
 
