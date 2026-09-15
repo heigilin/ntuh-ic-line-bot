@@ -23,34 +23,25 @@ let readingPageIndex = 0;
 let autoReadingEnabled = true;
 const readingPages = [...document.querySelectorAll('main > section')];
 
-if (video) {
-  video.pause();
-  while (video.firstChild) video.removeChild(video.firstChild);
-  const source = document.createElement('source');
-  source.src = `assets/ntuhic-line-promo-final-h264.mp4?v=202609151535`;
-  source.type = 'video/mp4';
-  video.appendChild(source);
-  video.muted = true;
-  video.volume = 1;
-  video.load();
-}
-if (introVideo) introVideo.muted = false;
-
 function playHeroVideo() {
   if (!video) return;
+  video.muted = true;
+  video.defaultMuted = true;
   video.playsInline = true;
   video.autoplay = true;
-  video.volume = 1;
-  video.play()
-    .then(() => {
-      setTimeout(() => {
-        video.muted = false;
-      }, 250);
-    })
-    .catch(() => {
+  const playPromise = video.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
       video.muted = true;
       video.play().catch(() => {});
     });
+  }
+}
+
+if (video) {
+  video.muted = true;
+  video.defaultMuted = true;
+  playHeroVideo();
 }
 
 if (!document.body.classList.contains('intro-playing')) {
